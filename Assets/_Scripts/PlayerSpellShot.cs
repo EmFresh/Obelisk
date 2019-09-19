@@ -38,7 +38,7 @@ public class PlayerSpellShot : MonoBehaviour
         for (int i = 0; i < projCounter.Count; i++)
         {
             //Object destruction after 5 seconds
-            if (projCounter[i] >= diration)
+            if (projCounter[i] >= duration)
             {
                Destroy(Projcopy[i]);
                 Projcopy.RemoveAt(i);
