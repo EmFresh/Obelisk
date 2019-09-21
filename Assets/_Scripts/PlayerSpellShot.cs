@@ -10,6 +10,7 @@ public class PlayerSpellShot : MonoBehaviour
 
     IList<GameObject> Projcopy = new List<GameObject>();
     IList<float> projCounter = new List<float>();
+    IList<Vector3> direction = new List<Vector3>();
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class PlayerSpellShot : MonoBehaviour
         {
             Projcopy.Add(Instantiate(projectial));
             projCounter.Add(0);
+            direction.Add(transform.forward);
             Projcopy[Projcopy.Count - 1].transform.position = transform.position;
 
             Debug.Log("I need you to move");
@@ -40,18 +42,22 @@ public class PlayerSpellShot : MonoBehaviour
             //Object destruction after 5 seconds
             if (projCounter[i] >= duration)
             {
+                Debug.Log(direction[i]);
                Destroy(Projcopy[i]);
                 Projcopy.RemoveAt(i);
                 projCounter.RemoveAt(i);
-                i--;
+                direction.RemoveAt(i);
+                i--;                
+
                 continue;
+               
             }
             
             //increase the timer
             projCounter[i] += dt;
 
             //Move the object
-            Projcopy[i].transform.position += transform.forward * movement;
+            Projcopy[i].transform.position += direction[i] * movement;
         }
     }
 }
