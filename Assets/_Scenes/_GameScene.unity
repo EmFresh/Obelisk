@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 226c5ac284248cc48b49df86c57ee6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectial: {fileID: 2286057775286994392, guid: e2f06ce26a09ca04cb4693bb56f01ec2,
+  projectial: {fileID: 7804686954685305524, guid: c1f53a17aa6754d49af0882b2ab153f4,
     type: 3}
   key: 97
   duration: 5
@@ -826,7 +826,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8.13e-43, y: 4.238429e-11, z: 8.13e-43, w: 4.2255782e-11}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1367,7 +1367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783368229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 80}
+  m_LocalPosition: {x: 0, y: 0.25, z: 90}
   m_LocalScale: {x: 25, y: 0.25, z: 25}
   m_Children: []
   m_Father: {fileID: 174523413}
