@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 355610512}
   - component: {fileID: 355610513}
   - component: {fileID: 355610514}
+  - component: {fileID: 355610515}
   m_Layer: 0
   m_Name: Player 1 (Wizard)
   m_TagString: Player
@@ -731,7 +732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 2
+  MaxSpeed: 4
   JumpHeight: 7
   isGrounded: 1
   key: 101
@@ -751,6 +752,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &355610515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355610507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ae01738de91ee4b992ba640bbfdb32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &388885566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,9 +1029,10 @@ GameObject:
   - component: {fileID: 620543724}
   - component: {fileID: 620543723}
   - component: {fileID: 620543722}
+  - component: {fileID: 620543725}
   m_Layer: 0
   m_Name: Site 1
-  m_TagString: Untagged
+  m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1045,7 +1059,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620543720}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -1097,6 +1111,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620543720}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &620543725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620543720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f29dc7892e0dd438c0ed1dfb84efdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,9 +2328,10 @@ GameObject:
   - component: {fileID: 1783368233}
   - component: {fileID: 1783368232}
   - component: {fileID: 1783368231}
+  - component: {fileID: 1783368234}
   m_Layer: 0
   m_Name: Site 2
-  m_TagString: Untagged
+  m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2331,7 +2358,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783368229}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -2383,6 +2410,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783368229}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1783368234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783368229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f29dc7892e0dd438c0ed1dfb84efdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1820079523
 GameObject:
   m_ObjectHideFlags: 0

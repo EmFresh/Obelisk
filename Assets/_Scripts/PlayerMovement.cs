@@ -102,22 +102,22 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = true;
         
     }
-     void OnTriggerEnter(Collider other) 
+    void OnTriggerEnter(Collider other) 
     {
         //Sends collision bool to be used in update depending on resource
         if (other.gameObject.CompareTag ("Resource(Wood)"))
         {
-            Debug.Log("hello");
+            //Debug.Log("hello");
             woodCollision = true;
         }
         if (other.gameObject.CompareTag ("Resource(Stone)"))
         {
-            Debug.Log("hello");
+            //Debug.Log("hello");
             stoneCollision = true;
         }
         if (other.gameObject.CompareTag ("Resource(Crystal)"))
         {
-            Debug.Log("hello");
+            //Debug.Log("hello");
             crystalCollision = true;
         }
         //else if(Input.GetKeyDown(key))
