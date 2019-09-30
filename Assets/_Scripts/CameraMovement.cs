@@ -5,33 +5,57 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public Transform PlayerTransform;
-    public float MaxSpeed = 1;
+    public Transform pivot;
+    public float RotateSpeed = 1;
 
-    private Vector3 _cameraOffset;
+    public float _cameraLROffset = 0.5f;
+    public float _cameraUDOffset = 0.6f;
+    private Vector3 _cameraBFOffset;
 
     [Range(0.01f, 1.0f)]
-    public float SmoothFactor = 0.5f;
+    public float SmoothFactor = 0.3f;
 
     // Start is called before the first frame update
     void Start()
     {
-        _cameraOffset = transform.position - PlayerTransform.position;
+        _cameraBFOffset = transform.position - PlayerTransform.position;
+
+        pivot.transform.position = PlayerTransform.transform.position;
+        pivot.transform.parent = PlayerTransform.transform;
+
+        Cursor.lockState = CursorLockMode.Locked;
+
+        transform.position += transform.right * _cameraLROffset;
+        transform.position += transform.up * _cameraUDOffset;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        var x = Input.GetAxis("Horizontal");
-        var y = Input.GetAxis("Vertical");
+        transform.position -= transform.right * _cameraLROffset;
+        transform.position -= transform.up * _cameraUDOffset;
 
-        move(x, y);
+        float horizontal = Input.GetAxis("Mouse X") * RotateSpeed;
+        PlayerTransform.Rotate(0, horizontal, 0);
 
-        Vector3 newPos = PlayerTransform.position + _cameraOffset;
-        transform.position = Vector3.Slerp(transform.position, newPos, SmoothFactor);
-    }
-    private void move(float x, float y)
-    {
-        transform.position += (Vector3.forward * MaxSpeed) * y * Time.deltaTime;
-        transform.position += (Vector3.right * MaxSpeed) * x * Time.deltaTime;
+        float vertical = Input.GetAxis("Mouse Y") * RotateSpeed;
+        pivot.Rotate(-vertical, 0, 0);
+
+        float desiredYAngle = PlayerTransform.eulerAngles.y;
+        float desiredXAngle = pivot.eulerAngles.x;
+
+        Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
+        transform.position = Vector3.Slerp(transform.position, PlayerTransform.position + (rotation * _cameraBFOffset), SmoothFactor);
+        
+
+        if(transform.position.y < PlayerTransform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, PlayerTransform.position.y, transform.position.z);
+        }
+
+        transform.LookAt(PlayerTransform);
+
+        transform.position += transform.right * _cameraLROffset;
+        transform.position += transform.up * _cameraUDOffset;
     }
 }

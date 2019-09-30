@@ -21,9 +21,9 @@ public class ResourceDeposit : MonoBehaviour
         if (other.gameObject.CompareTag ("BuildZone"))
         {
             //Debug.Log("hello");
-             PlayerMovement.WoodAmount = 0;
-             PlayerMovement.StoneAmount = 0;
-             PlayerMovement.CrystalAmount = 0;
+             PlayerPickup.WoodAmount = 0;
+             PlayerPickup.StoneAmount = 0;
+             PlayerPickup.CrystalAmount = 0;
         }
     }
 }

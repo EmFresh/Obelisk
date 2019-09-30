@@ -25,9 +25,9 @@ public class ResourceStockpile : MonoBehaviour
     {
         if (other.gameObject.CompareTag ("Player"))
         {
-            woodStock = PlayerMovement.WoodAmount;
-            stoneStock = PlayerMovement.StoneAmount;
-            crystalStock = PlayerMovement.CrystalAmount;
+            woodStock = PlayerPickup.WoodAmount;
+            stoneStock = PlayerPickup.StoneAmount;
+            crystalStock = PlayerPickup.CrystalAmount;
             Debug.Log(woodStock);
             Debug.Log(stoneStock);
             Debug.Log(crystalStock);

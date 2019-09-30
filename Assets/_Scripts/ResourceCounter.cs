@@ -16,6 +16,6 @@ public class ResourceCounter : MonoBehaviour
     void Update()
     {
        
-        woodText.text = "Wood: " + PlayerMovement.WoodAmount + "\nStone: " + PlayerMovement.StoneAmount + "\nCrystal: " + PlayerMovement.CrystalAmount;
+        woodText.text = "Wood: " + PlayerPickup.WoodAmount + "\nStone: " + PlayerPickup.StoneAmount + "\nCrystal: " + PlayerPickup.CrystalAmount;
     }
 }
