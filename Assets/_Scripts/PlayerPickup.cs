@@ -117,8 +117,12 @@ public class PlayerPickup : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
+        if (other.gameObject.CompareTag("BuildZone"))
+        {
+            
+        }
         //deletes resource object
-        if (resourceCollected == true)
+        else if (resourceCollected == true && !other.gameObject.CompareTag("BuildZone"))
         {
             other.gameObject.SetActive(false);
             resourceCollected = false;
