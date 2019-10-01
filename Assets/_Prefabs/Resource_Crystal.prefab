@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7729194103566976188}
   - component: {fileID: 7729194103566976189}
   m_Layer: 0
-  m_Name: Crystal
+  m_Name: Resource_Crystal
   m_TagString: Resource(Crystal)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7729194103566976190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: -2, y: 0.5, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.9, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

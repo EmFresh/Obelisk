@@ -14,6 +14,9 @@ public class PlayerPickup : MonoBehaviour
     bool woodCollision = false;
     bool stoneCollision = false;
     bool crystalCollision = false;
+    bool woodSmallCollision = false;
+    bool stoneSmallCollision = false;
+    bool crystalSmallCollision = false;
     bool keyPressed = false;
     bool deletThis = false;
 
@@ -50,7 +53,7 @@ public class PlayerPickup : MonoBehaviour
                 {
                     Debug.Log("hi");
 
-                    WoodAmount += 1;
+                    WoodAmount += 3;
                     resourceCollected += 1;
                     woodCollision = false;
                     timer = 0;
@@ -64,7 +67,7 @@ public class PlayerPickup : MonoBehaviour
                 {
                     Debug.Log("hi");
 
-                    StoneAmount += 1;
+                    StoneAmount += 3;
                     resourceCollected += 1;
                     stoneCollision = false;
                     timer = 0;
@@ -78,7 +81,7 @@ public class PlayerPickup : MonoBehaviour
                 {
                     Debug.Log("hi");
 
-                    CrystalAmount += 1;
+                    CrystalAmount += 3;
                     resourceCollected += 1;
                     crystalCollision = false;
                     timer = 0;
@@ -110,6 +113,27 @@ public class PlayerPickup : MonoBehaviour
             {
                 //Debug.Log("hello");
                 crystalCollision = true;
+            }
+            if (other.gameObject.CompareTag("Resource(WoodSmall)"))
+            {
+                //Debug.Log("hello");
+                //woodSmallCollision = true;
+                other.gameObject.SetActive (false); 
+                WoodAmount += 1;
+            }
+            if (other.gameObject.CompareTag("Resource(StoneSmall)"))
+            {
+                //Debug.Log("hello");
+                //stoneSmallCollision = true;
+                other.gameObject.SetActive (false); 
+                StoneAmount += 1;
+            }
+            if (other.gameObject.CompareTag("Resource(CrystalSmall)"))
+            {
+                //Debug.Log("hello");
+                //crystalSmallCollision = true;
+                other.gameObject.SetActive (false); 
+                CrystalAmount += 1; 
             }
            
 
