@@ -10,16 +10,18 @@ public class PlayerPickup : MonoBehaviour
     float timer = 0;
     float pickupDuration = 1f;
 
-    bool resourceCollected = false;
+    int resourceCollected = 0;
     bool woodCollision = false;
     bool stoneCollision = false;
     bool crystalCollision = false;
+    bool keyPressed = false;
+    bool deletThis = false;
 
     public KeyCode key;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -27,13 +29,21 @@ public class PlayerPickup : MonoBehaviour
     {
         if (Input.GetKeyDown(key))
         {
+            keyPressed = true;
             timer = Time.time;
         }
+        else if (Input.GetKeyUp(key))
+        {
+            keyPressed = false;
+            resourceCollected = 0;
+        }
+
         //Picks up resource after 1 second of holding the key down (Key is public, it is et in Unity)
         //Also sends a bool to onTriggerStay
-        if (Input.GetKey(key))
+        if (keyPressed)
         {
             if (woodCollision == true)
+
             {
 
                 if (Time.time - timer >= pickupDuration)
@@ -41,9 +51,10 @@ public class PlayerPickup : MonoBehaviour
                     Debug.Log("hi");
 
                     WoodAmount += 1;
-                    resourceCollected = true;
+                    resourceCollected += 1;
                     woodCollision = false;
                     timer = 0;
+                    deletThis = true;
                 }
             }
             else if (stoneCollision == true)
@@ -54,9 +65,10 @@ public class PlayerPickup : MonoBehaviour
                     Debug.Log("hi");
 
                     StoneAmount += 1;
-                    resourceCollected = true;
+                    resourceCollected += 1;
                     stoneCollision = false;
                     timer = 0;
+                    deletThis = true;
                 }
             }
             else if (crystalCollision == true)
@@ -67,65 +79,61 @@ public class PlayerPickup : MonoBehaviour
                     Debug.Log("hi");
 
                     CrystalAmount += 1;
-                    resourceCollected = true;
+                    resourceCollected += 1;
                     crystalCollision = false;
                     timer = 0;
+                    deletThis = true;
                 }
             }
         }
+
     }
 
     void OnTriggerEnter(Collider other)
     {
         //Sends collision bool to be used in update depending on resource
-        if (other.gameObject.CompareTag("Resource(Wood)"))
+
+        if (!keyPressed)
         {
-            //Debug.Log("hello");
-            woodCollision = true;
+            Debug.Log("Y do we play gaem");
+            if (other.gameObject.CompareTag("Resource(Wood)"))
+            {
+                //Debug.Log("hello");
+                woodCollision = true;
+            }
+            if (other.gameObject.CompareTag("Resource(Stone)"))
+            {
+                //Debug.Log("hello");
+                stoneCollision = true;
+            }
+            if (other.gameObject.CompareTag("Resource(Crystal)"))
+            {
+                //Debug.Log("hello");
+                crystalCollision = true;
+            }
+           
+
         }
-        if (other.gameObject.CompareTag("Resource(Stone)"))
-        {
-            //Debug.Log("hello");
-            stoneCollision = true;
-        }
-        if (other.gameObject.CompareTag("Resource(Crystal)"))
-        {
-            //Debug.Log("hello");
-            crystalCollision = true;
-        }
-        //else if(Input.GetKeyDown(key))
-        // {
-        //    if (other.gameObject.CompareTag ("Resource(Wood)"))
-        //    {
-        //        if (Time.time - timer > pickupDuration)
-        //        {
-        //             other.gameObject.SetActive (false);
-        //             WoodAmount += 1;
-        //        }
-        //   }
-        //}
-        //if (other.gameObject.CompareTag ("Resource(Stone)"))
-        // {
-        //other.gameObject.SetActive (false);
-        //StoneAmount += 1;
-        //}
-        //if (other.gameObject.CompareTag ("Resource(Crystal)"))
-        //{
-        //other.gameObject.SetActive (false);
-        //CrystalAmount += 1;
-        //}
     }
+
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("BuildZone"))
+        if (deletThis)
         {
-            
-        }
-        //deletes resource object
-        else if (resourceCollected == true && !other.gameObject.CompareTag("BuildZone"))
-        {
-            other.gameObject.SetActive(false);
-            resourceCollected = false;
+            //if()
+            //{
+            if (other.gameObject.CompareTag("BuildZone"))
+            {
+
+            }
+            //deletes resource object
+            else if (!other.gameObject.CompareTag("BuildZone"))
+            {
+                other.gameObject.SetActive(false);
+                Debug.Log("Y do we play gaem2");
+                deletThis = false;
+            }
+            //}
         }
     }
 }
