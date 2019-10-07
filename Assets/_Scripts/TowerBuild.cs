@@ -7,14 +7,15 @@ public class TowerBuild : MonoBehaviour
 {
 
     public List<GameObject> towerParts = new List<GameObject>();
-    public KeyCode key;
+    public KeyCode buildKey;
+    
     private Transform theParent;
 
     public int stage;
     // Start is called before the first frame update
     void Start()
     {
-        theParent = transform;
+        //  theParent = transform;
     }
 
     // Update is called once per frame
@@ -25,16 +26,33 @@ public class TowerBuild : MonoBehaviour
 
     void OnTriggerStay(Collider obj)
     {
-        Debug.Log("entered build site");
-         if (obj.gameObject.tag.Contains("BuildZone"))
-            if (Input.GetKeyDown(key))
+        if (obj.gameObject.tag.Contains("BuildZone"))
+            if (Input.GetKeyDown(buildKey))
             {
-                 Debug.Log("build the tower");
-                GameObject towerPart = Instantiate(towerParts[0]);
+
+                //get the next Parent
+                theParent = obj.gameObject.transform;
+                while (theParent.childCount > 0) theParent = theParent.GetChild(0);
+
+
+                GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count]);
+
+                //sets the tower part as the child of the previous object
                 towerPart.transform.parent = theParent;
-                theParent = towerPart.transform;
+                towerPart.transform.position = theParent.position;
+
+                //get the size of the two objects
+                Bounds obj1 = theParent.gameObject.GetComponent<MeshRenderer>().bounds;
+                Bounds obj2 = towerPart.GetComponent<MeshRenderer>().bounds;
+                Vector3 size1 = obj1.max - obj2.min, size2 = obj2.max - obj2.min;
+
+                //place the new object on top of the old one
+                towerPart.transform.position += new Vector3(0, (size1.y + size2.y) * 0.5f, 0);
+
+                //increase the build stage
                 stage++;
             }
+
     }
 
 }
