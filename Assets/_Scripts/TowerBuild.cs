@@ -8,20 +8,29 @@ public class TowerBuild : MonoBehaviour
 
     public List<GameObject> towerParts = new List<GameObject>();
     public KeyCode buildKey;
-    
+
     private Transform theParent;
 
     public int stage;
     // Start is called before the first frame update
     void Start()
     {
+        print("init started");
+        AudioPlayer.init();
+        print("init finished");
         //  theParent = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        AudioPlayer.update();
+    }
 
+    void onExit()
+    {
+        AudioPlayer.stopAll();
+        AudioPlayer.disable();
     }
 
     void OnTriggerStay(Collider obj)
@@ -29,7 +38,9 @@ public class TowerBuild : MonoBehaviour
         if (obj.gameObject.tag.Contains("BuildZone"))
             if (Input.GetKeyDown(buildKey))
             {
-
+                AudioPlayer.createAudio("Assets/_Audio/gdw_3_song.mp3", "test");
+                AudioPlayer.playAll(true);
+                // print(AudioPlayer.getErrorLog());
                 //get the next Parent
                 theParent = obj.gameObject.transform;
                 while (theParent.childCount > 0) theParent = theParent.GetChild(0);
