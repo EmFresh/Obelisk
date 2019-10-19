@@ -14,9 +14,9 @@ public class PlayerPickup : MonoBehaviour
     bool woodCollision = false;
     bool stoneCollision = false;
     bool crystalCollision = false;
-    bool woodSmallCollision = false;
-    bool stoneSmallCollision = false;
-    bool crystalSmallCollision = false;
+    //bool woodSmallCollision = false;
+    //bool stoneSmallCollision = false;
+    //bool crystalSmallCollision = false;
     bool keyPressed = false;
     bool deletThis = false;
 
