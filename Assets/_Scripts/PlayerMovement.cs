@@ -41,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(0, JumpHeight, 0);
             isGrounded = false;
         }
+
+        
     }
 
     // Check player on the ground or not (Unity build in function)
