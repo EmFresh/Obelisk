@@ -7,9 +7,11 @@ public class Blink : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private MeshRenderer characterRenderer;
-    private float nextBlinkTime = 0;
     private float cooldownTime = 2.0f;
-    private float blinkActiveTime = 5;
+    private float nextBlinkTime = 0;
+
+    public float blinkTime; //Set here or in Inspector to modify the amount of time the player is in "Blink" mode
+    private bool isBlinking;
     // Start is called before the first frame update
 
     void Awake()
@@ -25,13 +27,30 @@ public class Blink : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Blink") && Time.time > nextBlinkTime)
+        if (Input.GetButtonDown("Blink") && Time.time > nextBlinkTime && !isBlinking)
         {
-            nextBlinkTime = Time.time + cooldownTime;
-            Debug.Log("Blinking");
-            characterRenderer.enabled = !characterRenderer.enabled;
-            playerMovement.MaxSpeed = 10;
+            
+            ActivateBlink();
+           
         }
+    }
+
+    void ActivateBlink()
+    {
+        isBlinking = true;
+        playerMovement.MaxSpeed = 10;
+        characterRenderer.enabled = !characterRenderer.enabled;
+        Debug.Log("Blink Active");
+        Invoke("StopBlink",blinkTime); //After blinkTime seconds, StopBlink()
+    }
+
+    void StopBlink()
+    {
+        Debug.Log("Blink Stopped");
+        playerMovement.MaxSpeed = 7;
+        characterRenderer.enabled = !characterRenderer.enabled;
+        nextBlinkTime = Time.time + cooldownTime;
+        isBlinking = false;
     }
 }
 
