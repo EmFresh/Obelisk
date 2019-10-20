@@ -11,7 +11,7 @@ public class BlinkEffect : MonoBehaviour
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         
-        Graphics.Blit(source,destination, material);
+        Graphics.Blit(source,destination,material);
 
     }
    

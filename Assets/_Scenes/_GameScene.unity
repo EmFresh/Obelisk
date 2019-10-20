@@ -2371,8 +2371,8 @@ GameObject:
   - component: {fileID: 1364652354}
   - component: {fileID: 1364652353}
   - component: {fileID: 1364652352}
-  - component: {fileID: 1364652351}
   - component: {fileID: 1364652357}
+  - component: {fileID: 1364652351}
   m_Layer: 0
   m_Name: Player 2 (Runner)
   m_TagString: Player
@@ -3825,6 +3825,7 @@ GameObject:
   - component: {fileID: 2055964530}
   - component: {fileID: 2055964529}
   - component: {fileID: 2055964528}
+  - component: {fileID: 2055964531}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3916,6 +3917,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2055964531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055964526}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e74392c306b6b46b042300287be9b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 2320aaf60f978ee41acac62071780bb8, type: 2}
 --- !u!1001 &2090855316
 PrefabInstance:
   m_ObjectHideFlags: 0
