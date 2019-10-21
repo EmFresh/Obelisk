@@ -62,7 +62,7 @@ public class ObjectPool : MonoBehaviour
         //Check if the tag exist in the dictionary
         if (!poolDict.ContainsKey(tag))
         {
-            Debug.LogWarning("Pool with tag " + tag + " not exist!");
+            Debug.LogWarning("Pool with tag " + tag + " does not exist!");
             return null;
         }
 
