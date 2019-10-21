@@ -25,6 +25,7 @@ public class ResourceSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         woodSpawnTimer += Time.deltaTime;
         stoneSpawnTimer += Time.deltaTime;
         crystalSpawnTimer += Time.deltaTime;
