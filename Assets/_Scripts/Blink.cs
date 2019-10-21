@@ -6,6 +6,7 @@ public class Blink : MonoBehaviour
 {
 
     private PlayerMovement playerMovement;
+    private BlinkEffect shaderScript;
     private MeshRenderer characterRenderer;
     private float cooldownTime = 2.0f;
     private float nextBlinkTime = 0;
@@ -17,6 +18,7 @@ public class Blink : MonoBehaviour
     void Awake()
     {
         playerMovement = GetComponent<PlayerMovement>();
+        shaderScript = GetComponentInChildren<BlinkEffect>();
 
     }
     void Start()
@@ -29,25 +31,29 @@ public class Blink : MonoBehaviour
     {
         if (Input.GetButtonDown("Blink") && Time.time > nextBlinkTime && !isBlinking)
         {
-            
+
             ActivateBlink();
-           
+
         }
     }
 
     void ActivateBlink()
     {
-        isBlinking = true;
+
         playerMovement.MaxSpeed = 10;
+        shaderScript.enabled = !shaderScript.enabled;
+        isBlinking = true;
         characterRenderer.enabled = !characterRenderer.enabled;
         Debug.Log("Blink Active");
-        Invoke("StopBlink",blinkTime); //After blinkTime seconds, StopBlink()
+        Invoke("StopBlink", blinkTime); //After blinkTime seconds, StopBlink()
     }
 
     void StopBlink()
     {
         Debug.Log("Blink Stopped");
-        playerMovement.MaxSpeed = 7;
+        playerMovement.MaxSpeed = 5;
+        shaderScript.enabled = !shaderScript.enabled;
+
         characterRenderer.enabled = !characterRenderer.enabled;
         nextBlinkTime = Time.time + cooldownTime;
         isBlinking = false;
