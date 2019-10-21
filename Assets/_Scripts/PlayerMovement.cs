@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private static ObjectPool myPool;
+    
     public float MaxSpeed = 1;
     public float JumpHeight = 7;
     public bool isGrounded;
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myPool = ObjectPool.Instance;
+        
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
@@ -44,10 +44,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(0, JumpHeight, 0);
             isGrounded = false;
         }
-        if(Input.GetKey(KeyCode.J))
-        {
-            myPool.SpawnObject("Resource(Crystal)", transform.position, transform.rotation);
-        }
+       
     }
 
     // Check player on the ground or not (Unity build in function)

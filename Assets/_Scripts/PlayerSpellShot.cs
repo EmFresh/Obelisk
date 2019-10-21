@@ -30,6 +30,7 @@ public class PlayerSpellShot : MonoBehaviour
             projCounter.Add(0);
             direction.Add(transform.forward);
             Projcopy[Projcopy.Count - 1].transform.position = transform.position;
+             Projcopy[Projcopy.Count - 1].transform.rotation = transform.rotation;
 
             Debug.Log("I need you to move");
             movement = .1f;
