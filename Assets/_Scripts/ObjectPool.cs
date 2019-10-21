@@ -54,7 +54,7 @@ public class ObjectPool : MonoBehaviour
 
             poolDict.Add(pool.tag, objectPool);
         }
-    }
+    }   
 
     //using certain pool inside the pool dictionary to spawn object
     public GameObject SpawnObject(string tag, Vector3 pos, Quaternion rot)
