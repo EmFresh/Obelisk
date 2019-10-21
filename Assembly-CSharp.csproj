@@ -67,6 +67,7 @@
     <Compile Include="Assets\_Scripts\CameraMovement.cs" />
     <Compile Include="Assets\_Scripts\MovementTest.cs" />
     <Compile Include="Assets\_Scripts\ObjectPool.cs" />
+    <Compile Include="Assets\_Scripts\PlayerAnimationControll.cs" />
     <Compile Include="Assets\_Scripts\PlayerDefenceSpell.cs" />
     <Compile Include="Assets\_Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\_Scripts\PlayerPickup.cs" />
