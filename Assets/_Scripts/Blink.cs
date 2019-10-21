@@ -7,6 +7,7 @@ public class Blink : MonoBehaviour
 
     private PlayerMovement playerMovement;
     private BlinkEffect shaderScript;
+    [SerializeField]
     private MeshRenderer characterRenderer;
     private float cooldownTime = 2.0f;
     private float nextBlinkTime = 0;
@@ -23,7 +24,7 @@ public class Blink : MonoBehaviour
     }
     void Start()
     {
-        characterRenderer = GetComponent<MeshRenderer>();
+        //characterRenderer = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
