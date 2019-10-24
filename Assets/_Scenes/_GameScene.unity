@@ -972,11 +972,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-<<<<<<< Updated upstream
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-=======
   m_BoundingSphereOverride: {x: 3.778e-42, y: 1.05e-43, z: 0, w: 0}
->>>>>>> Stashed changes
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1207,7 +1203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-<<<<<<< Updated upstream
   - tag: Resource(Crystal)
     prefab: {fileID: 7729194103566976190, guid: e297ea7ce7e5177498a3e3280ffea122,
       type: 3}
@@ -1232,12 +1227,10 @@ MonoBehaviour:
     prefab: {fileID: 4247140380025194995, guid: 453d730df63380c498416e68d43d7c3c,
       type: 3}
     size: 50
-=======
   - tag: 
     prefab: {fileID: 7729194103566976190, guid: e297ea7ce7e5177498a3e3280ffea122,
       type: 3}
     size: 5
->>>>>>> Stashed changes
 --- !u!4 &756551257
 Transform:
   m_ObjectHideFlags: 0
