@@ -64,7 +64,9 @@
      <Compile Include="Assets\_Scripts\PlayerPickup.cs" />
      <Compile Include="Assets\_Scripts\PlayerSpellShot.cs" />
      <Compile Include="Assets\_Scripts\ResourceCounter.cs" />
-     <Compile Include="Assets\_Scripts\ResourceDeposit.cs" />
+     <Compile Include="Assets\_Scripts\ResourcesInChestCrystal.cs" />
+     <Compile Include="Assets\_Scripts\ResourcesInChestStone.cs" />
+     <Compile Include="Assets\_Scripts\ResourcesInChestWood.cs" />
      <Compile Include="Assets\_Scripts\ResourceSpawn.cs" />
      <Compile Include="Assets\_Scripts\ResourceStockpile.cs" />
      <Compile Include="Assets\_Scripts\TowerBuild.cs" />
