@@ -70,6 +70,7 @@
      <Compile Include="Assets\_Scripts\ResourceSpawn.cs" />
      <Compile Include="Assets\_Scripts\ResourceStockpile.cs" />
      <Compile Include="Assets\_Scripts\TowerBuild.cs" />
+     <Compile Include="Assets\_Scripts\WizardResourceManager.cs" />
      <None Include="Assets\_Shaders\TestShaderAndMat\NewImageEffectShader.shader" />
      <None Include="Assets\_Shaders\BlinkScreenShader.shader" />
  <Reference Include="Unity.Timeline.Editor">
