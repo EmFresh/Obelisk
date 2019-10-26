@@ -773,6 +773,9 @@ MonoBehaviour:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
   stage: 0
+  woodNeeded: 12
+  stoneNeeded: 6
+  crystalNeeded: 3
 --- !u!1 &372372233
 GameObject:
   m_ObjectHideFlags: 0
