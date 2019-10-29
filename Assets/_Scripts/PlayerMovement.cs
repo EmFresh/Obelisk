@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    
     public float MaxSpeed = 1;
     public float JumpHeight = 7;
     public bool isGrounded;
@@ -16,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
@@ -41,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(0, JumpHeight, 0);
             isGrounded = false;
         }
+       
     }
 
     // Check player on the ground or not (Unity build in function)
