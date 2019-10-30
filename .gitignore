@@ -11,8 +11,9 @@
 /[Mm]emoryCaptures/
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
+
 #Never ignore InputManager asset data
-!InputManager.asset
+!/[Aa]ssets/InputManager.asset
 
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
