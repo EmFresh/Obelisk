@@ -14,6 +14,8 @@ public class ResourceSpawn : MonoBehaviour
     float crystalSpawnTimer = 0;
     float crystalSmallSpawnTimer = 0;
 
+    float speedBoostSpawnTimer = 0;
+
     int spawnPointX;
     int spawnPointZ;
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public class ResourceSpawn : MonoBehaviour
         woodSmallSpawnTimer += Time.deltaTime;
         stoneSmallSpawnTimer += Time.deltaTime;
         crystalSmallSpawnTimer += Time.deltaTime;
+        speedBoostSpawnTimer += Time.deltaTime;
 
 
         if(woodSpawnTimer > 6)
@@ -83,6 +86,14 @@ public class ResourceSpawn : MonoBehaviour
             myPool.SpawnObject("Resource(CrystalSmall)", new Vector3(spawnPointX, 0.5f, spawnPointZ), transform.rotation);
             Debug.Log("Spawn Small Crystal");
             crystalSmallSpawnTimer = 0;
+        }
+        if(speedBoostSpawnTimer > 10)
+        {
+            spawnPointX = Random.Range(-75, 75);
+            spawnPointZ = Random.Range(-50, 50);
+            myPool.SpawnObject("SpeedBuff", new Vector3(spawnPointX, 0.3f, spawnPointZ), transform.rotation);
+            Debug.Log("Spawn Speed");
+            speedBoostSpawnTimer = 0;
         }
     }
 }
