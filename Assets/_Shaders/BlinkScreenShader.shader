@@ -6,6 +6,7 @@
         _NoiseTex ("Noise Texture",2D) = "white"{}
         _Red ("Red", Range(0,1)) = 1            
         _Blue ("Blue", Range(0,1)) = 1
+        _ScreenMix("ScreenMix", Range(0,1)) = 1
 
     }
     SubShader
@@ -43,7 +44,7 @@
 
             sampler2D _MainTex;
             sampler2D _NoiseTex;
-            float _Red, _Blue;
+            float _Red, _Blue,_ScreenMix;
             float time_speed = 0.5;
             float3 color = float3(.153,0,.204);
 
@@ -55,7 +56,7 @@
                 // Uv in screen space
                 float2 uv_screen = uv * float2(2,2) - float2(1,1);
                 // modify it to go off the edge
-                uv_screen *= 0.7;
+                uv_screen *=_ScreenMix;
                 
                 // Repeating Noise texture section
                 
