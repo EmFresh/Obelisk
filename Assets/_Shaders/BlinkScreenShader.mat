@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden_BlinkScreenShader
+  m_Name: BlinkScreenShader
   m_Shader: {fileID: 4800000, guid: d4582738bb975e94bab5ca7a3c4c0a58, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -23,5 +23,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: a672a6a3d6964df4ab266450cab3e0d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Blue: 0.271
+    - _Magnitude: 0.0916
+    - _Red: 0.466
+    - _ScreenMix: 0.8
     m_Colors: []
