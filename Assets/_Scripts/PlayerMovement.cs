@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     
-    public float MaxSpeed = 1;
+    public static float MaxSpeed = 4;
     public float JumpHeight = 7;
     public bool isGrounded;
 

@@ -41,7 +41,7 @@ public class Blink : MonoBehaviour
     void ActivateBlink()
     {
 
-        playerMovement.MaxSpeed = 10;
+        //playerMovement.MaxSpeed = 10;
         shaderScript.enabled = !shaderScript.enabled;
         isBlinking = true;
         characterRenderer.enabled = !characterRenderer.enabled;
@@ -52,7 +52,7 @@ public class Blink : MonoBehaviour
     void StopBlink()
     {
         Debug.Log("Blink Stopped");
-        playerMovement.MaxSpeed = 5;
+        //playerMovement.MaxSpeed = 5;
         shaderScript.enabled = !shaderScript.enabled;
 
         characterRenderer.enabled = !characterRenderer.enabled;

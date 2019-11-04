@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7804686954685305525}
   m_Layer: 0
   m_Name: PS_Fireball
-  m_TagString: Untagged
+  m_TagString: Fireball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
