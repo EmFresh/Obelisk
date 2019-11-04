@@ -20,13 +20,22 @@ public class TowerBuild : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("init started");
+        AudioPlayer.init();
+        print("init finished");
         //  theParent = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        AudioPlayer.update();
+    }
 
+    void onExit()
+    {
+        AudioPlayer.stopAll();
+        AudioPlayer.disable();
     }
 
     void OnTriggerStay(Collider obj)
