@@ -17,6 +17,9 @@ public class PlayerPickup : MonoBehaviour
     //bool woodSmallCollision = false;
     //bool stoneSmallCollision = false;
     //bool crystalSmallCollision = false;
+    public static int woodStock = 0;
+    public static int stoneStock = 0;
+    public static int crystalStock = 0;
     bool keyPressed = false;
     bool deletThis = false;
 
@@ -118,24 +121,53 @@ public class PlayerPickup : MonoBehaviour
             {
                 //Debug.Log("hello");
                 //woodSmallCollision = true;
-                other.gameObject.SetActive (false); 
+                other.gameObject.SetActive(false);
                 WoodAmount += 1;
             }
             if (other.gameObject.CompareTag("Resource(StoneSmall)"))
             {
                 //Debug.Log("hello");
                 //stoneSmallCollision = true;
-                other.gameObject.SetActive (false); 
+                other.gameObject.SetActive(false);
                 StoneAmount += 1;
             }
             if (other.gameObject.CompareTag("Resource(CrystalSmall)"))
             {
                 //Debug.Log("hello");
                 //crystalSmallCollision = true;
-                other.gameObject.SetActive (false); 
-                CrystalAmount += 1; 
+                other.gameObject.SetActive(false);
+                CrystalAmount += 1;
             }
-           
+
+            if (other.gameObject.CompareTag("Chest(Wood)"))
+            {
+                
+
+                woodStock += WoodAmount;
+                WoodAmount = 0;
+                Debug.Log(woodStock);
+
+            }
+            if (other.gameObject.CompareTag("Chest(Stone)"))
+            {
+
+                
+
+                stoneStock += StoneAmount;
+                StoneAmount = 0;
+                Debug.Log(stoneStock);
+
+            }
+            if (other.gameObject.CompareTag("Chest(Crystal)"))
+            {
+
+               
+
+                crystalStock += CrystalAmount;
+                CrystalAmount = 0;
+                Debug.Log(crystalStock);
+
+            }
 
         }
     }
