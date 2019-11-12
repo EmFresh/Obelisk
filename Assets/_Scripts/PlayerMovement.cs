@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Animator _animator;
 
-    
-    public static float MaxSpeed = 4;
+    public static float MaxSpeed = 5;
     public float JumpHeight = 7;
     public bool isGrounded;
 
     private Vector3 moveDirection;
-
+    
     Rigidbody rb;
     BoxCollider col_size;
 
@@ -33,6 +33,10 @@ public class PlayerMovement : MonoBehaviour
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Vertical");
 
+        //Set running animation base on input runnning direction
+        _animator.SetFloat("VelX", x);
+        _animator.SetFloat("VelY", y);
+
         //Move player to that direction, forward is allways where player look at
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
@@ -43,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(0, JumpHeight, 0);
             isGrounded = false;
+
+            //Set jump animation to true
+            _animator.SetBool("isJump", true);
         }
        
     }
@@ -51,6 +58,10 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
-        
+
+        //Set jump animation to false
+        _animator.SetBool("isJump", false);
     }
+
+    
 }

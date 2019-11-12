@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerPickup : MonoBehaviour
 {
+    public Animator _animator;
+
     public static int WoodAmount = 0;
     public static int StoneAmount = 0;
     public static int CrystalAmount = 0;
@@ -44,6 +46,11 @@ public class PlayerPickup : MonoBehaviour
             resourceCollected = 0;
         }
 
+        if (!Input.GetKey(key))
+        {
+            _animator.SetBool("isGather", false);
+        }
+
         //Picks up resource after 1 second of holding the key down (Key is public, it is et in Unity)
         //Also sends a bool to onTriggerStay
         if (keyPressed)
@@ -51,7 +58,7 @@ public class PlayerPickup : MonoBehaviour
             if (woodCollision == true)
 
             {
-
+                _animator.SetBool("isGather", true);
                 if (Time.time - timer >= pickupDuration)
                 {
                     Debug.Log("hi");
@@ -61,11 +68,12 @@ public class PlayerPickup : MonoBehaviour
                     woodCollision = false;
                     timer = 0;
                     deletThis = true;
+                    _animator.SetBool("isGather", false);
                 }
             }
             else if (stoneCollision == true)
             {
-
+                _animator.SetBool("isGather", true);
                 if (Time.time - timer >= pickupDuration)
                 {
                     Debug.Log("hi");
@@ -75,11 +83,12 @@ public class PlayerPickup : MonoBehaviour
                     stoneCollision = false;
                     timer = 0;
                     deletThis = true;
+                    _animator.SetBool("isGather", false);
                 }
             }
             else if (crystalCollision == true)
             {
-
+                _animator.SetBool("isGather", true);
                 if (Time.time - timer >= pickupDuration)
                 {
                     Debug.Log("hi");
@@ -89,6 +98,7 @@ public class PlayerPickup : MonoBehaviour
                     crystalCollision = false;
                     timer = 0;
                     deletThis = true;
+                    _animator.SetBool("isGather", false);
                 }
             }
         }

@@ -12,7 +12,7 @@ public class TowerBuild : MonoBehaviour
     private Transform theParent;
 
     int maxStages = 3;
-    public int stage;
+    public static int stage;
 
     public int woodNeeded;
     public int stoneNeeded;
