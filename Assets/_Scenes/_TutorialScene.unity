@@ -6550,6 +6550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
   JumpHeight: 7
   isGrounded: 1
 --- !u!54 &355610514
@@ -8864,6 +8865,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1178891867}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 9e443d020cb0691498dbd5ae2c7a3c07,
+        type: 3}
+      propertyPath: m_Name
+      value: Rouge
+      objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 9e443d020cb0691498dbd5ae2c7a3c07,
         type: 3}
       propertyPath: m_Controller
@@ -8943,11 +8949,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.52785
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 9e443d020cb0691498dbd5ae2c7a3c07,
-        type: 3}
-      propertyPath: m_Name
-      value: Rouge
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e443d020cb0691498dbd5ae2c7a3c07, type: 3}
@@ -9242,8 +9243,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80f7163f99bf92428738b67d2475281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1331066605}
   cooldownTime: 2
   blinkTime: 2
+  key: 122
 --- !u!114 &1178891862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9256,6 +9259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d813a0bf6f669624590105e4cb9266e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1331066605}
   key: 101
 --- !u!54 &1178891863
 Rigidbody:
@@ -9285,6 +9289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1331066605}
   JumpHeight: 7
   isGrounded: 0
 --- !u!65 &1178891865
@@ -9530,7 +9535,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1221722809}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3, y: 0.31, z: -22.39}
+  m_LocalPosition: {x: -3, y: 1, z: -22.34}
   m_LocalScale: {x: 1.0076, y: 4.6602116, z: 0.9002703}
   m_Children:
   - {fileID: 90763321}
@@ -9991,6 +9996,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318420788}
   m_CullTransparentMesh: 0
+--- !u!95 &1331066605 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 9e443d020cb0691498dbd5ae2c7a3c07,
+    type: 3}
+  m_PrefabInstance: {fileID: 1124741526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1335412623
 GameObject:
   m_ObjectHideFlags: 0
