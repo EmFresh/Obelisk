@@ -29,7 +29,7 @@ void MetricsLogger::WriteStateToText(float time, int num, bool hasNotWritten)
 	if (num == 1)
 		state = "learnMovementStage1";
 	if (num == 2)
-		state = "learnMovementStage2";
+		state = "learnBlink";
 	if (num == 3)
 		state = "learnPickupSmall";
 	if (num == 4)
@@ -37,9 +37,13 @@ void MetricsLogger::WriteStateToText(float time, int num, bool hasNotWritten)
 	if (num == 5)
 		state = "learnSorting";
 	if (num == 6)
-		state = "learnPickupFromChest";
+		state = "learnShooting";
 	if (num == 7)
+		state = "learnPickupFromChest";
+	if (num == 8)
 		state = "learnTowerBuild";
+	if (num == 9)
+		state = "endState";
 
 	if (hasNotWritten)
 	{
