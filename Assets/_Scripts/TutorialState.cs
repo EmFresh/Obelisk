@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
+using UnityEngine.SceneManagement;
 
 public class TutorialState : MonoBehaviour
 {
@@ -36,9 +37,12 @@ public class TutorialState : MonoBehaviour
     public GameObject UI6;
     public GameObject UI7;
     public GameObject UI8;
+    public GameObject OverUI;
 
     public tutorialState state;
     private static ObjectPool myPool;
+
+    public KeyCode key;
 
     GameObject[] fob;
     ///var fob : GameObject[];
@@ -171,8 +175,17 @@ public class TutorialState : MonoBehaviour
             if (TowerBuild.stage >= 1)
             {
                 UI6.SetActive(false);
+                OverUI.SetActive(true);
+
                 WriteStateToText(Time.time, 9, true);
-                //end tutorial
+                state = tutorialState.endGame;
+            }
+        }
+        if (state == tutorialState.endGame)
+        {
+            if (Input.GetKeyDown(key))
+            {
+                SceneManager.LoadScene("GameScene");
             }
         }
     }

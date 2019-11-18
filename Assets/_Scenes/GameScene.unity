@@ -277,7 +277,7 @@ Transform:
   m_Children:
   - {fileID: 1386509616}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &159407677
 PrefabInstance:
@@ -659,7 +659,7 @@ Transform:
   m_Children:
   - {fileID: 1744684324}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &320590159
 GameObject:
@@ -865,6 +865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 1980611904}
   JumpHeight: 7
   isGrounded: 1
 --- !u!54 &355610514
@@ -923,7 +924,6 @@ MonoBehaviour:
   towerParts:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
-  stage: 0
   woodNeeded: 12
   stoneNeeded: 6
   crystalNeeded: 3
@@ -2274,7 +2274,7 @@ Transform:
   m_Children:
   - {fileID: 1754821318}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1386509615
 GameObject:
@@ -3066,6 +3066,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94bd9bb3f739b2249bdf7f71b4d89547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1980611904 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 8082ee16613dbbe46bc8c98ce4d41b02,
+    type: 3}
+  m_PrefabInstance: {fileID: 383624007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2014940348
 GameObject:
   m_ObjectHideFlags: 0
