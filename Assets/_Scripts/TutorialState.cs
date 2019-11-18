@@ -185,7 +185,7 @@ public class TutorialState : MonoBehaviour
         {
             if (Input.GetKeyDown(key))
             {
-                SceneManager.LoadScene("GameScene");
+                SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
             }
         }
     }
