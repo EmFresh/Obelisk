@@ -5,8 +5,15 @@ using UnityEngine;
 public class FireballCollision : MonoBehaviour
 {
     private bool exitPlayer = false;
+    public static int scarecrowsDown = 0;
     void OnTriggerEnter(Collider ent)
     {
+        if(ent.gameObject.tag.Contains("crow"))
+        {
+            scarecrowsDown += 1;
+            //Debug.Log(scarecrowsDown);
+            ent.gameObject.SetActive(false);
+        }
         if (exitPlayer)
         {
             Destroy(this.gameObject);
@@ -16,6 +23,7 @@ public class FireballCollision : MonoBehaviour
 
     void OnTriggerExit(Collider ent)
     {
+        
         exitPlayer = true;
         print("Exited the player!!!");
     }

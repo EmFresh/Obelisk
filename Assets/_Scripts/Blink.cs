@@ -14,7 +14,7 @@ public class Blink : MonoBehaviour
     private float nextBlinkTime = 0;
 
     public float blinkTime; //Set here or in Inspector to modify the amount of time the player is in "Blink" mode
-    private bool isBlinking;
+    public static bool isBlinking;
 
     public KeyCode key;
     // Start is called before the first frame update
