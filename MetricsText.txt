@@ -2,20 +2,983 @@
 State: learnMovementStage1
 Time: 0
 
-State: learnMovementStage2
-Time: 2.63504
+State: learnBlink
+Time: 3.01572
 
 State: learnPickupSmall
-Time: 5.93361
+Time: 4.9957
 
 State: learnPickupLarge
-Time: 8.34688
+Time: 10.1912
 
 State: learnSorting
-Time: 15.9415
+Time: 16.6614
+
+State: learnShooting
+Time: 18.4908
 
 State: learnPickupFromChest
-Time: 17.8289
+Time: 22.1636
 
 State: learnTowerBuild
-Time: 22.9019
+Time: 26.6347
+
+State: endState
+Time: 28.5496
+
+State: endState
+Time: 28.5662
+
+State: endState
+Time: 28.5829
+
+State: endState
+Time: 28.6001
+
+State: endState
+Time: 28.6171
+
+State: endState
+Time: 28.634
+
+State: endState
+Time: 28.651
+
+State: endState
+Time: 28.6679
+
+State: endState
+Time: 28.6849
+
+State: endState
+Time: 28.7019
+
+State: endState
+Time: 28.7188
+
+State: endState
+Time: 28.7359
+
+State: endState
+Time: 28.7528
+
+State: endState
+Time: 28.7697
+
+State: endState
+Time: 28.7868
+
+State: endState
+Time: 28.8038
+
+State: endState
+Time: 28.8207
+
+State: endState
+Time: 28.8376
+
+State: endState
+Time: 28.8546
+
+State: endState
+Time: 28.8717
+
+State: endState
+Time: 28.8889
+
+State: endState
+Time: 28.906
+
+State: endState
+Time: 28.9227
+
+State: endState
+Time: 28.9396
+
+State: endState
+Time: 28.9567
+
+State: endState
+Time: 28.9735
+
+State: endState
+Time: 28.9905
+
+State: endState
+Time: 29.0072
+
+State: endState
+Time: 29.0239
+
+State: endState
+Time: 29.0405
+
+State: endState
+Time: 29.0574
+
+State: endState
+Time: 29.0744
+
+State: endState
+Time: 29.0913
+
+State: endState
+Time: 29.1082
+
+State: endState
+Time: 29.1249
+
+State: endState
+Time: 29.1417
+
+State: endState
+Time: 29.1587
+
+State: endState
+Time: 29.1753
+
+State: endState
+Time: 29.1926
+
+State: endState
+Time: 29.2097
+
+State: endState
+Time: 29.2266
+
+State: endState
+Time: 29.2437
+
+State: endState
+Time: 29.2606
+
+State: endState
+Time: 29.2775
+
+State: endState
+Time: 29.2945
+
+State: endState
+Time: 29.3112
+
+State: endState
+Time: 29.3285
+
+State: endState
+Time: 29.3454
+
+State: endState
+Time: 29.3623
+
+State: endState
+Time: 29.3793
+
+State: endState
+Time: 29.3963
+
+State: endState
+Time: 29.4129
+
+State: endState
+Time: 29.4296
+
+State: endState
+Time: 29.4463
+
+State: endState
+Time: 29.4629
+
+State: endState
+Time: 29.4797
+
+State: endState
+Time: 29.4967
+
+State: endState
+Time: 29.5137
+
+State: endState
+Time: 29.5304
+
+State: endState
+Time: 29.5473
+
+State: endState
+Time: 29.5643
+
+State: endState
+Time: 29.5812
+
+State: endState
+Time: 29.5982
+
+State: endState
+Time: 29.6151
+
+State: endState
+Time: 29.6321
+
+State: endState
+Time: 29.6487
+
+State: endState
+Time: 29.6654
+
+State: endState
+Time: 29.6821
+
+State: endState
+Time: 29.6989
+
+State: endState
+Time: 29.7155
+
+State: endState
+Time: 29.7322
+
+State: endState
+Time: 29.7489
+
+State: endState
+Time: 29.7655
+
+State: endState
+Time: 29.7829
+
+State: endState
+Time: 29.7998
+
+State: endState
+Time: 29.8165
+
+State: endState
+Time: 29.8331
+
+State: endState
+Time: 29.8507
+
+State: endState
+Time: 29.8677
+
+State: endState
+Time: 29.8846
+
+State: endState
+Time: 29.9016
+
+State: endState
+Time: 29.9182
+
+State: endState
+Time: 29.9349
+
+State: endState
+Time: 29.9516
+
+State: endState
+Time: 29.9684
+
+State: endState
+Time: 29.9851
+
+State: endState
+Time: 30.0017
+
+State: endState
+Time: 30.0184
+
+State: endState
+Time: 30.0352
+
+State: endState
+Time: 30.0522
+
+State: endState
+Time: 30.0691
+
+State: endState
+Time: 30.0858
+
+State: endState
+Time: 30.1024
+
+State: endState
+Time: 30.1191
+
+State: endState
+Time: 30.1359
+
+State: endState
+Time: 30.1529
+
+State: endState
+Time: 30.1698
+
+State: endState
+Time: 30.1865
+
+State: endState
+Time: 30.2032
+
+State: endState
+Time: 30.2198
+
+State: endState
+Time: 30.2366
+
+State: endState
+Time: 30.2536
+
+State: endState
+Time: 30.2703
+
+State: endState
+Time: 30.2869
+
+State: endState
+Time: 30.3036
+
+State: endState
+Time: 30.3203
+
+State: endState
+Time: 30.3374
+
+State: endState
+Time: 30.3544
+
+State: endState
+Time: 30.3713
+
+State: endState
+Time: 30.388
+
+State: endState
+Time: 30.4046
+
+State: endState
+Time: 30.4213
+
+State: endState
+Time: 30.4381
+
+State: endState
+Time: 30.4548
+
+State: endState
+Time: 30.4721
+
+State: endState
+Time: 30.489
+
+State: endState
+Time: 30.5056
+
+State: endState
+Time: 30.5229
+
+State: endState
+Time: 30.5396
+
+State: endState
+Time: 30.5562
+
+State: endState
+Time: 30.5729
+
+State: endState
+Time: 30.5896
+
+State: endState
+Time: 30.6067
+
+State: endState
+Time: 30.6234
+
+State: endState
+Time: 30.6401
+
+State: endState
+Time: 30.6567
+
+State: endState
+Time: 30.6734
+
+State: endState
+Time: 30.6901
+
+State: endState
+Time: 30.7067
+
+State: endState
+Time: 30.7234
+
+State: endState
+Time: 30.7401
+
+State: endState
+Time: 30.7567
+
+State: endState
+Time: 30.7743
+
+State: endState
+Time: 30.7913
+
+State: endState
+Time: 30.8082
+
+State: endState
+Time: 30.8252
+
+State: endState
+Time: 30.8418
+
+State: endState
+Time: 30.8585
+
+State: endState
+Time: 30.8756
+
+State: endState
+Time: 30.8924
+
+State: endState
+Time: 30.9093
+
+State: endState
+Time: 30.926
+
+State: endState
+Time: 30.9426
+
+State: endState
+Time: 30.9593
+
+State: endState
+Time: 30.976
+
+State: endState
+Time: 30.9926
+
+State: endState
+Time: 31.0093
+
+State: endState
+Time: 31.026
+
+State: endState
+Time: 31.0427
+
+State: endState
+Time: 31.0594
+
+State: endState
+Time: 31.0761
+
+State: endState
+Time: 31.0928
+
+State: endState
+Time: 31.1094
+
+State: endState
+Time: 31.1261
+
+State: endState
+Time: 31.143
+
+State: endState
+Time: 31.1599
+
+State: endState
+Time: 31.1769
+
+State: endState
+Time: 31.1936
+
+State: endState
+Time: 31.2103
+
+State: endState
+Time: 31.2269
+
+State: endState
+Time: 31.2436
+
+State: endState
+Time: 31.2603
+
+State: endState
+Time: 31.277
+
+State: endState
+Time: 31.2941
+
+State: endState
+Time: 31.3107
+
+State: endState
+Time: 31.3274
+
+State: endState
+Time: 31.3441
+
+State: endState
+Time: 31.3608
+
+State: endState
+Time: 31.3775
+
+State: endState
+Time: 31.3947
+
+State: endState
+Time: 31.4114
+
+State: endState
+Time: 31.4287
+
+State: endState
+Time: 31.4456
+
+State: endState
+Time: 31.4625
+
+State: endState
+Time: 31.4795
+
+State: endState
+Time: 31.4966
+
+State: endState
+Time: 31.5132
+
+State: endState
+Time: 31.5305
+
+State: endState
+Time: 31.5474
+
+State: endState
+Time: 31.5643
+
+State: endState
+Time: 31.581
+
+State: endState
+Time: 31.5977
+
+State: endState
+Time: 31.6143
+
+State: endState
+Time: 31.6312
+
+State: endState
+Time: 31.6478
+
+State: endState
+Time: 31.6651
+
+State: endState
+Time: 31.6818
+
+State: endState
+Time: 31.699
+
+State: endState
+Time: 31.7159
+
+State: endState
+Time: 31.7326
+
+State: endState
+Time: 31.7493
+
+State: endState
+Time: 31.766
+
+State: endState
+Time: 31.7829
+
+State: endState
+Time: 31.7999
+
+State: endState
+Time: 31.8166
+
+State: endState
+Time: 31.8338
+
+State: endState
+Time: 31.8505
+
+State: endState
+Time: 31.8677
+
+State: endState
+Time: 31.8847
+
+State: endState
+Time: 31.9017
+
+State: endState
+Time: 31.9187
+
+State: endState
+Time: 31.9354
+
+State: endState
+Time: 31.9526
+
+State: endState
+Time: 31.9694
+
+State: endState
+Time: 31.9865
+
+State: endState
+Time: 32.0033
+
+State: endState
+Time: 32.0203
+
+State: endState
+Time: 32.0372
+
+State: endState
+Time: 32.0539
+
+State: endState
+Time: 32.0706
+
+State: endState
+Time: 32.0872
+
+State: endState
+Time: 32.1039
+
+State: endState
+Time: 32.121
+
+State: endState
+Time: 32.1377
+
+State: endState
+Time: 32.1549
+
+State: endState
+Time: 32.172
+
+State: endState
+Time: 32.1889
+
+State: endState
+Time: 32.2055
+
+State: endState
+Time: 32.2222
+
+State: endState
+Time: 32.2398
+
+State: endState
+Time: 32.2564
+
+State: endState
+Time: 32.2731
+
+State: endState
+Time: 32.2898
+
+State: endState
+Time: 32.3067
+
+State: endState
+Time: 32.3233
+
+State: endState
+Time: 32.34
+
+State: endState
+Time: 32.3567
+
+State: endState
+Time: 32.3733
+
+State: endState
+Time: 32.3904
+
+State: endState
+Time: 32.407
+
+State: endState
+Time: 32.4237
+
+State: endState
+Time: 32.4404
+
+State: endState
+Time: 32.4572
+
+State: endState
+Time: 32.4738
+
+State: endState
+Time: 32.4905
+
+State: endState
+Time: 32.5072
+
+State: endState
+Time: 32.5238
+
+State: endState
+Time: 32.5405
+
+State: endState
+Time: 32.5572
+
+State: endState
+Time: 32.5739
+
+State: endState
+Time: 32.5908
+
+State: endState
+Time: 32.6078
+
+State: endState
+Time: 32.6245
+
+State: endState
+Time: 32.6411
+
+State: endState
+Time: 32.6578
+
+State: endState
+Time: 32.6745
+
+State: endState
+Time: 32.6915
+
+State: endState
+Time: 32.7085
+
+State: endState
+Time: 32.7252
+
+State: endState
+Time: 32.7418
+
+State: endState
+Time: 32.7585
+
+State: endState
+Time: 32.7752
+
+State: endState
+Time: 32.7923
+
+State: endState
+Time: 32.8092
+
+State: endState
+Time: 32.8262
+
+State: endState
+Time: 32.8429
+
+State: endState
+Time: 32.8596
+
+State: endState
+Time: 32.8762
+
+State: endState
+Time: 32.8929
+
+State: endState
+Time: 32.9096
+
+State: endState
+Time: 32.9262
+
+State: endState
+Time: 32.9429
+
+State: endState
+Time: 32.9596
+
+State: endState
+Time: 32.9763
+
+State: endState
+Time: 32.9933
+
+State: endState
+Time: 33.0102
+
+State: endState
+Time: 33.0272
+
+State: endState
+Time: 33.0442
+
+State: endState
+Time: 33.0612
+
+State: endState
+Time: 33.0778
+
+State: endState
+Time: 33.0945
+
+State: endState
+Time: 33.1112
+
+State: endState
+Time: 33.128
+
+State: endState
+Time: 33.1446
+
+State: endState
+Time: 33.1613
+
+State: endState
+Time: 33.178
+
+State: endState
+Time: 33.1949
+
+State: endState
+Time: 33.2118
+
+State: endState
+Time: 33.2287
+
+State: endState
+Time: 33.2454
+
+State: endState
+Time: 33.2626
+
+State: endState
+Time: 33.2793
+
+State: endState
+Time: 33.296
+
+State: endState
+Time: 33.3126
+
+State: endState
+Time: 33.3295
+
+State: endState
+Time: 33.3465
+
+State: endState
+Time: 33.3634
+
+State: endState
+Time: 33.3801
+
+State: endState
+Time: 33.3967
+
+State: endState
+Time: 33.4134
+
+State: endState
+Time: 33.4303
+
+State: endState
+Time: 33.447
+
+State: endState
+Time: 33.4642
+
+State: endState
+Time: 33.4813
+
+State: endState
+Time: 33.4981
+
+State: endState
+Time: 33.5148
+
+State: endState
+Time: 33.5322
+
+State: endState
+Time: 33.5488
+
+State: endState
+Time: 33.5661
+
+State: endState
+Time: 33.5832
+
+State: endState
+Time: 33.6
+
+State: endState
+Time: 33.617
+
+State: endState
+Time: 33.6339
+
+State: endState
+Time: 33.6509
+
+State: endState
+Time: 33.6679
+
+State: endState
+Time: 33.6849
+
+State: endState
+Time: 33.7019
+
+State: endState
+Time: 33.7185
+
+State: endState
+Time: 33.7352
+
+State: endState
+Time: 33.7519
+
+State: endState
+Time: 33.7688
+
+State: endState
+Time: 33.7858
+
+State: endState
+Time: 33.8028
+
+State: endState
+Time: 33.8198
+
+State: endState
+Time: 33.8367
+
+State: endState
+Time: 33.8537
+
+State: endState
+Time: 33.8706
+
+State: endState
+Time: 33.8877
+
+State: endState
+Time: 33.9044
+
+State: endState
+Time: 33.9216
