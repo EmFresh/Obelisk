@@ -40,7 +40,7 @@ public class TowerBuild : MonoBehaviour
 
     void OnTriggerStay(Collider obj)
     {
-        if (obj.gameObject.tag.Contains("BuildZone"))
+        if ((obj.gameObject.CompareTag("Build Zone 1") && this.gameObject.CompareTag("Player 1")) || (obj.gameObject.CompareTag("Build Zone 2") && this.gameObject.CompareTag("Player 3")))
             if (Input.GetKeyDown(buildKey))
             {
                 if (stage < maxStages)

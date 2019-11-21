@@ -23,7 +23,22 @@ public class ResourceStockpile : MonoBehaviour
 
     void OnTriggerEnter(Collider obj)
     {
-        if (obj.gameObject.CompareTag ("Player"))
+        if ((obj.gameObject.CompareTag ("Player 2"))) //TODO: Fix this
+        {
+            woodStock += PlayerPickup.WoodAmount;
+            stoneStock += PlayerPickup.StoneAmount;
+            crystalStock += PlayerPickup.CrystalAmount;
+
+            PlayerPickup.WoodAmount = 0;
+            PlayerPickup.StoneAmount = 0;
+            PlayerPickup.CrystalAmount = 0;
+
+            Debug.Log(woodStock);
+            Debug.Log(stoneStock);
+            Debug.Log(crystalStock);
+        }
+
+        if (obj.gameObject.CompareTag ("Player 2"))
         {
             woodStock += PlayerPickup.WoodAmount;
             stoneStock += PlayerPickup.StoneAmount;

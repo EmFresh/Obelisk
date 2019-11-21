@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ControllerInput;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,18 +13,18 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded;
 
     private Vector3 moveDirection;
-    
+
     Rigidbody rb;
     BoxCollider col_size;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
-        
+
         isGrounded = true;
     }
 
@@ -33,17 +35,43 @@ public class PlayerMovement : MonoBehaviour
         var x = Input.GetAxis("Horizontal");
         var y = Input.GetAxis("Vertical");
 
+        //Stick stick = getSticks(0)[LS];
+        //setStickDeadZone(0, 0.1f);
+
+        //Move player to that direction, forward is allways where player look at
+        //moveDirection = transform.forward * stick.y + transform.right * stick.x;
+        moveDirection = transform.forward * y + transform.right * x;
+        moveDirection = moveDirection.normalized;
+        transform.position += moveDirection * MaxSpeed * Time.deltaTime;
+
         //Set running animation base on input runnning direction
         _animator.SetFloat("VelX", x);
         _animator.SetFloat("VelY", y);
 
+        //Running check for animator
+        //if((stick.x == 0) &&  (stick.y == 0))
+        //{
+        //    _animator.SetBool("isRun", false);
+        //}
+        //else
+        //{
+        //if (!stopMove)
+        //{/
+        //       _animator.SetBool("isRun", true);
+        //}
+        //else
+        //{
+        //    _animator.SetBool("isRun", false);
+        //}
+        //}
+
         //Move player to that direction, forward is allways where player look at
-        moveDirection = transform.forward * y + transform.right * x;
-        moveDirection = moveDirection.normalized;
-        transform.position += moveDirection * MaxSpeed * Time.deltaTime;
-       
+        //moveDirection = transform.forward * y + transform.right * x;
+        //moveDirection = moveDirection.normalized;
+        //transform.position += moveDirection * MaxSpeed * Time.deltaTime;
+
         //If player is on the ground make player jump
-        if(Input.GetKey(KeyCode.Space) && isGrounded == true)
+        if (Input.GetKey(KeyCode.Space) && isGrounded == true)
         {
             rb.AddForce(0, JumpHeight, 0);
             isGrounded = false;
@@ -51,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             //Set jump animation to true
             _animator.SetBool("isJump", true);
         }
-       
+
     }
 
     // Check player on the ground or not (Unity build in function)
@@ -63,5 +91,5 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("isJump", false);
     }
 
-    
+
 }
