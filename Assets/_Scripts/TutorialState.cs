@@ -26,6 +26,7 @@ public class TutorialState : MonoBehaviour
         endGame
     }
 
+    bool endEnabled = false;
     public GameObject player1;
     public GameObject player2;
 
@@ -176,8 +177,12 @@ public class TutorialState : MonoBehaviour
             {
                 UI6.SetActive(false);
                 OverUI.SetActive(true);
-
-                WriteStateToText(Time.time, 9, true);
+                if(!endEnabled)
+                {
+                    WriteStateToText(Time.time, 9, true);
+                    endEnabled = true;
+                }
+                
                 state = tutorialState.endGame;
             }
         }

@@ -57,10 +57,10 @@
      <Compile Include="Assets\_Scripts\Blink.cs" />
      <Compile Include="Assets\_Scripts\BlinkEffect.cs" />
      <Compile Include="Assets\_Scripts\CameraMovement.cs" />
+     <Compile Include="Assets\_Scripts\ControllerInput.cs" />
      <Compile Include="Assets\_Scripts\FireballCollision.cs" />
      <Compile Include="Assets\_Scripts\MetricsLogger.cs" />
      <Compile Include="Assets\_Scripts\MinimapScript.cs" />
-     <Compile Include="Assets\_Scripts\MovementTest.cs" />
      <Compile Include="Assets\_Scripts\ObjectPool.cs" />
      <Compile Include="Assets\_Scripts\particleSystem01Rotation.cs" />
      <Compile Include="Assets\_Scripts\PlayerAnimationControll.cs" />
