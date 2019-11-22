@@ -81,6 +81,8 @@
      <Compile Include="Assets\_Scripts\WizardPickup.cs" />
      <Compile Include="Assets\_Scripts\WizardResourceCounter.cs" />
      <Compile Include="Assets\_Scripts\WizardResourceManager.cs" />
+     <Compile Include="Assets\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
+     <Compile Include="Assets\GE Common Assets\Scripts\GE_UIResponder.cs" />
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\SnapshotGroup\{5d21f6e2-ce31-4154-bbdb-028f6aaac3ee}.xml" />
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\Tags.xml" />
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\Return\{e9f5abe5-2eaa-43e0-92e4-3d9b15618603}.xml" />
@@ -97,6 +99,7 @@
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\ParameterPresetFolder\{4f74b2e5-bf97-4991-a856-b0b3827b3d92}.xml" />
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\EventFolder\{4e3436f8-fb76-4e52-8f0e-417997bac34a}.xml" />
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\Event\{95509416-dd38-4020-b860-312a6e31d279}.xml" />
+     <None Include="Assets\GE Common Assets\Readme.txt" />
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\AudioFile\{4da6cbd8-2297-4052-923f-fba1bed947b2}.xml" />
      <None Include="Assets\_FMOD_Studio\all the music\Metadata\Master.xml" />
  <Reference Include="Unity.Timeline.Editor">
