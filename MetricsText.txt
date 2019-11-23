@@ -82,3 +82,48 @@ Time: 31.146
 
 State: endState
 Time: 54.0857
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 4.46463
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 4.10352
+
+State: learnPickupSmall
+Time: 14.7234
+
+State: learnPickupLarge
+Time: 22.604
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 3.40007
+
+State: learnPickupSmall
+Time: 13.1209
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 4.64241
+
+State: learnPickupSmall
+Time: 7.0001
+
+State: learnPickupLarge
+Time: 38.2053
+
+State: learnSorting
+Time: 49.6796
+
+State: learnShooting
+Time: 54.0266
