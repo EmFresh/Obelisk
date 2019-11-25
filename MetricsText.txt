@@ -470,3 +470,177 @@ Time: 9.71621
 State: learnPickupLarge
 Time: 14.499
 >>>>>>> TimerandFixes
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 14.0566
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 7.84744
+
+State: learnPickupSmall
+Time: 13.109
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 15.0284
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 3.58042
+
+State: learnPickupSmall
+Time: 3.71522
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 5.52147
+
+State: learnPickupSmall
+Time: 9.65324
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 5.61509
+
+State: learnPickupSmall
+Time: 9.79636
+
+State: learnPickupLarge
+Time: 13.7543
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 5.95348
+
+State: learnPickupSmall
+Time: 10.3546
+
+State: learnPickupLarge
+Time: 13.5749
+
+State: learnSorting
+Time: 22.5419
+
+State: learnShooting
+Time: 24.7313
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 4.07275
+
+State: learnPickupSmall
+Time: 4.20693
+
+State: learnPickupLarge
+Time: 16.5102
+
+State: learnSorting
+Time: 25.0969
+
+State: learnShooting
+Time: 27.7602
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 18.9952
+
+State: learnPickupSmall
+Time: 23.0945
+
+State: learnPickupLarge
+Time: 26.8349
+
+State: learnSorting
+Time: 34.0602
+
+State: learnShooting
+Time: 37.954
+
+State: learnPickupFromChest
+Time: 46.916
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 3.84771
+
+State: learnPickupSmall
+Time: 3.98236
+
+State: learnPickupLarge
+Time: 14.0108
+
+State: learnSorting
+Time: 24.0301
+
+State: learnShooting
+Time: 26.7565
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 3.64237
+
+State: learnPickupSmall
+Time: 7.89369
+
+State: learnPickupLarge
+Time: 11.3875
+
+State: learnSorting
+Time: 18.6045
+
+State: learnShooting
+Time: 24.1963
+
+State: learnPickupFromChest
+Time: 244.535
+
+State: learnTowerBuild
+Time: 249.591
+
+State: endState
+Time: 252.697
+
+State: learnMovementStage1
+Time: 0
