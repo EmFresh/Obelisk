@@ -6587,8 +6587,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.4799347, y: 1, z: 0.3973266}
+  m_Center: {x: -0.026557922, y: 0, z: -0.25329295}
 --- !u!33 &355610510
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6628,7 +6628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectial: {fileID: 7804686954685305524, guid: c1f53a17aa6754d49af0882b2ab153f4,
     type: 3}
-  fireKey: 102
+  fireKey: 0
   fireJoy: 8192
   duration: 5
 --- !u!114 &355610513

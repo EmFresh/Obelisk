@@ -135,9 +135,9 @@ public class TutorialState : MonoBehaviour
                 MinimapScript._pivot.transform.rotation = player1.transform.rotation;
                 MinimapScript._pivot.transform.parent = player1.transform;
 
-                myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.5f, -23), transform.rotation);
-                myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.5f, -23), transform.rotation);
-                myPool.SpawnObject("ScaryBois", new Vector3(-264, 0.5f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-264, 0.6f, -23), transform.rotation);
                 WriteStateToText(Time.time, 6, true);
 
                 state = tutorialState.learnShooting;

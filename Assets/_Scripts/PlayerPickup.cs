@@ -43,7 +43,7 @@ public class PlayerPickup : MonoBehaviour
             keyPressed = true;
             timer = Time.time;
         }
-        else if (Input.GetKeyUp(pickupKey) && isButtonReleased(playerIndex, (int)pickupJoy))
+        else if (Input.GetKeyUp(pickupKey) || isButtonReleased(playerIndex, (int)pickupJoy))
         {
             keyPressed = false;
             resourceCollected = 0;
