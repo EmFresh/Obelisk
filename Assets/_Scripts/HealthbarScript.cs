@@ -11,16 +11,14 @@ public class HealthbarScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rend = GetComponent<RawImage>().material;
-        rend.EnableKeyword("percent");
+        rend = Instantiate(GetComponent<RawImage>().material);
+        GetComponent<RawImage>().material = rend;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
-        rend.SetFloat("health", percent);
-        
+        percent -= 0.001f;
+        rend.SetFloat("health", percent = Mathf.Clamp(percent, 0, 1));
     }
 }
