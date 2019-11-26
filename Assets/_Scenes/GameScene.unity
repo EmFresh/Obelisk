@@ -621,6 +621,7 @@ MonoBehaviour:
   towerParts:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
+  buildJoy: 32768
   woodNeeded: 12
   stoneNeeded: 6
   crystalNeeded: 3
@@ -636,7 +637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babe26dc4967ef041a53dfa3d011a5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 101
+  pickupKey: 101
+  pickupJoy: 16384
 --- !u!114 &183138038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,6 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
+  jumpJoy: 4096
   _animator: {fileID: 1975499541}
   JumpHeight: 7
   isGrounded: 1
@@ -666,7 +670,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectial: {fileID: 7804686954685305524, guid: c1f53a17aa6754d49af0882b2ab153f4,
     type: 3}
-  key: 102
+  fireKey: 102
+  fireJoy: 8192
   duration: 5
 --- !u!54 &183138040
 Rigidbody:
@@ -757,9 +762,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 628008581}
-  cooldownTime: 2
   blinkTime: 2
-  key: 122
+  blinkKey: 0
+  blinkJoy: 512
 --- !u!114 &186659788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,7 +778,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 628008581}
-  key: 101
+  pickupKey: 32
+  pickupJoy: 16384
 --- !u!114 &186659789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,6 +792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
+  jumpJoy: 4096
   _animator: {fileID: 628008581}
   JumpHeight: 7
   isGrounded: 0
@@ -4014,6 +4022,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522632010}
   m_CullTransparentMesh: 0
+--- !u!1 &1539653058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1539653060}
+  - component: {fileID: 1539653059}
+  m_Layer: 0
+  m_Name: Updater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1539653059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539653058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea916242215ccb4e9728a90e8566240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1539653060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539653058}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -71.84773, y: -451.56104, z: 24.107483}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544742005
 GameObject:
   m_ObjectHideFlags: 0
@@ -4442,7 +4493,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectial: {fileID: 2286057775286994392, guid: e2f06ce26a09ca04cb4693bb56f01ec2,
     type: 3}
-  key: 108
+  fireKey: 102
+  fireJoy: 8192
   duration: 5
 --- !u!65 &1778133407
 BoxCollider:
