@@ -1,47 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using static ControllerInput;
+using static ControllerInput.CONTROLLER_BUTTON;
 
 public class TowerBuild : MonoBehaviour
 {
 
     public List<GameObject> towerParts = new List<GameObject>();
-    public KeyCode buildKey;
+    public KeyCode buildKey = KeyCode.Tab;
+    public CONTROLLER_BUTTON buildJoy = Y;
 
-    private Transform theParent;
-
-    int maxStages = 3;
     public static int stage;
 
     public int woodNeeded;
     public int stoneNeeded;
     public int crystalNeeded;
-    // Start is called before the first frame update
-    void Start()
-    {
-        print("init started");
-        AudioPlayer.init();
-        print("init finished");
-        //  theParent = transform;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        AudioPlayer.update();
-    }
 
-    void onExit()
-    {
-        AudioPlayer.stopAll();
-        AudioPlayer.disable();
-    }
+    private ushort playerIndex;
+    private Transform theParent;
+    private const int maxStages = 3;
 
     void OnTriggerStay(Collider obj)
     {
+        playerIndex = GetComponent<PlayerMovement>().playerIndex;
+        
         if ((obj.gameObject.CompareTag("Build Zone 1") && this.gameObject.CompareTag("Player 1")) || (obj.gameObject.CompareTag("Build Zone 2") && this.gameObject.CompareTag("Player 3")))
-            if (Input.GetKeyDown(buildKey))
+            if (Input.GetKeyDown(buildKey) || isButtonDown(playerIndex, (int)buildJoy))
             {
                 if (stage < maxStages)
                 {

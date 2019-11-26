@@ -5611,7 +5611,7 @@ Transform:
   - {fileID: 764354059}
   - {fileID: 687328577}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &174523412
 GameObject:
@@ -5723,7 +5723,7 @@ Transform:
   - {fileID: 1255957485}
   - {fileID: 1734586151}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &220354384
 GameObject:
@@ -6137,7 +6137,7 @@ Transform:
   - {fileID: 988015712}
   - {fileID: 1704710100}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303861465
 GameObject:
@@ -6167,7 +6167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317424655
 GameObject:
@@ -6365,7 +6365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338866224
 GameObject:
@@ -6564,8 +6564,8 @@ GameObject:
   - component: {fileID: 355610510}
   - component: {fileID: 355610508}
   - component: {fileID: 355610514}
-  - component: {fileID: 355610512}
   - component: {fileID: 355610513}
+  - component: {fileID: 355610512}
   - component: {fileID: 355610515}
   - component: {fileID: 355610518}
   - component: {fileID: 355610516}
@@ -6628,7 +6628,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectial: {fileID: 7804686954685305524, guid: c1f53a17aa6754d49af0882b2ab153f4,
     type: 3}
-  key: 102
+  fireKey: 102
+  fireJoy: 8192
   duration: 5
 --- !u!114 &355610513
 MonoBehaviour:
@@ -6642,6 +6643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
+  jumpJoy: 4096
   _animator: {fileID: 1073460336}
   JumpHeight: 7
   isGrounded: 1
@@ -6673,7 +6676,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babe26dc4967ef041a53dfa3d011a5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 101
+  pickupKey: 101
+  pickupJoy: 16384
 --- !u!114 &355610516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6701,6 +6705,7 @@ MonoBehaviour:
   towerParts:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
+  buildJoy: 32768
   woodNeeded: 1
   stoneNeeded: 1
   crystalNeeded: 1
@@ -6912,7 +6917,7 @@ Transform:
   m_Children:
   - {fileID: 174523413}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &389727435
 GameObject:
@@ -11972,7 +11977,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 22.66, y: -30, z: 0}
 --- !u!1 &482315728
 GameObject:
@@ -17918,7 +17923,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &757251258
 GameObject:
@@ -23031,7 +23036,7 @@ Transform:
   - {fileID: 1365102346}
   - {fileID: 389727436}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &848107872 stripped
 Transform:
@@ -23530,9 +23535,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 848107873}
-  cooldownTime: 2
   blinkTime: 2
-  key: 122
+  blinkKey: 120
+  blinkJoy: 512
 --- !u!114 &988015714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23546,7 +23551,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 848107873}
-  key: 101
+  pickupKey: 101
+  pickupJoy: 16384
 --- !u!114 &988015715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23559,6 +23565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 1
+  jumpJoy: 4096
   _animator: {fileID: 848107873}
   JumpHeight: 7
   isGrounded: 0
@@ -24297,9 +24305,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1331066605}
-  cooldownTime: 2
   blinkTime: 2
-  key: 122
+  blinkKey: 0
+  blinkJoy: 512
 --- !u!114 &1178891862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24313,7 +24321,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1331066605}
-  key: 101
+  pickupKey: 0
+  pickupJoy: 16384
 --- !u!54 &1178891863
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24342,6 +24351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 0
+  jumpJoy: 4096
   _animator: {fileID: 1331066605}
   JumpHeight: 7
   isGrounded: 0
@@ -24511,7 +24522,7 @@ Transform:
   - {fileID: 90763321}
   - {fileID: 2071546494}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!135 &1221722811
 SphereCollider:
@@ -35155,7 +35166,7 @@ Transform:
   - {fileID: 355610511}
   - {fileID: 1178891867}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1432873557
 GameObject:
@@ -35561,7 +35572,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1553649260
 GameObject:
@@ -35791,7 +35802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601654485
 GameObject:
@@ -35978,6 +35989,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658933044}
   m_CullTransparentMesh: 0
+--- !u!1 &1677013045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1677013047}
+  - component: {fileID: 1677013046}
+  m_Layer: 0
+  m_Name: Controller Updater
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1677013046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677013045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea916242215ccb4e9728a90e8566240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1677013047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677013045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 217.06636, y: 210.10834, z: -184.26581}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1695874862
 GameObject:
   m_ObjectHideFlags: 0
@@ -36083,8 +36137,8 @@ GameObject:
   - component: {fileID: 1704710108}
   - component: {fileID: 1704710107}
   - component: {fileID: 1704710106}
-  - component: {fileID: 1704710105}
   - component: {fileID: 1704710104}
+  - component: {fileID: 1704710105}
   - component: {fileID: 1704710103}
   - component: {fileID: 1704710102}
   - component: {fileID: 1704710101}
@@ -36139,6 +36193,7 @@ MonoBehaviour:
   towerParts:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
+  buildJoy: 32768
   woodNeeded: 1
   stoneNeeded: 1
   crystalNeeded: 1
@@ -36154,7 +36209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babe26dc4967ef041a53dfa3d011a5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  key: 101
+  pickupKey: 101
+  pickupJoy: 16384
 --- !u!114 &1704710104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36167,6 +36223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146cdcc8b375ca64ab8235c26340f333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerIndex: 1
+  jumpJoy: 4096
   _animator: {fileID: 691343308}
   JumpHeight: 7
   isGrounded: 1
@@ -36184,7 +36242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectial: {fileID: 7804686954685305524, guid: c1f53a17aa6754d49af0882b2ab153f4,
     type: 3}
-  key: 102
+  fireKey: 102
+  fireJoy: 8192
   duration: 5
 --- !u!54 &1704710106
 Rigidbody:
@@ -41595,7 +41654,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1800194474
 GameObject:

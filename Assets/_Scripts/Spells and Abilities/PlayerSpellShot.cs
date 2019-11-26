@@ -1,30 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ControllerInput;
+using static ControllerInput.CONTROLLER_BUTTON;
 
 public class PlayerSpellShot : MonoBehaviour
 {
     public GameObject projectial;
-    public KeyCode key;
+    public KeyCode fireKey = KeyCode.F;
+    public CONTROLLER_BUTTON fireJoy = B;
     public float duration;
 
+
+    private ushort playerIndex;
     IList<GameObject> Projcopy = new List<GameObject>();
     IList<float> projCounter = new List<float>();
     IList<Vector3> direction = new List<Vector3>();
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
     float movement = 0;
 
     // Update is called once per frame
     void Update()
     {
         float dt = Time.deltaTime;
+        playerIndex = GetComponent<PlayerMovement>().playerIndex;
 
         //creates a new gameObject every time a key is pressed
-        if (Input.GetKeyDown(key))
+        if (Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy))
         {
             Projcopy.Add(Instantiate(projectial));
             projCounter.Add(0);
@@ -32,10 +33,9 @@ public class PlayerSpellShot : MonoBehaviour
             Projcopy[Projcopy.Count - 1].transform.position = transform.position;
             Projcopy[Projcopy.Count - 1].transform.rotation = transform.rotation;
 
-            //            Debug.Log("I need you to move");
             movement = .1f;
             Projcopy[Projcopy.Count - 1].transform.position = transform.position;
-            //  Projcopy[Projcopy.Count - 1].transform.parent = this.transform;
+            //Projcopy[Projcopy.Count - 1].transform.parent = this.transform;
         }
 
 
