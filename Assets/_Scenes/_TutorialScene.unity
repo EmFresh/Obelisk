@@ -5679,7 +5679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoint1: {fileID: 212584979}
-  waypoint2: {fileID: 160652018}
+  waypoint2: {fileID: 823893718}
 --- !u!54 &212584981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17924,33 +17924,33 @@ MonoBehaviour:
   - tag: Resource(Crystal)
     prefab: {fileID: 1812501344933303194, guid: df90884e546a0ad4d950d0a8d8ed54eb,
       type: 3}
-    size: 8
+    size: 4
   - tag: Resource(CrystalSmall)
     prefab: {fileID: 1143943813485017726, guid: 464b2790d776c8042826ba4a9760a435,
       type: 3}
-    size: 20
+    size: 4
   - tag: Resource(Stone)
     prefab: {fileID: 987779290193395651, guid: 6abc421b4a19dc74e93b1f705599963f, type: 3}
-    size: 12
+    size: 4
   - tag: Resource(StoneSmall)
     prefab: {fileID: 2838613441014237107, guid: efcf62818ad7a79488086221024a1959,
       type: 3}
-    size: 36
+    size: 4
   - tag: Resource(Wood)
     prefab: {fileID: 53929849980888828, guid: 80cfeabcacbedbc4a8d3bd856fb43bf2, type: 3}
-    size: 15
+    size: 4
   - tag: Resource(WoodSmall)
     prefab: {fileID: 8953703161245493664, guid: 200eeee92f41d1f40affbd2a47642eb7,
       type: 3}
-    size: 50
+    size: 4
   - tag: SpeedBuff
     prefab: {fileID: 6754371266219483227, guid: ee46ae59fd5290b4ab7b37c607cabcca,
       type: 3}
-    size: 6
+    size: 4
   - tag: ScaryBois
     prefab: {fileID: 1241195563022857241, guid: b10022c957e34094fb7f43a8f91378df,
       type: 3}
-    size: 3
+    size: 12
 --- !u!4 &756551257
 Transform:
   m_ObjectHideFlags: 0
@@ -23031,7 +23031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731b9c0942c2e8440980bf650cafa6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoint1: {fileID: 1221722809}
+  waypoint1: {fileID: 212584979}
   waypoint2: {fileID: 823893718}
 --- !u!54 &823893720
 Rigidbody:
@@ -23576,7 +23576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 848107873}
   blinkTime: 2
-  blinkKey: 120
+  blinkKey: 0
   blinkJoy: 512
 --- !u!114 &988015714
 MonoBehaviour:
@@ -23591,7 +23591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 848107873}
-  pickupKey: 101
+  pickupKey: 0
   pickupJoy: 16384
 --- !u!114 &988015715
 MonoBehaviour:
@@ -35588,6 +35588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1479266189}
   - component: {fileID: 1479266188}
+  - component: {fileID: 1479266190}
   m_Layer: 0
   m_Name: TutorialState
   m_TagString: Untagged
@@ -35634,6 +35635,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1479266190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479266187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd8e08cadb16224381ceaacebd79cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 1704710099}
+  player2: {fileID: 988015711}
+  UI1: {fileID: 1562289217}
+  UI2: {fileID: 1432873557}
+  UI3: {fileID: 1658933044}
+  UI4: {fileID: 1137176181}
+  UI5: {fileID: 1388972468}
+  UI6: {fileID: 1722002640}
+  UI7: {fileID: 1909697141}
+  UI8: {fileID: 1909697141}
+  OverUI: {fileID: 1800194474}
+  state: 0
+  key: 103
 --- !u!1 &1553649260
 GameObject:
   m_ObjectHideFlags: 0
