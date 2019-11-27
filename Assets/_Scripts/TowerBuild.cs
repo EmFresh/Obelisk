@@ -24,9 +24,9 @@ public class TowerBuild : MonoBehaviour
 
     void OnTriggerStay(Collider obj)
     {
-        playerIndex = GetComponent<PlayerMovement>().playerIndex;
+        playerIndex = obj.gameObject.GetComponent<PlayerMovement>().playerIndex;
         
-        if ((obj.gameObject.CompareTag("Build Zone 1") && this.gameObject.CompareTag("Player 1")) || (obj.gameObject.CompareTag("Build Zone 2") && this.gameObject.CompareTag("Player 3")))
+        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone")) )
             if (Input.GetKeyDown(buildKey) || isButtonDown(playerIndex, (int)buildJoy))
             {
                 if (stage < maxStages)
@@ -34,8 +34,9 @@ public class TowerBuild : MonoBehaviour
                     if (WizardResourceManager.wizardWoodAmount >= woodNeeded && WizardResourceManager.wizardStoneAmount >= stoneNeeded && WizardResourceManager.wizardCrystalAmount >= crystalNeeded)
                     {
                         //get the next Parent
-                        theParent = obj.gameObject.transform;
-                        while (theParent.childCount > 0) theParent = theParent.GetChild(0);
+                        theParent = gameObject.transform;
+                        if(theParent.childCount != 3)
+                        while (theParent.childCount > 0) theParent = theParent.GetChild(theParent.childCount-1);
 
 
                         GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count]);
