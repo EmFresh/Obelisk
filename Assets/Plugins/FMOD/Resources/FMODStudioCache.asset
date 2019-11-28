@@ -18,7 +18,61 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 0
+--- !u!114 &-7538138830882902684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_FMOD_Studio/all the music/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637103915065799826
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &-6641691210942241348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_FMOD_Studio/all the music/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637084839218461724
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-5972535867649829149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_FMOD_Studio/all the music/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637100456217337638
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-4781317616330638264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: Assets/_FMOD_Studio/all the music/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637100456217357360
+  lastModified: 637103915065749951
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -70,16 +124,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -631160717413829108}
-  - {fileID: 7013956847912855111}
+  - {fileID: -7538138830882902684}
   EditorEvents:
   - {fileID: 6390163680018412204}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 7013956847912855111}
+  - {fileID: -7538138830882902684}
   StringsBanks:
   - {fileID: -631160717413829108}
-  stringsBankWriteTime: 637100456217357360
+  stringsBankWriteTime: 637103915065749951
   cacheVersion: 3
+--- !u!114 &1291582750515167248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_FMOD_Studio/all the music/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637103071542227508
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &2036661896235767750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_FMOD_Studio/all the music/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637100456217337638
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &4984299623225871566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/_FMOD_Studio/all the music/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637084839218461724
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &6390163680018412204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +203,7 @@ MonoBehaviour:
   Path: event:/New Event
   guid: 1694509538dd2040b860312a6e31d279
   Banks:
-  - {fileID: 7013956847912855111}
+  - {fileID: -7538138830882902684}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1

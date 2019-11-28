@@ -78,9 +78,9 @@ public class TutorialState : MonoBehaviour
             {
 
                 //start pawaning small resources
-                myPool.SpawnObject("Resource(WoodSmall)", new Vector3(-3, 0.5f, -60), transform.rotation);
-                myPool.SpawnObject("Resource(StoneSmall)", new Vector3(0, 0.5f, -60), transform.rotation);
-                myPool.SpawnObject("Resource(CrystalSmall)", new Vector3(3, 0.5f, -60), transform.rotation);
+                myPool.SpawnObject("Resource(WoodSmall)", new Vector3(-263, 0.5f, -14), transform.rotation);
+                myPool.SpawnObject("Resource(StoneSmall)", new Vector3(-260, 0.5f, -14), transform.rotation);
+                myPool.SpawnObject("Resource(CrystalSmall)", new Vector3(-257, 0.5f, -14), transform.rotation);
                 UI7.SetActive(false);
                 UI2.SetActive(true);
                 WriteStateToText(Time.time, 3, true);
@@ -96,9 +96,9 @@ public class TutorialState : MonoBehaviour
             if (PlayerPickup.StoneAmount >= 1 && PlayerPickup.WoodAmount >= 1 && PlayerPickup.CrystalAmount >= 1)
             {
                 //delete small resources and start spawning large resources
-                myPool.SpawnObject("Resource(Wood)", new Vector3(-3, 0.5f, -70), transform.rotation);
-                myPool.SpawnObject("Resource(Stone)", new Vector3(0, 0.5f, -70), transform.rotation);
-                myPool.SpawnObject("Resource(Crystal)", new Vector3(3, 0.5f, -70), transform.rotation);
+                myPool.SpawnObject("Resource(Wood)", new Vector3(-264, 0.5f, -23), transform.rotation);
+                myPool.SpawnObject("Resource(Stone)", new Vector3(-260, 0.5f, -23), transform.rotation);
+                myPool.SpawnObject("Resource(Crystal)", new Vector3(-256, 0.5f, -23), transform.rotation);
                 UI2.SetActive(false);
                 UI3.SetActive(true);
                 WriteStateToText(Time.time, 4, true);
@@ -110,7 +110,6 @@ public class TutorialState : MonoBehaviour
 
             if (PlayerPickup.StoneAmount >= 3 && PlayerPickup.WoodAmount >= 3 && PlayerPickup.CrystalAmount >= 3)
             {
-                //delete small resources and start spawning large resources
                 UI3.SetActive(false);
                 UI4.SetActive(true);
                 WriteStateToText(Time.time, 5, true);
@@ -136,9 +135,9 @@ public class TutorialState : MonoBehaviour
                 MinimapScript._pivot.transform.rotation = player1.transform.rotation;
                 MinimapScript._pivot.transform.parent = player1.transform;
 
-                myPool.SpawnObject("ScaryBois", new Vector3(0, 0.5f, -70), transform.rotation);
-                myPool.SpawnObject("ScaryBois", new Vector3(-3, 0.5f, -70), transform.rotation);
-                myPool.SpawnObject("ScaryBois", new Vector3(3, 0.5f, -70), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-264, 0.6f, -23), transform.rotation);
                 WriteStateToText(Time.time, 6, true);
 
                 state = tutorialState.learnShooting;

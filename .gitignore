@@ -52,3 +52,8 @@ sysinfo.txt
 *.unitypackage
 # Crashlytics generated file
 crashlytics-build.properties
+*.csproj
+
+*.sln
+
+MetricsText.txt
