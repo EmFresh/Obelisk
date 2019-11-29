@@ -48,11 +48,11 @@ public class CameraMovement : MonoBehaviour
 
         var stick = getSticks(playerIndex)[RS];
         //Get X position of the mouse and rotate the player
-        float horizontal = Mathf.Clamp(Input.GetAxis("Mouse X") + stick.x, -1, 1) * RotateSpeed;
+        float horizontal = Mathf.Clamp(/*Input.GetAxis("Mouse X") + */stick.x, -1, 1) * RotateSpeed;
         PlayerTransform.Rotate(0, horizontal, 0);
 
         //Get X position of the mouse and rotate the pivot
-        float vertical = Mathf.Clamp(Input.GetAxis("Mouse Y") + stick.y, -1, 1) * RotateSpeed;
+        float vertical = Mathf.Clamp(/*Input.GetAxis("Mouse Y") + */stick.y, -1, 1) * RotateSpeed;
         pivot.Rotate(-vertical, 0, 0);
 
         //Move the camera based on current ratation of player and the sidtance offset, slerp help movement smoother

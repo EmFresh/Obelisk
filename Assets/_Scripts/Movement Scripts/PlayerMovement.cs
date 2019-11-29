@@ -35,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Get the X and Y position of any input (laptop or controller)
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        float x = 0;
+        float y = 0;
 
 
         Stick stick = getSticks(playerIndex)[LS];
