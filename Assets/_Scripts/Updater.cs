@@ -8,8 +8,7 @@ public class Updater : MonoBehaviour
     void Awake()
     {
         ControllerInput.update();
-        for (ushort a = 0; a < 4; a++)
-            ControllerInput.setStickDeadZone(a, 0.5f);
+            
     }
 
     // Update is called once per frame

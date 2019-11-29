@@ -35,9 +35,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //Get the X and Y position of any input (laptop or controller)
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        float x = 0;
+        float y = 0;
 
+        setStickDeadZone(playerIndex, 1);
+        float f  = getStickDeadZone(playerIndex);
+        print(f.ToString());
 
         Stick stick = getSticks(playerIndex)[LS];
         setStickDeadZone(playerIndex, 0.1f);

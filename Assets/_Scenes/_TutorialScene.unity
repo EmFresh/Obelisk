@@ -17644,7 +17644,7 @@ RectTransform:
   - {fileID: 983787680}
   - {fileID: 596610051}
   m_Father: {fileID: 1178891867}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -24114,7 +24114,7 @@ GameObject:
   - component: {fileID: 1137176184}
   - component: {fileID: 1137176183}
   m_Layer: 5
-  m_Name: 'Drop '
+  m_Name: P2Step5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24204,7 +24204,7 @@ Transform:
   m_Children:
   - {fileID: 101955889}
   m_Father: {fileID: 1178891867}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1138118886
 MonoBehaviour:
@@ -24327,7 +24327,7 @@ GameObject:
   - component: {fileID: 1178891860}
   m_Layer: 0
   m_Name: Player 1 - Rogue
-  m_TagString: Player 2
+  m_TagString: Player 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24428,8 +24428,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.51, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1138118885}
   - {fileID: 733425928}
+  - {fileID: 1138118885}
   - {fileID: 1442094925}
   m_Father: {fileID: 1429572987}
   m_RootOrder: 1
@@ -35138,7 +35138,7 @@ GameObject:
   - component: {fileID: 1388972471}
   - component: {fileID: 1388972470}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: P2Step7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35240,7 +35240,7 @@ GameObject:
   - component: {fileID: 1432873560}
   - component: {fileID: 1432873559}
   m_Layer: 5
-  m_Name: Pick up small
+  m_Name: P2Step3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35588,7 +35588,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1479266189}
   - component: {fileID: 1479266188}
-  - component: {fileID: 1479266190}
   m_Layer: 0
   m_Name: TutorialState
   m_TagString: Untagged
@@ -35608,18 +35607,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa88563cb6b251643a87c179b439616a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 355610507}
-  player2: {fileID: 1178891859}
+  player1Wizard: {fileID: 355610507}
+  player2Wizard: {fileID: 1704710099}
+  player1Rogue: {fileID: 1178891859}
+  player2Rogue: {fileID: 988015711}
   UI1: {fileID: 940112977}
-  UI2: {fileID: 260234768}
-  UI3: {fileID: 1934015555}
-  UI4: {fileID: 1335412623}
-  UI5: {fileID: 1878985352}
-  UI6: {fileID: 819202430}
-  UI7: {fileID: 1280393376}
-  UI8: {fileID: 1318420788}
+  UI2: {fileID: 1280393376}
+  UI3: {fileID: 260234768}
+  UI4: {fileID: 1934015555}
+  UI5: {fileID: 1335412623}
+  UI6: {fileID: 1318420788}
+  UI7: {fileID: 1878985352}
+  UI8: {fileID: 819202430}
+  UI12: {fileID: 1562289217}
+  UI22: {fileID: 1909697141}
+  UI32: {fileID: 1432873557}
+  UI42: {fileID: 1658933044}
+  UI52: {fileID: 1137176181}
+  UI62: {fileID: 1800194474}
+  UI72: {fileID: 1388972468}
+  UI82: {fileID: 1722002640}
   OverUI: {fileID: 1946887924}
   state: 0
+  stateP2: 0
   key: 103
 --- !u!4 &1479266189
 Transform:
@@ -35635,31 +35645,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1479266190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1479266187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd8e08cadb16224381ceaacebd79cc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1: {fileID: 1704710099}
-  player2: {fileID: 988015711}
-  UI1: {fileID: 1562289217}
-  UI2: {fileID: 1432873557}
-  UI3: {fileID: 1658933044}
-  UI4: {fileID: 1137176181}
-  UI5: {fileID: 1388972468}
-  UI6: {fileID: 1722002640}
-  UI7: {fileID: 1909697141}
-  UI8: {fileID: 1909697141}
-  OverUI: {fileID: 1800194474}
-  state: 0
-  key: 103
 --- !u!1 &1553649260
 GameObject:
   m_ObjectHideFlags: 0
@@ -35818,7 +35803,7 @@ GameObject:
   - component: {fileID: 1562289220}
   - component: {fileID: 1562289219}
   m_Layer: 5
-  m_Name: Walk to Waypoint
+  m_Name: P2Step1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36017,7 +36002,7 @@ GameObject:
   - component: {fileID: 1658933047}
   - component: {fileID: 1658933046}
   m_Layer: 5
-  m_Name: Pick Up large
+  m_Name: P2Step4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36230,7 +36215,7 @@ GameObject:
   - component: {fileID: 1704710101}
   m_Layer: 0
   m_Name: Player 2 Wizard
-  m_TagString: Player 1
+  m_TagString: Player 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36380,7 +36365,7 @@ GameObject:
   - component: {fileID: 1722002643}
   - component: {fileID: 1722002642}
   m_Layer: 5
-  m_Name: RawImage (1)
+  m_Name: P2Step8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41754,7 +41739,7 @@ GameObject:
   - component: {fileID: 1800194477}
   - component: {fileID: 1800194476}
   m_Layer: 5
-  m_Name: RawImage (2)
+  m_Name: P2Step6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41894,7 +41879,7 @@ GameObject:
   - component: {fileID: 1909697144}
   - component: {fileID: 1909697143}
   m_Layer: 5
-  m_Name: ZtoBlink
+  m_Name: P2Step2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

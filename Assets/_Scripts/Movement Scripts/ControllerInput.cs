@@ -99,6 +99,21 @@ public class ControllerInput
     ///sets a radial deadzone magnitude. any value below the threshold is zero.
     ///</summary>
     [DllImport(DLL)] public static extern void setStickDeadZone(int index, float dz);
+    [DllImport(DLL)] public static extern void setTriggerDeadZone(int index, float dz);
+    [DllImport(DLL)] public static extern void getStickDeadZone(int index, ref float dz);
+    public static float getStickDeadZone(int index)
+    {
+        float f = 0;
+        getStickDeadZone(index, ref f);
+        return f;
+    }
+    [DllImport(DLL)] public static extern void getTriggerDeadZone(int index, ref float dz);
+    public static float getTriggerDeadZone(int index)
+    {
+        float f = 0;
+        getTriggerDeadZone(index, ref f);
+        return f;
+    }
 
     ///<summary>
     ///sets the vibration to left and right channels (values range from 0 -> 1)

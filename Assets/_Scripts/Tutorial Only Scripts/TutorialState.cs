@@ -27,8 +27,10 @@ public class TutorialState : MonoBehaviour
     }
 
     bool endEnabled = false;
-    public GameObject player1;
-    public GameObject player2;
+    public GameObject player1Wizard;
+    public GameObject player2Wizard;
+    public GameObject player1Rogue;
+    public GameObject player2Rogue;
 
     public GameObject UI1;
     public GameObject UI2;
@@ -38,9 +40,18 @@ public class TutorialState : MonoBehaviour
     public GameObject UI6;
     public GameObject UI7;
     public GameObject UI8;
+    public GameObject UI12;
+    public GameObject UI22;
+    public GameObject UI32;
+    public GameObject UI42;
+    public GameObject UI52;
+    public GameObject UI62;
+    public GameObject UI72;
+    public GameObject UI82;
     public GameObject OverUI;
 
     public tutorialState state;
+    public tutorialState stateP2;
     private static ObjectPool myPool;
 
     public KeyCode key;
@@ -50,6 +61,7 @@ public class TutorialState : MonoBehaviour
     void Start()
     {
         state = tutorialState.learnMovementStage1;
+        stateP2 = tutorialState.learnMovementStage1;
         WriteStateToText(Time.time, 1, true);
         myPool = ObjectPool.Instance;
     }
@@ -64,7 +76,7 @@ public class TutorialState : MonoBehaviour
             if (Waypoint.touchedWaypoint)
             {
                 UI1.SetActive(false);
-                UI7.SetActive(true);
+                UI2.SetActive(true);
                 state = tutorialState.learnMovementStage2;
                 WriteStateToText(Time.time, 2, true);
                 //UI: Great, now walk to the next one!
@@ -81,8 +93,8 @@ public class TutorialState : MonoBehaviour
                 myPool.SpawnObject("Resource(WoodSmall)", new Vector3(-263, 0.5f, -14), transform.rotation);
                 myPool.SpawnObject("Resource(StoneSmall)", new Vector3(-260, 0.5f, -14), transform.rotation);
                 myPool.SpawnObject("Resource(CrystalSmall)", new Vector3(-257, 0.5f, -14), transform.rotation);
-                UI7.SetActive(false);
-                UI2.SetActive(true);
+                UI2.SetActive(false);
+                UI3.SetActive(true);
                 WriteStateToText(Time.time, 3, true);
 
                 //Debug.Log("Spawn Wood");
@@ -99,8 +111,8 @@ public class TutorialState : MonoBehaviour
                 myPool.SpawnObject("Resource(Wood)", new Vector3(-264, 0.5f, -23), transform.rotation);
                 myPool.SpawnObject("Resource(Stone)", new Vector3(-260, 0.5f, -23), transform.rotation);
                 myPool.SpawnObject("Resource(Crystal)", new Vector3(-256, 0.5f, -23), transform.rotation);
-                UI2.SetActive(false);
-                UI3.SetActive(true);
+                UI3.SetActive(false);
+                UI4.SetActive(true);
                 WriteStateToText(Time.time, 4, true);
                 state = tutorialState.learnPickupLarge;
             }
@@ -110,8 +122,8 @@ public class TutorialState : MonoBehaviour
 
             if (PlayerPickup.StoneAmount >= 3 && PlayerPickup.WoodAmount >= 3 && PlayerPickup.CrystalAmount >= 3)
             {
-                UI3.SetActive(false);
-                UI4.SetActive(true);
+                UI4.SetActive(false);
+                UI5.SetActive(true);
                 WriteStateToText(Time.time, 5, true);
                 state = tutorialState.learnSorting;
             }
@@ -125,15 +137,15 @@ public class TutorialState : MonoBehaviour
                 //player2.setactive(false);
                 //player1.setactive(true);
                 //Test.Equals(this).player1.setactive(false);
-                player1.SetActive(true);
-                player2.SetActive(false);
+                player1Wizard.SetActive(true);
+                player1Rogue.SetActive(false);
 
-                UI4.SetActive(false);
-                UI8.SetActive(true);
+                UI5.SetActive(false);
+                UI6.SetActive(true);
 
-                MinimapScript._pivot.transform.position = player1.transform.position;
-                MinimapScript._pivot.transform.rotation = player1.transform.rotation;
-                MinimapScript._pivot.transform.parent = player1.transform;
+                MinimapScript._pivot.transform.position = player1Wizard.transform.position;
+                MinimapScript._pivot.transform.rotation = player1Wizard.transform.rotation;
+                MinimapScript._pivot.transform.parent = player1Wizard.transform;
 
                 myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.6f, -23), transform.rotation);
                 myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.6f, -23), transform.rotation);
@@ -176,12 +188,12 @@ public class TutorialState : MonoBehaviour
             {
                 UI6.SetActive(false);
                 OverUI.SetActive(true);
-                if(!endEnabled)
+                if (!endEnabled)
                 {
                     WriteStateToText(Time.time, 9, true);
                     endEnabled = true;
                 }
-                
+
                 state = tutorialState.endGame;
             }
         }
@@ -190,6 +202,94 @@ public class TutorialState : MonoBehaviour
             if (Input.GetKeyDown(key))
             {
                 SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+            }
+        }
+        if (stateP2 == tutorialState.learnMovementStage1)
+        {
+
+            if (Waypoint.P2touchedWaypoint)
+            {
+                UI12.SetActive(false);
+                UI22.SetActive(true);
+                stateP2 = tutorialState.learnMovementStage2;
+                WriteStateToText(Time.time, 2, true);
+
+            }
+
+        }
+        if (stateP2 == tutorialState.learnMovementStage2)
+        {
+
+            if (Waypoint.P2touchedWaypoint2)
+            {
+
+                //start pawaning small resources
+                myPool.SpawnObject("Resource(WoodSmall)", new Vector3(-88, 0.5f, -14), transform.rotation);
+                myPool.SpawnObject("Resource(StoneSmall)", new Vector3(-84, 0.5f, -14), transform.rotation);
+                myPool.SpawnObject("Resource(CrystalSmall)", new Vector3(-80, 0.5f, -14), transform.rotation);
+                UI22.SetActive(false);
+                UI32.SetActive(true);
+                WriteStateToText(Time.time, 3, true);
+
+                //Debug.Log("Spawn Wood");
+
+                stateP2 = tutorialState.learnPickupSmall;
+            }
+        }
+        if (stateP2 == tutorialState.learnPickupSmall)
+        {
+
+            if (PlayerPickup.StoneAmount >= 1 && PlayerPickup.WoodAmount >= 1 && PlayerPickup.CrystalAmount >= 1)
+            {
+                //delete small resources and start spawning large resources
+                myPool.SpawnObject("Resource(Wood)", new Vector3(-88, 0.5f, -23), transform.rotation);
+                myPool.SpawnObject("Resource(Stone)", new Vector3(-84, 0.5f, -23), transform.rotation);
+                myPool.SpawnObject("Resource(Crystal)", new Vector3(-80, 0.5f, -23), transform.rotation);
+                UI32.SetActive(false);
+                UI42.SetActive(true);
+                WriteStateToText(Time.time, 4, true);
+                stateP2 = tutorialState.learnPickupLarge;
+            }
+        }
+                if (state == tutorialState.learnPickupLarge)
+        {
+
+            if (PlayerPickup.StoneAmount >= 3 && PlayerPickup.WoodAmount >= 3 && PlayerPickup.CrystalAmount >= 3)
+            {
+                UI4.SetActive(false);
+                UI5.SetActive(true);
+                WriteStateToText(Time.time, 5, true);
+                state = tutorialState.learnSorting;
+            }
+        }
+         if (stateP2 == tutorialState.learnSorting)
+        {
+
+            if (PlayerPickup.stoneStock >= 1 && PlayerPickup.woodStock >= 1 && PlayerPickup.crystalStock >= 1)
+            {
+                //[SerializeField]
+                //player2.setactive(false);
+                //player1.setactive(true);
+                //Test.Equals(this).player1.setactive(false);
+                player1Wizard.SetActive(true);
+                player1Rogue.SetActive(false);
+
+                UI5.SetActive(false);
+                UI6.SetActive(true);
+
+                MinimapScript._pivot.transform.position = player1Wizard.transform.position;
+                MinimapScript._pivot.transform.rotation = player1Wizard.transform.rotation;
+                MinimapScript._pivot.transform.parent = player1Wizard.transform;
+
+                myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-264, 0.6f, -23), transform.rotation);
+                WriteStateToText(Time.time, 6, true);
+
+                state = tutorialState.learnShooting;
+
+
+
             }
         }
     }

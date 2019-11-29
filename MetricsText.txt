@@ -1091,3 +1091,381 @@ Time: 54.9515
 
 State: endState
 Time: 54.9515
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 10.1437
+
+State: learnBlink
+Time: 10.1437
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 6.99108
+
+State: learnBlink
+Time: 6.99108
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 5.84644
+
+State: learnBlink
+Time: 5.84644
+
+State: learnPickupSmall
+Time: 25.409
+
+State: learnPickupSmall
+Time: 25.409
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 21.9876
+
+State: learnPickupSmall
+Time: 21.9876
+
+State: learnPickupLarge
+Time: 32.6742
+
+State: learnSorting
+Time: 49.8602
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 9.57304
+
+State: learnPickupSmall
+Time: 13.6767
+
+State: learnBlink
+Time: 13.6767
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 8.59
+
+State: learnPickupSmall
+Time: 25.9903
+
+State: learnBlink
+Time: 25.9903
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 4.55103
+
+State: learnPickupSmall
+Time: 8.50444
+
+State: learnBlink
+Time: 8.50444
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 20.232
+
+State: learnPickupSmall
+Time: 34.1361
+
+State: learnBlink
+Time: 34.1361
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 7.38296
+
+State: learnPickupSmall
+Time: 12.2823
+
+State: learnBlink
+Time: 12.2823
+
+State: learnPickupLarge
+Time: 16.593
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 9.28637
+
+State: learnBlink
+Time: 18.4716
+
+State: learnPickupSmall
+Time: 23.3554
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 6.49519
+
+State: learnPickupSmall
+Time: 10.1924
+
+State: learnBlink
+Time: 19.0827
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 8.77504
+
+State: learnPickupSmall
+Time: 14.0276
+
+State: learnPickupLarge
+Time: 17.2703
+
+State: learnSorting
+Time: 24.1804
+
+State: learnShooting
+Time: 27.9261
+
+State: learnBlink
+Time: 39.4561
+
+State: learnPickupSmall
+Time: 48.3714
+
+State: learnPickupFromChest
+Time: 73.2288
+
+State: learnTowerBuild
+Time: 81.0097
+
+State: endState
+Time: 86.9362
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 6.15409
+
+State: learnPickupSmall
+Time: 10.5366
+
+State: learnPickupLarge
+Time: 15.4802
+
+State: learnSorting
+Time: 22.9833
+
+State: learnShooting
+Time: 25.9152
+
+State: learnPickupFromChest
+Time: 35.4553
+
+State: learnTowerBuild
+Time: 50.983
+
+State: endState
+Time: 54.0144
+
+State: learnMovementStage1
+Time: 0
+
+State: learnBlink
+Time: 5.51411
+
+State: learnPickupSmall
+Time: 10.2223
+
+State: learnPickupLarge
+Time: 13.3703
+
+State: learnSorting
+Time: 20.0543
+
+State: learnBlink
+Time: 28.1943
+
+State: learnPickupSmall
+Time: 31.9968
+
+State: learnPickupLarge
+Time: 31.9968
+
+State: learnShooting
+Time: 49.5473
