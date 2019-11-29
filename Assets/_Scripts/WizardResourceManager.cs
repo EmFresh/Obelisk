@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ControllerInput;
+using static ControllerInput.CONTROLLER_BUTTON;
 
 public class WizardResourceManager : MonoBehaviour
 {
@@ -16,17 +18,18 @@ public class WizardResourceManager : MonoBehaviour
     bool stoneChestCollision = false;
     bool crystalChestCollision = false;
 
-    public KeyCode key;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public KeyCode pickupKey = KeyCode.E;
+    public CONTROLLER_BUTTON pickupJoy = X;
 
-    }
+    private ushort playerIndex;
+
 
     // Update is called once per frame
     void Update()
-    {   //if E pressed while colliding with chests then take resources from chest
-        if (Input.GetKeyUp(key))
+    {
+        playerIndex = GetComponent<PlayerMovement>().playerIndex;
+        //if E pressed while colliding with chests then take resources from chest
+        if (Input.GetKeyDown(pickupKey) || isButtonDown(playerIndex, (int)pickupJoy))
         {
             if (woodChestCollision)
             {

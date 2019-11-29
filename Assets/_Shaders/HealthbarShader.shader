@@ -40,7 +40,7 @@
             }
 
             sampler2D _MainTex;
-            float health=.5;
+            float health;
 
             fixed4 frag (v2f i) : SV_Target
             {
@@ -48,7 +48,7 @@
                // uv.y = uv.y*uv.x / cos(_Time.y);
                 fixed4 col = tex2D(_MainTex, uv);
                 // just invert the colors
-                col.a = float(uv.x < health);
+                col.a = col.a * float(uv.x < health);
                 //col = float4(health,health,health,1);
                 return col;
             }

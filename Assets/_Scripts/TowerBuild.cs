@@ -1,55 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using static ControllerInput;
+using static ControllerInput.CONTROLLER_BUTTON;
 
 public class TowerBuild : MonoBehaviour
 {
 
     public List<GameObject> towerParts = new List<GameObject>();
-    public KeyCode buildKey;
+    public KeyCode buildKey = KeyCode.Tab;
+    public CONTROLLER_BUTTON buildJoy = Y;
 
-    private Transform theParent;
-
-    int maxStages = 3;
     public static int stage;
 
     public int woodNeeded;
     public int stoneNeeded;
     public int crystalNeeded;
-    // Start is called before the first frame update
-    void Start()
-    {
-        print("init started");
-        AudioPlayer.init();
-        print("init finished");
-        //  theParent = transform;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        AudioPlayer.update();
-    }
 
-    void onExit()
-    {
-        AudioPlayer.stopAll();
-        AudioPlayer.disable();
-    }
+    private ushort playerIndex;
+    private Transform theParent;
+    private const int maxStages = 3;
 
     void OnTriggerStay(Collider obj)
     {
-        if ((obj.gameObject.CompareTag("Build Zone 1") && this.gameObject.CompareTag("Player 1")) || (obj.gameObject.CompareTag("Build Zone 2") && this.gameObject.CompareTag("Player 3")))
-            if (Input.GetKeyDown(buildKey))
+        playerIndex = obj.gameObject.GetComponent<PlayerMovement>().playerIndex;
+        
+        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone")) )
+            if (Input.GetKeyDown(buildKey) || isButtonDown(playerIndex, (int)buildJoy))
             {
                 if (stage < maxStages)
                 {
                     if (WizardResourceManager.wizardWoodAmount >= woodNeeded && WizardResourceManager.wizardStoneAmount >= stoneNeeded && WizardResourceManager.wizardCrystalAmount >= crystalNeeded)
                     {
                         //get the next Parent
-                        theParent = obj.gameObject.transform;
-                        while (theParent.childCount > 0) theParent = theParent.GetChild(0);
+                        theParent = gameObject.transform;
+                        if(theParent.childCount != 3)
+                        while (theParent.childCount > 0) theParent = theParent.GetChild(theParent.childCount-1);
 
 
                         GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count]);

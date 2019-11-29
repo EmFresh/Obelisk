@@ -145,7 +145,8 @@ public class ControllerInput
     public static float[] getVibration(int index)
     {
         float[] vibe = new float[2];
-        getVibration(index, ref vibe[0], ref vibe[1]);
+        if (controllerConnected(index))
+            getVibration(index, ref vibe[0], ref vibe[1]);
         return vibe;
     }
 
@@ -161,7 +162,8 @@ public class ControllerInput
     public static float getVibrationL(int index)
     {
         float vibe = 0;
-        getVibrationL(index, ref vibe);
+        if (controllerConnected(index))
+            getVibrationL(index, ref vibe);
         return vibe;
     }
 
@@ -176,7 +178,8 @@ public class ControllerInput
     public static float getVibrationR(int index)
     {
         float vibe = 0;
-        getVibrationR(index, ref vibe);
+        if (controllerConnected(index))
+            getVibrationR(index, ref vibe);
         return vibe;
     }
 
@@ -265,7 +268,8 @@ public class ControllerInput
     public static Stick[] getSticks(int index)
     {
         Stick[] sticks = new Stick[2];
-        getSticks(index, sticks);
+        if (controllerConnected(index))
+            getSticks(index, sticks);
         return sticks;
     }
 
@@ -293,7 +297,8 @@ public class ControllerInput
     public static Triggers getTriggers(int index)
     {
         Triggers triggers = new Triggers();
-        getTriggers(index, ref triggers);
+        if (controllerConnected(index))
+            getTriggers(index, ref triggers);
         return triggers;
     }
 

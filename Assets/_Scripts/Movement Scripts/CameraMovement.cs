@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ControllerInput;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class CameraMovement : MonoBehaviour
 
     public float _cameraLROffset = 0.5f;
     public float _cameraUDOffset = 0.6f;
-    private Vector3 _cameraBFOffset;
 
     [Range(0.01f, 1.0f)]
     public float SmoothFactor = 0.3f;
+
+    private Vector3 _cameraBFOffset;
+    private ushort playerIndex;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,16 +40,19 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        playerIndex = transform.parent.GetComponent<PlayerMovement>().playerIndex;
+
         //Remove moveup and move right offset to help calculation
         transform.position -= transform.right * _cameraLROffset;
         transform.position -= transform.up * _cameraUDOffset;
 
+        var stick = getSticks(playerIndex)[RS];
         //Get X position of the mouse and rotate the player
-        float horizontal = Input.GetAxis("Mouse X") * RotateSpeed;
+        float horizontal = Mathf.Clamp(/*Input.GetAxis("Mouse X") + */stick.x, -1, 1) * RotateSpeed;
         PlayerTransform.Rotate(0, horizontal, 0);
 
         //Get X position of the mouse and rotate the pivot
-        float vertical = Input.GetAxis("Mouse Y") * RotateSpeed;
+        float vertical = Mathf.Clamp(/*Input.GetAxis("Mouse Y") + */stick.y, -1, 1) * RotateSpeed;
         pivot.Rotate(-vertical, 0, 0);
 
         //Move the camera based on current ratation of player and the sidtance offset, slerp help movement smoother
@@ -53,9 +60,9 @@ public class CameraMovement : MonoBehaviour
         float desiredXAngle = pivot.eulerAngles.x;
         Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
         transform.position = Vector3.Slerp(transform.position, PlayerTransform.position + (rotation * _cameraBFOffset), SmoothFactor);
-        
+
         //Make sure camera not going below ground
-        if(transform.position.y < PlayerTransform.position.y)
+        if (transform.position.y < PlayerTransform.position.y)
         {
             transform.position = new Vector3(transform.position.x, PlayerTransform.position.y, transform.position.z);
         }
