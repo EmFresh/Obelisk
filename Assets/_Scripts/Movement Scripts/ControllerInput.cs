@@ -1,8 +1,22 @@
 ﻿using System.Runtime.InteropServices;
 
+///<summary>
+///Controles all X-Input
+///</summary>
+///<remarks>
+///recommended to place this line at the top of any file to avoid ControllerInput.*:
+///using static ControllerInput;
+///</remarks>
 public class ControllerInput
 {
-    public enum CONTROLLER_TYPE : ushort
+    ///<summary>
+    ///All avaliable Controller Types
+    ///</summary>
+    ///<remarks>
+    ///recommended to place this line at the top of any file to avoid ControllerInput.CONTROLLER_TYPE.*:
+    ///using static ControllerInput.CONTROLLER_TYPE;
+    ///</remarks>
+    public enum CONTROLLER_TYPE : int
     {
         CONTROLLER,
         GUITAR,
@@ -10,7 +24,14 @@ public class ControllerInput
         UNKNOWN
     }
 
-    public enum CONTROLLER_BUTTON : ushort
+    ///<summary>
+    ///All avaliable Xinput Buttons
+    ///</summary>
+    ///<remarks>
+    ///recommended to place this line at the top of any file to avoid ControllerInput.CONTROLLER_BUTTON.*:
+    ///using static ControllerInput.CONTROLLER_BUTTON;
+    ///</remarks>
+    public enum CONTROLLER_BUTTON : int
     {
         ANY = 0x0000,
         DPAD_UP = 0x0001,
@@ -70,8 +91,6 @@ public class ControllerInput
     ///</code></example> 
     public const ushort RS = 1;
 
-
-    static private bool updateChange = false;
 
     private const string DLL = "ControllerDLL.dll";
 
