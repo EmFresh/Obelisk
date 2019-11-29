@@ -35828,6 +35828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1479266189}
   - component: {fileID: 1479266188}
+  - component: {fileID: 1479266190}
   m_Layer: 0
   m_Name: TutorialState
   m_TagString: Untagged
@@ -35897,19 +35898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd8e08cadb16224381ceaacebd79cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 1704710099}
-  player2: {fileID: 988015711}
-  UI1: {fileID: 1562289217}
-  UI2: {fileID: 1432873557}
-  UI3: {fileID: 1658933044}
-  UI4: {fileID: 1137176181}
-  UI5: {fileID: 1388972468}
-  UI6: {fileID: 1722002640}
-  UI7: {fileID: 1909697141}
-  UI8: {fileID: 1909697141}
-  OverUI: {fileID: 1800194474}
-  state: 0
-  key: 103
 --- !u!1 &1530422058
 GameObject:
   m_ObjectHideFlags: 0
