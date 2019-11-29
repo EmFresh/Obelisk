@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBarScript : MonoBehaviour
 {
     [Range(0, 1)]
-    public float percentHealth;
+    public float percentHealth = 1;
     private Material rend;
    // Start is called before the first frame update
     void Start()
