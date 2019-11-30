@@ -39,7 +39,7 @@
             }
 
             sampler2D _MainTex;
-            float blink;
+            float blink = 1;
 
             fixed4 frag (v2f i) : SV_Target
             {

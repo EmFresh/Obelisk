@@ -10,12 +10,15 @@ public class PlayerSpellShot : MonoBehaviour
     public KeyCode fireKey = KeyCode.F;
     public CONTROLLER_BUTTON fireJoy = B;
     public float duration;
+    public float shotCooldown;
+    public bool[] shots = new bool[3] { true, true, true };
+    public float shotTimer = 0;
 
 
     private ushort playerIndex;
-    IList<GameObject> Projcopy = new List<GameObject>();
-    IList<float> projCounter = new List<float>();
-    IList<Vector3> direction = new List<Vector3>();
+    private IList<GameObject> Projcopy = new List<GameObject>();
+    private IList<float> projCounter = new List<float>();
+    private IList<Vector3> direction = new List<Vector3>();
     float movement = 0;
 
     // Update is called once per frame
@@ -25,7 +28,7 @@ public class PlayerSpellShot : MonoBehaviour
         playerIndex = GetComponent<PlayerMovement>().playerIndex;
 
         //creates a new gameObject every time a key is pressed
-        if (Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy))
+        if ((Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy)) && shots[0])
         {
             Projcopy.Add(Instantiate(projectial));
             projCounter.Add(0);
@@ -35,7 +38,30 @@ public class PlayerSpellShot : MonoBehaviour
 
             movement = .1f;
             Projcopy[Projcopy.Count - 1].transform.position = transform.position;
+
+            for (int a = shots.Length - 1; a >= 0; --a)
+                if (shots[a])
+                {
+                    shots[a] = false;
+                    break;
+                }
             //Projcopy[Projcopy.Count - 1].transform.parent = this.transform;
+        }
+
+        //checks if the player can make a shot
+        if (!(shots[0] && shots[1] && shots[2]))
+        {
+            shotTimer += Time.deltaTime * 0.5f;
+            for (int a = 0; a < shots.Length; ++a)
+                if (!shots[a])
+                {
+                    if (shotTimer > shotCooldown)
+                    {
+                        shotTimer = 0;
+                        shots[a] = true;
+                    }
+                    break;
+                }
         }
 
 

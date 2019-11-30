@@ -1,13 +1,12 @@
-﻿Shader "HealthbarShader"
+﻿Shader "Hidden/FireBallBarShader"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-
     }
     SubShader
     {
-        // No culling or depth
+      // No culling or depth
         Cull Off ZWrite Off ZTest Always
 
         Blend SrcAlpha OneMinusSrcAlpha
@@ -40,17 +39,17 @@
             }
 
             sampler2D _MainTex;
-            float health = 1;
+            float fire = 0;
 
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed2 uv = i.uv;
-                //uv.x /= health;
+                //uv.x /= fire;
                // uv.y = uv.y*uv.x / cos(_Time.y);
                 fixed4 col = tex2D(_MainTex, uv);
                 // just invert the colors
-                col.a = col.a * float(uv.x < health);
-                //col = float4(health,health,health,1);
+                col.a = col.a * float(uv.x < fire);
+                //col = float4(fire,fire,fire,1);
                 return col;
             }
             ENDCG

@@ -40,7 +40,7 @@ public class Waypoint : MonoBehaviour
             waypointTime = Time.time;
             
         }
-        if (other.gameObject.CompareTag("Player 1") && !touchedWaypoint2 && touchedWaypoint && Time.time - waypointTime >= 3 && Blink.isBlinking)
+        if (other.gameObject.CompareTag("Player 1") && !touchedWaypoint2 && touchedWaypoint && Time.time - waypointTime >= 3 && other.GetComponent<Blink>().isBlinking)
         {
             touchedWaypoint2 = true;
             //Debug.Log("waypoint move 2??");
@@ -58,7 +58,7 @@ public class Waypoint : MonoBehaviour
             waypointTime2 = Time.time;
             
         }
-        if (other.gameObject.CompareTag("Player 2") && !P2touchedWaypoint2 && P2touchedWaypoint && Time.time - waypointTime2 >= 3 && Blink.isBlinking)
+        if (other.gameObject.CompareTag("Player 2") && !P2touchedWaypoint2 && P2touchedWaypoint && Time.time - waypointTime2 >= 3 && other.GetComponent<Blink>().isBlinking)
         {
             P2touchedWaypoint2 = true;
             //Debug.Log("waypoint move 2??");

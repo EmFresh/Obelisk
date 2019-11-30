@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
         Stick stick = getSticks(playerIndex)[LS];
         setStickDeadZone(playerIndex, 0.1f);
 
-        x = Mathf.Clamp(x + stick.x, -1, 1);
-        y = Mathf.Clamp(y + stick.y, -1, 1);
+        x = Mathf.Clamp(stick.x, -1, 1);
+        y = Mathf.Clamp(stick.y, -1, 1);
 
 
         //Move player to that direction, forward is allways where player look at
