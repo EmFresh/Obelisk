@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         x = Mathf.Clamp(stick.x, -1, 1);
         y = Mathf.Clamp(stick.y, -1, 1);
 
-        print(stick);
+//        print(stick);
 
          moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
