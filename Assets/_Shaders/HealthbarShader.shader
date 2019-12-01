@@ -23,12 +23,14 @@
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float4 color : COLOR;
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+                float4 color : COLOR;
             };
 
             v2f vert (appdata v)
@@ -36,6 +38,7 @@
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
+                o.color = v.color;
                 return o;
             }
 
@@ -47,7 +50,7 @@
                 fixed2 uv = i.uv;
                 //uv.x /= health;
                // uv.y = uv.y*uv.x / cos(_Time.y);
-                fixed4 col = tex2D(_MainTex, uv);
+                fixed4 col = tex2D(_MainTex, uv) * i.color;
                 // just invert the colors
                 col.a = col.a * float(uv.x < health);
                 //col = float4(health,health,health,1);

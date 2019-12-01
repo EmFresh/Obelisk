@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
 
         setStickDeadZone(playerIndex, 1);
         float f  = getStickDeadZone(playerIndex);
-        print(f.ToString());
 
         Stick stick = getSticks(playerIndex)[LS];
         setStickDeadZone(playerIndex, 0.1f);
@@ -48,10 +47,9 @@ public class PlayerMovement : MonoBehaviour
         x = Mathf.Clamp(stick.x, -1, 1);
         y = Mathf.Clamp(stick.y, -1, 1);
 
+        print(stick);
 
-        //Move player to that direction, forward is allways where player look at
-        //moveDirection = transform.forward * stick.y + transform.right * stick.x;
-        moveDirection = transform.forward * y + transform.right * x;
+         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
         transform.position += moveDirection * MaxSpeed * Time.deltaTime;
 
@@ -59,28 +57,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetFloat("VelX", x);
         _animator.SetFloat("VelY", y);
 
-        //Running check for animator
-        //if((stick.x == 0) &&  (stick.y == 0))
-        //{
-        //    _animator.SetBool("isRun", false);
-        //}
-        //else
-        //{
-        //if (!stopMove)
-        //{/
-        //       _animator.SetBool("isRun", true);
-        //}
-        //else
-        //{
-        //    _animator.SetBool("isRun", false);
-        //}
-        //}
-
-        //Move player to that direction, forward is allways where player look at
-        //moveDirection = transform.forward * y + transform.right * x;
-        //moveDirection = moveDirection.normalized;
-        //transform.position += moveDirection * MaxSpeed * Time.deltaTime;
-
+        
         //If player is on the ground make player jump
         if ((Input.GetKey(KeyCode.Space) ||
         isButtonDown(playerIndex, (int)jumpJoy)) &&

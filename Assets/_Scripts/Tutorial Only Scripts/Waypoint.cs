@@ -18,17 +18,7 @@ public class Waypoint : MonoBehaviour
 
     public GameObject waypoint2;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player 1") && !touchedWaypoint)

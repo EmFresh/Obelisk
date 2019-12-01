@@ -251,7 +251,7 @@ public class TutorialState : MonoBehaviour
                 stateP2 = tutorialState.learnPickupLarge;
             }
         }
-                if (state == tutorialState.learnPickupLarge)
+        if (state == tutorialState.learnPickupLarge)
         {
 
             if (PlayerPickup.StoneAmount >= 3 && PlayerPickup.WoodAmount >= 3 && PlayerPickup.CrystalAmount >= 3)
@@ -262,7 +262,7 @@ public class TutorialState : MonoBehaviour
                 state = tutorialState.learnSorting;
             }
         }
-         if (stateP2 == tutorialState.learnSorting)
+        if (stateP2 == tutorialState.learnSorting)
         {
 
             if (PlayerPickup.stoneStock >= 1 && PlayerPickup.woodStock >= 1 && PlayerPickup.crystalStock >= 1)
