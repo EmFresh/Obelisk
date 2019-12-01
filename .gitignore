@@ -59,3 +59,15 @@ crashlytics-build.properties
 MetricsText.txt
 
 .vscode/
+
+fmod_editor.log
+
+Assets/ShaderlabVSCode/
+
+Assets/ShaderlabVSCode.meta
+
+Assets/Plugins/
+
+Assets/Photon/
+
+Assets/Allegorithmic/

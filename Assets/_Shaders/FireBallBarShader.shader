@@ -49,7 +49,7 @@
             {
                 fixed2 uv = i.uv;
                 half pie = 3.1415926535897932384626433832795;
-                half tm  = sin(timer) * cos(uv.y * pie * 2) * 0.25 * sway;
+                half tm  = sin(timer) * cos(uv.y * pie * 2) * 0.35 * sway;
                 uv.x += (uv.y) * (uv.x * tm);//make the fire sway
 
                 fixed4 col = tex2D(_MainTex, uv) * i.color;
