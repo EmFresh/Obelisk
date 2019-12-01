@@ -8,6 +8,7 @@ public class CameraMovement : MonoBehaviour
     public Transform PlayerTransform;
     public Transform pivot;
     public float RotateSpeed = 1;
+    public float LookUp = 1.1f;
 
     public float _cameraLROffset = 0.5f;
     public float _cameraUDOffset = 0.6f;
@@ -62,9 +63,9 @@ public class CameraMovement : MonoBehaviour
         transform.position = Vector3.Slerp(transform.position, PlayerTransform.position + (rotation * _cameraBFOffset), SmoothFactor);
 
         //Make sure camera not going below ground
-        if (transform.position.y < PlayerTransform.position.y)
+        if (transform.position.y < PlayerTransform.position.y - LookUp)
         {
-            transform.position = new Vector3(transform.position.x, PlayerTransform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x, PlayerTransform.position.y - LookUp, transform.position.z);
         }
 
         //Rotate camera to player's location
