@@ -21,12 +21,15 @@ public class WizardResourceManager : MonoBehaviour
     public KeyCode pickupKey = KeyCode.E;
     public CONTROLLER_BUTTON pickupJoy = X;
 
+    public Animator _animator;
+
     private ushort playerIndex;
 
 
     // Update is called once per frame
     void Update()
     {
+        _animator.SetBool("isCollect", false);
         playerIndex = GetComponent<PlayerMovement>().playerIndex;
         //if E pressed while colliding with chests then take resources from chest
         if (Input.GetKeyDown(pickupKey) || isButtonDown(playerIndex, (int)pickupJoy))
@@ -35,6 +38,7 @@ public class WizardResourceManager : MonoBehaviour
             {
                 if (PlayerPickup.woodStock > 0)
                 {
+                    _animator.SetBool("isCollect", true);
                     PlayerPickup.woodStock -= 1;
                     wizardWoodAmount += 1;
                 }
@@ -47,6 +51,7 @@ public class WizardResourceManager : MonoBehaviour
             {
                 if (PlayerPickup.stoneStock > 0)
                 {
+                    _animator.SetBool("isCollect", true);
                     PlayerPickup.stoneStock -= 1;
                     wizardStoneAmount += 1;
                 }
@@ -59,6 +64,7 @@ public class WizardResourceManager : MonoBehaviour
             {
                 if (PlayerPickup.crystalStock > 0)
                 {
+                    _animator.SetBool("isCollect", true);
                     PlayerPickup.crystalStock -= 1;
                     wizardCrystalAmount += 1;
                 }
