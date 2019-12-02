@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         //Get the X and Y position of any input (laptop or controller)
         float x = 0;
         float y = 0;
-        
+
         Stick stick = getSticks(playerIndex)[LS];
 
         x = Mathf.Clamp(stick.x, -1, 1);
@@ -50,9 +50,11 @@ public class PlayerMovement : MonoBehaviour
         transform.position += moveDirection * MaxSpeed * Time.deltaTime;
 
         //Set running animation base on input runnning direction
-        _animator.SetFloat("VelX", x);
-        _animator.SetFloat("VelY", y);
-
+        if (_animator)
+        {
+            _animator.SetFloat("VelX", x);
+            _animator.SetFloat("VelY", y);
+        }
 
         //If player is on the ground make player jump
         if ((Input.GetKey(KeyCode.Space) ||
@@ -63,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
 
             //Set jump animation to true
+            if(_animator)
             _animator.SetBool("isJump", true);
         }
 
@@ -74,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = true;
 
         //Set jump animation to false
+        if (_animator)
         _animator.SetBool("isJump", false);
     }
 

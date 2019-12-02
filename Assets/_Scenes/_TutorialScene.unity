@@ -427,6 +427,7 @@ MonoBehaviour:
   PlayerTransform: {fileID: 1704710100}
   pivot: {fileID: 415111514}
   RotateSpeed: 1
+  LookUp: 1.1
   _cameraLROffset: 0.5
   _cameraUDOffset: 0.7
   SmoothFactor: 0.3
@@ -5541,7 +5542,7 @@ Transform:
   - {fileID: 764354059}
   - {fileID: 687328577}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &173700838
 GameObject:
@@ -5725,7 +5726,7 @@ Transform:
   - {fileID: 1255957485}
   - {fileID: 1734586151}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &220354384
 GameObject:
@@ -5916,6 +5917,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222669813}
   m_CullTransparentMesh: 0
+--- !u!1 &238149320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 238149321}
+  - component: {fileID: 238149323}
+  - component: {fileID: 238149322}
+  m_Layer: 0
+  m_Name: BGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &238149321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238149320}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &238149322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238149320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
+--- !u!114 &238149323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238149320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/Menu Song
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
 --- !u!1 &260234768
 GameObject:
   m_ObjectHideFlags: 0
@@ -6230,7 +6299,7 @@ Transform:
   - {fileID: 988015712}
   - {fileID: 1704710100}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &303861465
 GameObject:
@@ -6260,7 +6329,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &317424655
 GameObject:
@@ -6458,7 +6527,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &338866224
 GameObject:
@@ -6662,6 +6731,7 @@ MonoBehaviour:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
   buildJoy: 32768
+  stage: 0
   woodNeeded: 0
   stoneNeeded: 0
   crystalNeeded: 0
@@ -6822,6 +6892,7 @@ MonoBehaviour:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
   buildJoy: 32768
+  stage: 0
   woodNeeded: 1
   stoneNeeded: 1
   crystalNeeded: 1
@@ -7033,7 +7104,7 @@ Transform:
   m_Children:
   - {fileID: 174523413}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &389727435
 GameObject:
@@ -12261,7 +12332,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 22.66, y: -30, z: 0}
 --- !u!1 &482315728
 GameObject:
@@ -12832,6 +12903,7 @@ MonoBehaviour:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
   buildJoy: 32768
+  stage: 0
   woodNeeded: 0
   stoneNeeded: 0
   crystalNeeded: 0
@@ -18388,7 +18460,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &757251258
 GameObject:
@@ -23571,7 +23643,7 @@ Transform:
   - {fileID: 1365102346}
   - {fileID: 389727436}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &848107872 stripped
 Transform:
@@ -24687,6 +24759,7 @@ MonoBehaviour:
   PlayerTransform: {fileID: 355610511}
   pivot: {fileID: 317424656}
   RotateSpeed: 1
+  LookUp: 1.1
   _cameraLROffset: 0.5
   _cameraUDOffset: 0.7
   SmoothFactor: 0.3
@@ -24822,6 +24895,7 @@ MonoBehaviour:
   PlayerTransform: {fileID: 1178891867}
   pivot: {fileID: 101955889}
   RotateSpeed: 1
+  LookUp: 1.1
   _cameraLROffset: 0.5
   _cameraUDOffset: 0.7
   SmoothFactor: 0.3
@@ -25208,6 +25282,7 @@ MonoBehaviour:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
   buildJoy: 32768
+  stage: 0
   woodNeeded: 0
   stoneNeeded: 0
   crystalNeeded: 0
@@ -25244,7 +25319,7 @@ Transform:
   - {fileID: 90763321}
   - {fileID: 2071546494}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!135 &1221722811
 SphereCollider:
@@ -25351,6 +25426,7 @@ MonoBehaviour:
   PlayerTransform: {fileID: 988015712}
   pivot: {fileID: 277185084}
   RotateSpeed: 1
+  LookUp: 1.1
   _cameraLROffset: 0.5
   _cameraUDOffset: 0.7
   SmoothFactor: 0.3
@@ -36043,7 +36119,7 @@ Transform:
   - {fileID: 1178891867}
   - {fileID: 355610511}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1432873557
 GameObject:
@@ -36460,7 +36536,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1530422058
 GameObject:
@@ -36844,7 +36920,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601654485
 GameObject:
@@ -37236,6 +37312,7 @@ MonoBehaviour:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
   buildJoy: 32768
+  stage: 0
   woodNeeded: 1
   stoneNeeded: 1
   crystalNeeded: 1
@@ -42631,7 +42708,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1800194474
 GameObject:
@@ -43281,6 +43358,7 @@ MonoBehaviour:
   - {fileID: 4675644900341352659, guid: 8768e09fd68a49c4f9dd66ed9c35de94, type: 3}
   buildKey: 9
   buildJoy: 32768
+  stage: 0
   woodNeeded: 0
   stoneNeeded: 0
   crystalNeeded: 0

@@ -184,7 +184,7 @@ public class TutorialState : MonoBehaviour
         if (state == tutorialState.learnTowerBuild)
         {
 
-            if (TowerBuild.stage >= 1)
+            if ( FindObjectsOfType<TowerBuild>()[0].stage >= 1)
             {
                 UI6.SetActive(false);
                 OverUI.SetActive(true);
