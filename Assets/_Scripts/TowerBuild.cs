@@ -29,7 +29,7 @@ public class TowerBuild : MonoBehaviour
 
         _animator.SetBool("isBuild", false);
 
-        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone")) )
+        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone 1")))
             if (Input.GetKeyDown(buildKey) || isButtonDown(playerIndex, (int)buildJoy))
             {
                 if (stage < maxStages)

@@ -185,7 +185,7 @@ public class TutorialState : MonoBehaviour
         if (state == tutorialState.learnTowerBuild)
         {
 
-            if ( FindObjectsOfType<TowerBuild>()[0].stage >= 1)
+            if (FindObjectsOfType<TowerBuild>()[0].stage >= 1)
             {
                 UI8.SetActive(false);
                 OverUI.SetActive(true);
@@ -198,13 +198,8 @@ public class TutorialState : MonoBehaviour
                 state = tutorialState.endGame;
             }
         }
-        if (state == tutorialState.endGame)
-        {
-            if (Input.GetKeyDown(key))
-            {
-                SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-            }
-        }
+
+
         if (stateP2 == tutorialState.learnMovementStage1)
         {
 
@@ -252,15 +247,16 @@ public class TutorialState : MonoBehaviour
                 stateP2 = tutorialState.learnPickupLarge;
             }
         }
-        if (state == tutorialState.learnPickupLarge)
+        if (stateP2 == tutorialState.learnPickupLarge)
         {
 
             if (PlayerPickup.StoneAmount >= 3 && PlayerPickup.WoodAmount >= 3 && PlayerPickup.CrystalAmount >= 3)
             {
-                UI4.SetActive(false);
-                UI5.SetActive(true);
+                UI42.SetActive(false);
+                UI52.SetActive(true);
                 WriteStateToText(Time.time, 5, true);
-                state = tutorialState.learnSorting;
+                Debug.Log("printAThingyYe");
+                stateP2 = tutorialState.learnSorting;
             }
         }
         if (stateP2 == tutorialState.learnSorting)
@@ -272,25 +268,72 @@ public class TutorialState : MonoBehaviour
                 //player2.setactive(false);
                 //player1.setactive(true);
                 //Test.Equals(this).player1.setactive(false);
-                player1Wizard.SetActive(true);
-                player1Rogue.SetActive(false);
+                player2Wizard.SetActive(true);
+                player2Rogue.SetActive(false);
 
-                UI5.SetActive(false);
-                UI6.SetActive(true);
+                UI52.SetActive(false);
+                UI62.SetActive(true);
 
                 //MinimapScript._pivot.transform.position = player1Wizard.transform.position;
                 //MinimapScript._pivot.transform.rotation = player1Wizard.transform.rotation;
                 //MinimapScript._pivot.transform.parent = player1Wizard.transform;
 
-                myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.6f, -23), transform.rotation);
-                myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.6f, -23), transform.rotation);
-                myPool.SpawnObject("ScaryBois", new Vector3(-264, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-89, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-85, 0.6f, -23), transform.rotation);
+                myPool.SpawnObject("ScaryBois", new Vector3(-81, 0.6f, -23), transform.rotation);
                 WriteStateToText(Time.time, 6, true);
 
-                state = tutorialState.learnShooting;
+                stateP2 = tutorialState.learnShooting;
 
 
 
+            }
+            if (stateP2 == tutorialState.learnShooting)
+            {
+                Debug.Log(FireballCollision.scarecrowsDown);
+                if (FireballCollision.scarecrowsDown >= 3)
+                {
+                    UI62.SetActive(false);
+                    UI72.SetActive(true);
+                    WriteStateToText(Time.time, 7, true);
+
+                    stateP2 = tutorialState.learnPickupFromChest;
+                }
+            }
+            if (stateP2 == tutorialState.learnPickupFromChest)
+            {
+
+
+                if (WizardResourceManager.wizardWoodAmount >= 1 && WizardResourceManager.wizardStoneAmount >= 1 && WizardResourceManager.wizardCrystalAmount >= 1)
+                {
+                    UI72.SetActive(false);
+                    UI82.SetActive(true);
+                    WriteStateToText(Time.time, 8, true);
+                    stateP2 = tutorialState.learnTowerBuild;
+                }
+            }
+            if (stateP2 == tutorialState.learnTowerBuild)
+            {
+
+                if (FindObjectsOfType<TowerBuild>()[0].stage >= 1)
+                {
+                    UI82.SetActive(false);
+                    OverUI.SetActive(true);
+                    if (!endEnabled)
+                    {
+                        WriteStateToText(Time.time, 9, true);
+                        endEnabled = true;
+                    }
+
+                    stateP2 = tutorialState.endGame;
+                }
+            }
+            if (state == tutorialState.endGame && stateP2 == tutorialState.endGame)
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+                }
             }
         }
     }

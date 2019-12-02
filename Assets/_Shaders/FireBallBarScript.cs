@@ -20,7 +20,7 @@ public class FireBallBarScript : MonoBehaviour
         System.Random rand = new System.Random();
 
         //gets the three fire ball sprites
-        for (int index = 0; index < 3; ++index)
+        for (int index = 0; index < 3; index++)
         {
             speed[index] = rand.Next(2);
             speed[index] += (float)rand.Next(100) * .01f;
@@ -33,7 +33,7 @@ public class FireBallBarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int index = 0; index < 3; ++index)
+        for (int index = 0; index < 3; index++)
         {
             transform.GetChild(index).GetComponent<RawImage>().color = Color.white;
             fire[index].SetFloat("fire", percentFire[index] = 0);
@@ -41,7 +41,7 @@ public class FireBallBarScript : MonoBehaviour
             fire[index].SetInt("sway", shot.shots[index] ? 1 : 0);
 
         }
-        for (int index = 0; index < 3; ++index)
+        for (int index = 0; index < 3; index++)
         {
             Color lightGrey = new Color(.6f, .6f, .6f, 1);
 

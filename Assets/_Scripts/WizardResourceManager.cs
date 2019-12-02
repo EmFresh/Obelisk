@@ -8,12 +8,12 @@ public class WizardResourceManager : MonoBehaviour
 {
 
     //int woodAmount = 0;
-    public static int wizardWoodAmount = 0;
+    public int wizardWoodAmount = 0;
 
     //int stoneAmount = 0;
-    public static int wizardStoneAmount = 0;
+    public int wizardStoneAmount = 0;
     //int crystalAmount = 0;
-    public static int wizardCrystalAmount = 0;
+    public int wizardCrystalAmount = 0;
     bool woodChestCollision = false;
     bool stoneChestCollision = false;
     bool crystalChestCollision = false;
@@ -24,6 +24,8 @@ public class WizardResourceManager : MonoBehaviour
     public Animator _animator;
 
     private ushort playerIndex;
+
+    public GameObject player;
 
 
     // Update is called once per frame
@@ -36,10 +38,10 @@ public class WizardResourceManager : MonoBehaviour
         {
             if (woodChestCollision)
             {
-                if (PlayerPickup.woodStock > 0)
+                if (player.GetComponent<PlayerPickup>().woodStock > 0)
                 {
                     _animator.SetBool("isCollect", true);
-                    PlayerPickup.woodStock -= 1;
+                    player.GetComponent<PlayerPickup>().woodStock -= 1;
                     wizardWoodAmount += 1;
                 }
                 else
@@ -49,10 +51,10 @@ public class WizardResourceManager : MonoBehaviour
             }
             if (stoneChestCollision)
             {
-                if (PlayerPickup.stoneStock > 0)
+                if (player.GetComponent<PlayerPickup>().stoneStock > 0)
                 {
                     _animator.SetBool("isCollect", true);
-                    PlayerPickup.stoneStock -= 1;
+                    player.GetComponent<PlayerPickup>().stoneStock -= 1;
                     wizardStoneAmount += 1;
                 }
                 else
@@ -62,10 +64,10 @@ public class WizardResourceManager : MonoBehaviour
             }
             if (crystalChestCollision)
             {
-                if (PlayerPickup.crystalStock > 0)
+                if (player.GetComponent<PlayerPickup>().crystalStock > 0)
                 {
                     _animator.SetBool("isCollect", true);
-                    PlayerPickup.crystalStock -= 1;
+                    player.GetComponent<PlayerPickup>().crystalStock -= 1;
                     wizardCrystalAmount += 1;
                 }
                 else

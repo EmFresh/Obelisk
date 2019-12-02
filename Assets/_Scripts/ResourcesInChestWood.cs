@@ -8,6 +8,7 @@ public class ResourcesInChestWood : MonoBehaviour
 {
     // Start is called before the first frame update
     
+    public GameObject player;
     private Text woodText;
     void Start()
     {
@@ -17,6 +18,6 @@ public class ResourcesInChestWood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        woodText.text = "Wood: " + PlayerPickup.woodStock;
+        woodText.text = "Wood: " + player.GetComponent<PlayerPickup>().woodStock;
     }
 }

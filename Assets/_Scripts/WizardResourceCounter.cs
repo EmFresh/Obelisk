@@ -7,6 +7,8 @@ public class WizardResourceCounter : MonoBehaviour
 {
     // Start is called before the first frame update
     private Text resourceText;
+
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,6 @@ public class WizardResourceCounter : MonoBehaviour
     void Update()
     {
        
-        resourceText.text = "Wood: " + WizardResourceManager.wizardWoodAmount + "\nStone: " + WizardResourceManager.wizardStoneAmount + "\nCrystal: " + WizardResourceManager.wizardCrystalAmount;
+        resourceText.text = "Wood: " + player.GetComponent<WizardResourceManager>().wizardWoodAmount + "\nStone: " + player.GetComponent<WizardResourceManager>().wizardStoneAmount + "\nCrystal: " + player.GetComponent<WizardResourceManager>().wizardCrystalAmount;
     }
 }

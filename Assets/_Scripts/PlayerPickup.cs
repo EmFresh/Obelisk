@@ -9,9 +9,9 @@ public class PlayerPickup : MonoBehaviour
 {
     public Animator _animator;
 
-    public static int WoodAmount = 0;
-    public static int StoneAmount = 0;
-    public static int CrystalAmount = 0;
+    public int WoodAmount = 0;
+    public int StoneAmount = 0;
+    public int CrystalAmount = 0;
 
     float timer = 0;
     float pickupDuration = 1f;
@@ -23,9 +23,9 @@ public class PlayerPickup : MonoBehaviour
     //bool woodSmallCollision = false;
     //bool stoneSmallCollision = false;
     //bool crystalSmallCollision = false;
-    public static int woodStock = 0;
-    public static int stoneStock = 0;
-    public static int crystalStock = 0;
+    public int woodStock = 0;
+    public int stoneStock = 0;
+    public int crystalStock = 0;
     bool keyPressed = false;
     bool deletThis = false;
 

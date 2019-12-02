@@ -24,11 +24,11 @@ public class WizardPickup : MonoBehaviour
         }
         if (speedBoost)
         {
-            PlayerMovement.MaxSpeed = 8;
+            GetComponent<PlayerMovement>().MaxSpeed = 10;
         }
         else
         {
-            PlayerMovement.MaxSpeed = 4;
+            GetComponent<PlayerMovement>().MaxSpeed = 5;
         }
     }
     void OnTriggerEnter(Collider other)

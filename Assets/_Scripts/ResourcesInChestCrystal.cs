@@ -7,7 +7,7 @@ public class ResourcesInChestCrystal : MonoBehaviour
 {
     // Start is called before the first frame update
  
-
+    public GameObject player;
     private Text crystalText;
     void Start()
     {
@@ -17,7 +17,7 @@ public class ResourcesInChestCrystal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        crystalText.text = "Crystal: " + PlayerPickup.crystalStock;
+        crystalText.text = "Crystal: " + player.GetComponent<PlayerPickup>().crystalStock;
     }
 
 }

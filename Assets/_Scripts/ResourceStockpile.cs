@@ -25,13 +25,13 @@ public class ResourceStockpile : MonoBehaviour
     {
         if ((obj.gameObject.CompareTag ("Player 2"))) //TODO: Fix this
         {
-            woodStock += PlayerPickup.WoodAmount;
-            stoneStock += PlayerPickup.StoneAmount;
-            crystalStock += PlayerPickup.CrystalAmount;
+            woodStock += obj.gameObject.GetComponent<PlayerPickup>().WoodAmount;
+            stoneStock += obj.gameObject.GetComponent<PlayerPickup>().StoneAmount;
+            crystalStock += obj.gameObject.GetComponent<PlayerPickup>().CrystalAmount;
 
-            PlayerPickup.WoodAmount = 0;
-            PlayerPickup.StoneAmount = 0;
-            PlayerPickup.CrystalAmount = 0;
+            obj.gameObject.GetComponent<PlayerPickup>().WoodAmount = 0;
+            obj.gameObject.GetComponent<PlayerPickup>().StoneAmount = 0;
+            obj.gameObject.GetComponent<PlayerPickup>().CrystalAmount = 0;
 
             Debug.Log(woodStock);
             Debug.Log(stoneStock);
@@ -40,13 +40,13 @@ public class ResourceStockpile : MonoBehaviour
 
         if (obj.gameObject.CompareTag ("Player 2"))
         {
-            woodStock += PlayerPickup.WoodAmount;
-            stoneStock += PlayerPickup.StoneAmount;
-            crystalStock += PlayerPickup.CrystalAmount;
+            woodStock += obj.gameObject.GetComponent<PlayerPickup>().WoodAmount;
+            stoneStock += obj.gameObject.GetComponent<PlayerPickup>().StoneAmount;
+            crystalStock += obj.gameObject.GetComponent<PlayerPickup>().CrystalAmount;
 
-            PlayerPickup.WoodAmount = 0;
-            PlayerPickup.StoneAmount = 0;
-            PlayerPickup.CrystalAmount = 0;
+            obj.gameObject.GetComponent<PlayerPickup>().WoodAmount = 0;
+            obj.gameObject.GetComponent<PlayerPickup>().StoneAmount = 0;
+            obj.gameObject.GetComponent<PlayerPickup>().CrystalAmount = 0;
 
             Debug.Log(woodStock);
             Debug.Log(stoneStock);

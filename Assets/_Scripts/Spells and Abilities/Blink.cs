@@ -48,7 +48,7 @@ public class Blink : MonoBehaviour
     {
         _animator.SetBool("isBlink", true);
         //playerMovement.MaxSpeed = 10;
-        PlayerMovement.MaxSpeed = 10;
+        GetComponent<PlayerMovement>().MaxSpeed = 10;
         shaderScript.enabled = !shaderScript.enabled;
         isBlinking = true;
         // characterRenderer.enabled = !characterRenderer.enabled;
@@ -62,7 +62,7 @@ public class Blink : MonoBehaviour
         _animator.SetBool("isBlink", false);
         Debug.Log("Blink Stopped");
         //playerMovement.MaxSpeed = 5;
-        PlayerMovement.MaxSpeed = 5;
+        GetComponent<PlayerMovement>().MaxSpeed = 5;
         shaderScript.enabled = !shaderScript.enabled;
 
         //characterRenderer.enabled = !characterRenderer.enabled;
