@@ -17,6 +17,7 @@ public class TowerBuild : MonoBehaviour
     public int stoneNeeded;
     public int crystalNeeded;
 
+    public Animator _animator;
 
     private ushort playerIndex;
     private Transform theParent;
@@ -25,7 +26,9 @@ public class TowerBuild : MonoBehaviour
     void OnTriggerStay(Collider obj)
     {
         playerIndex = obj.gameObject.GetComponent<PlayerMovement>().playerIndex;
-        
+
+        _animator.SetBool("isBuild", false);
+
         if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone")) )
             if (Input.GetKeyDown(buildKey) || isButtonDown(playerIndex, (int)buildJoy))
             {
@@ -33,6 +36,9 @@ public class TowerBuild : MonoBehaviour
                 {
                     if (WizardResourceManager.wizardWoodAmount >= woodNeeded && WizardResourceManager.wizardStoneAmount >= stoneNeeded && WizardResourceManager.wizardCrystalAmount >= crystalNeeded)
                     {
+                        //play animation
+                        _animator.SetBool("isBuild", true);
+
                         //get the next Parent
                         theParent = gameObject.transform;
                         if(theParent.childCount != 3)

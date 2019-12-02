@@ -13,6 +13,7 @@ public class PlayerSpellShot : MonoBehaviour
     public float shotCooldown;
     public bool[] shots = new bool[3] { true, true, true };
     public float shotTimer = 0;
+    public Animator _animator;
 
 
     private ushort playerIndex;
@@ -24,12 +25,14 @@ public class PlayerSpellShot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _animator.SetBool("isShoot", false);
         float dt = Time.deltaTime;
         playerIndex = GetComponent<PlayerMovement>().playerIndex;
 
         //creates a new gameObject every time a key is pressed
         if ((Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy)) && shots[0])
         {
+            _animator.SetBool("isShoot", true);
             Projcopy.Add(Instantiate(projectial));
             projCounter.Add(0);
             direction.Add(transform.forward);

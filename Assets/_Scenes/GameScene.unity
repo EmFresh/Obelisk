@@ -611,6 +611,7 @@ MonoBehaviour:
   woodNeeded: 12
   stoneNeeded: 6
   crystalNeeded: 3
+  _animator: {fileID: 864505615}
 --- !u!114 &183138037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupKey: 101
   pickupJoy: 16384
+  _animator: {fileID: 864505615}
 --- !u!114 &183138038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,6 +664,7 @@ MonoBehaviour:
   shotCooldown: 2
   shots: 010101
   shotTimer: 0
+  _animator: {fileID: 864505615}
 --- !u!54 &183138040
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3261,21 +3264,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Spellcaster
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 2b059d4e6fe062247ba2304b82f07c55,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9aa83edab10ecac40986b4d51c7988d8, type: 2}
-    - target: {fileID: -5065176076335225684, guid: 2b059d4e6fe062247ba2304b82f07c55,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.040937338
-      objectReference: {fileID: 0}
-    - target: {fileID: -5065176076335225684, guid: 2b059d4e6fe062247ba2304b82f07c55,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.12544334
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2b059d4e6fe062247ba2304b82f07c55,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3345,6 +3333,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 2b059d4e6fe062247ba2304b82f07c55,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ca86d6148415e1640b082b544328c19f, type: 2}
+    - target: {fileID: -5065176076335225684, guid: 2b059d4e6fe062247ba2304b82f07c55,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.040937334
+      objectReference: {fileID: 0}
+    - target: {fileID: -5065176076335225684, guid: 2b059d4e6fe062247ba2304b82f07c55,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.12544332
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b059d4e6fe062247ba2304b82f07c55, type: 3}
@@ -3902,11 +3905,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Rouge
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 1b99b9943719a254c96624c68db23bf1,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9aa83edab10ecac40986b4d51c7988d8, type: 2}
     - target: {fileID: -4216859302048453862, guid: 1b99b9943719a254c96624c68db23bf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3977,6 +3975,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.52
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 1b99b9943719a254c96624c68db23bf1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9aa83edab10ecac40986b4d51c7988d8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b99b9943719a254c96624c68db23bf1, type: 3}
 --- !u!1 &1364695689
@@ -5119,6 +5122,7 @@ MonoBehaviour:
   shotCooldown: 0
   shots: 000000
   shotTimer: 0
+  _animator: {fileID: 0}
 --- !u!65 &1778133407
 BoxCollider:
   m_ObjectHideFlags: 0
