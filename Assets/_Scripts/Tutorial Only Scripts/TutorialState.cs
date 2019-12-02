@@ -105,7 +105,7 @@ public class TutorialState : MonoBehaviour
         if (state == tutorialState.learnPickupSmall)
         {
 
-            if (PlayerPickup.StoneAmount >= 1 && PlayerPickup.WoodAmount >= 1 && PlayerPickup.CrystalAmount >= 1)
+            if (player1Rogue.GetComponent<PlayerPickup>().StoneAmount >= 1 && player1Rogue.GetComponent<PlayerPickup>().WoodAmount >= 1 && player1Rogue.GetComponent<PlayerPickup>().CrystalAmount >= 1)
             {
                 //delete small resources and start spawning large resources
                 myPool.SpawnObject("Resource(Wood)", new Vector3(-264, 0.5f, -23), transform.rotation);
@@ -120,7 +120,7 @@ public class TutorialState : MonoBehaviour
         if (state == tutorialState.learnPickupLarge)
         {
 
-            if (PlayerPickup.StoneAmount >= 3 && PlayerPickup.WoodAmount >= 3 && PlayerPickup.CrystalAmount >= 3)
+            if (player1Rogue.GetComponent<PlayerPickup>().StoneAmount >= 3 && player1Rogue.GetComponent<PlayerPickup>().WoodAmount >= 3 && player1Rogue.GetComponent<PlayerPickup>().CrystalAmount >= 3)
             {
                 UI4.SetActive(false);
                 UI5.SetActive(true);
@@ -131,7 +131,7 @@ public class TutorialState : MonoBehaviour
         if (state == tutorialState.learnSorting)
         {
 
-            if (PlayerPickup.stoneStock >= 1 && PlayerPickup.woodStock >= 1 && PlayerPickup.crystalStock >= 1)
+            if (player1Rogue.GetComponent<PlayerPickup>().stoneStock >= 1 && player1Rogue.GetComponent<PlayerPickup>().woodStock >= 1 && player1Rogue.GetComponent<PlayerPickup>().crystalStock >= 1)
             {
                 //[SerializeField]
                 //player2.setactive(false);
@@ -174,7 +174,7 @@ public class TutorialState : MonoBehaviour
         {
 
 
-            if (WizardResourceManager.wizardWoodAmount >= 1 && WizardResourceManager.wizardStoneAmount >= 1 && WizardResourceManager.wizardCrystalAmount >= 1)
+            if (player1Wizard.GetComponent<WizardResourceManager>().wizardWoodAmount >= 1 && player1Wizard.GetComponent<WizardResourceManager>().wizardStoneAmount >= 1 && player1Wizard.GetComponent<WizardResourceManager>().wizardCrystalAmount >= 1)
             {
                 UI7.SetActive(false);
                 UI8.SetActive(true);
@@ -235,7 +235,7 @@ public class TutorialState : MonoBehaviour
         if (stateP2 == tutorialState.learnPickupSmall)
         {
 
-            if (PlayerPickup.StoneAmount >= 1 && PlayerPickup.WoodAmount >= 1 && PlayerPickup.CrystalAmount >= 1)
+            if (player2Rogue.GetComponent<PlayerPickup>().StoneAmount >= 1 && player2Rogue.GetComponent<PlayerPickup>().WoodAmount >= 1 && player2Rogue.GetComponent<PlayerPickup>().CrystalAmount >= 1)
             {
                 //delete small resources and start spawning large resources
                 myPool.SpawnObject("Resource(Wood)", new Vector3(-88, 0.5f, -23), transform.rotation);
@@ -250,7 +250,7 @@ public class TutorialState : MonoBehaviour
         if (stateP2 == tutorialState.learnPickupLarge)
         {
 
-            if (PlayerPickup.StoneAmount >= 3 && PlayerPickup.WoodAmount >= 3 && PlayerPickup.CrystalAmount >= 3)
+            if (player2Rogue.GetComponent<PlayerPickup>().StoneAmount >= 3 && player2Rogue.GetComponent<PlayerPickup>().WoodAmount >= 3 && player2Rogue.GetComponent<PlayerPickup>().CrystalAmount >= 3)
             {
                 UI42.SetActive(false);
                 UI52.SetActive(true);
@@ -262,7 +262,7 @@ public class TutorialState : MonoBehaviour
         if (stateP2 == tutorialState.learnSorting)
         {
 
-            if (PlayerPickup.stoneStock >= 1 && PlayerPickup.woodStock >= 1 && PlayerPickup.crystalStock >= 1)
+            if (player2Rogue.GetComponent<PlayerPickup>().stoneStock >= 1 && player2Rogue.GetComponent<PlayerPickup>().woodStock >= 1 && player2Rogue.GetComponent<PlayerPickup>().crystalStock >= 1)
             {
                 //[SerializeField]
                 //player2.setactive(false);
@@ -288,53 +288,55 @@ public class TutorialState : MonoBehaviour
 
 
             }
-            if (stateP2 == tutorialState.learnShooting)
+        }
+        if (stateP2 == tutorialState.learnShooting)
+        {
+            Debug.Log(FireballCollision.scarecrowsDown);
+            Debug.Log(stateP2);
+            if (FireballCollision.scarecrowsDown >= 3)
             {
-                Debug.Log(FireballCollision.scarecrowsDown);
-                if (FireballCollision.scarecrowsDown >= 3)
-                {
-                    UI62.SetActive(false);
-                    UI72.SetActive(true);
-                    WriteStateToText(Time.time, 7, true);
+                UI62.SetActive(false);
+                UI72.SetActive(true);
+                WriteStateToText(Time.time, 7, true);
 
-                    stateP2 = tutorialState.learnPickupFromChest;
-                }
+                stateP2 = tutorialState.learnPickupFromChest;
             }
-            if (stateP2 == tutorialState.learnPickupFromChest)
+        }
+        if (stateP2 == tutorialState.learnPickupFromChest)
+        {
+
+
+            if (player2Wizard.GetComponent<WizardResourceManager>().wizardWoodAmount >= 1 && player2Wizard.GetComponent<WizardResourceManager>().wizardStoneAmount >= 1 && player2Wizard.GetComponent<WizardResourceManager>().wizardCrystalAmount >= 1)
             {
-
-
-                if (WizardResourceManager.wizardWoodAmount >= 1 && WizardResourceManager.wizardStoneAmount >= 1 && WizardResourceManager.wizardCrystalAmount >= 1)
-                {
-                    UI72.SetActive(false);
-                    UI82.SetActive(true);
-                    WriteStateToText(Time.time, 8, true);
-                    stateP2 = tutorialState.learnTowerBuild;
-                }
+                UI72.SetActive(false);
+                UI82.SetActive(true);
+                WriteStateToText(Time.time, 8, true);
+                stateP2 = tutorialState.learnTowerBuild;
             }
-            if (stateP2 == tutorialState.learnTowerBuild)
+        }
+        if (stateP2 == tutorialState.learnTowerBuild)
+        {
+
+            if (FindObjectsOfType<TowerBuild>()[0].stage >= 1)
             {
-
-                if (FindObjectsOfType<TowerBuild>()[0].stage >= 1)
+                UI82.SetActive(false);
+                OverUI.SetActive(true);
+                if (!endEnabled)
                 {
-                    UI82.SetActive(false);
-                    OverUI.SetActive(true);
-                    if (!endEnabled)
-                    {
-                        WriteStateToText(Time.time, 9, true);
-                        endEnabled = true;
-                    }
-
-                    stateP2 = tutorialState.endGame;
+                    WriteStateToText(Time.time, 9, true);
+                    endEnabled = true;
                 }
+
+                stateP2 = tutorialState.endGame;
             }
-            if (state == tutorialState.endGame && stateP2 == tutorialState.endGame)
+        }
+        if (state == tutorialState.endGame && stateP2 == tutorialState.endGame)
+        {
+            if (Input.GetKeyDown(key))
             {
-                if (Input.GetKeyDown(key))
-                {
-                    SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-                }
+                SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
             }
         }
     }
 }
+
