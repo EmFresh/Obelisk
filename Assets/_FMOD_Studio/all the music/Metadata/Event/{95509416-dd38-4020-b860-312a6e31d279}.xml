@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.00.00">
 	<object class="Event" id="{95509416-dd38-4020-b860-312a6e31d279}">
 		<property name="name">
-			<value>New Event</value>
+			<value>Menu Song</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -70,6 +70,9 @@
 		<relationship name="modules">
 			<destination>{df441026-4e74-4ce6-9adc-9ea3544b0eba}</destination>
 		</relationship>
+		<relationship name="markers">
+			<destination>{ef473d05-c82a-4627-a692-90a7df504d16}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{eccb2b94-ca72-47f2-b775-49bb9b163509}">
 		<relationship name="effectChain">
@@ -90,7 +93,7 @@
 	<object class="MixerBusPanner" id="{a9ea443d-b469-43d8-95be-e58a4eb1255e}" />
 	<object class="SingleSound" id="{df441026-4e74-4ce6-9adc-9ea3544b0eba}">
 		<property name="length">
-			<value>26.017959183673469</value>
+			<value>23.5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{4da6cbd8-2297-4052-923f-fba1bed947b2}</destination>
@@ -108,6 +111,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{eccb2b94-ca72-47f2-b775-49bb9b163509}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{ef473d05-c82a-4627-a692-90a7df504d16}">
+		<property name="position">
+			<value>4.6919907509801941</value>
+		</property>
+		<property name="length">
+			<value>18.608009249019808</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{5db9bb57-6c81-4c6c-8c3b-8a1c3535a3ca}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{1e76f495-e640-480c-bef9-c8fbeaa4eb8d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{dd994ec9-ab66-49ac-9eba-f211933a2c94}">

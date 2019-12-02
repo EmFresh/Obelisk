@@ -11,7 +11,7 @@ public class TowerBuild : MonoBehaviour
     public KeyCode buildKey = KeyCode.Tab;
     public CONTROLLER_BUTTON buildJoy = Y;
 
-    public static int stage;
+    public int stage;
 
     public int woodNeeded;
     public int stoneNeeded;
@@ -37,7 +37,6 @@ public class TowerBuild : MonoBehaviour
                         theParent = gameObject.transform;
                         if(theParent.childCount != 3)
                         while (theParent.childCount > 0) theParent = theParent.GetChild(theParent.childCount-1);
-
 
                         GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count]);
 

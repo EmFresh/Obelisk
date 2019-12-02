@@ -38,45 +38,23 @@ public class PlayerMovement : MonoBehaviour
         float x = 0;
         float y = 0;
 
-
         Stick stick = getSticks(playerIndex)[LS];
-        setStickDeadZone(playerIndex, 0.1f);
 
-        x = Mathf.Clamp(x + stick.x, -1, 1);
-        y = Mathf.Clamp(y + stick.y, -1, 1);
+        x = Mathf.Clamp(stick.x, -1, 1);
+        y = Mathf.Clamp(stick.y, -1, 1);
 
+        print(getStickDeadZone(playerIndex));
 
-        //Move player to that direction, forward is allways where player look at
-        //moveDirection = transform.forward * stick.y + transform.right * stick.x;
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
         transform.position += moveDirection * MaxSpeed * Time.deltaTime;
 
         //Set running animation base on input runnning direction
-        _animator.SetFloat("VelX", x);
-        _animator.SetFloat("VelY", y);
-
-        //Running check for animator
-        //if((stick.x == 0) &&  (stick.y == 0))
-        //{
-        //    _animator.SetBool("isRun", false);
-        //}
-        //else
-        //{
-        //if (!stopMove)
-        //{/
-        //       _animator.SetBool("isRun", true);
-        //}
-        //else
-        //{
-        //    _animator.SetBool("isRun", false);
-        //}
-        //}
-
-        //Move player to that direction, forward is allways where player look at
-        //moveDirection = transform.forward * y + transform.right * x;
-        //moveDirection = moveDirection.normalized;
-        //transform.position += moveDirection * MaxSpeed * Time.deltaTime;
+        if (_animator)
+        {
+            _animator.SetFloat("VelX", x);
+            _animator.SetFloat("VelY", y);
+        }
 
         //If player is on the ground make player jump
         if ((Input.GetKey(KeyCode.Space) ||
@@ -87,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
 
             //Set jump animation to true
+            if(_animator)
             _animator.SetBool("isJump", true);
         }
 
@@ -98,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = true;
 
         //Set jump animation to false
+        if (_animator)
         _animator.SetBool("isJump", false);
     }
 
