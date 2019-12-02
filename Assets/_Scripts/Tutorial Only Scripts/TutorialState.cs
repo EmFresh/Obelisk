@@ -49,6 +49,7 @@ public class TutorialState : MonoBehaviour
     public GameObject UI72;
     public GameObject UI82;
     public GameObject OverUI;
+    public GameObject OverUI2;
 
     public tutorialState state;
     public tutorialState stateP2;
@@ -56,6 +57,9 @@ public class TutorialState : MonoBehaviour
 
     public KeyCode key;
 
+    public GameObject buildSite;
+
+    public GameObject site2;
     GameObject[] fob;
     ///var fob : GameObject[];
     void Start()
@@ -185,14 +189,14 @@ public class TutorialState : MonoBehaviour
         if (state == tutorialState.learnTowerBuild)
         {
 
-            if (FindObjectsOfType<TowerBuild>()[0].stage >= 1)
+            if (buildSite.GetComponent<TowerBuild>().stage >= 1)
             {
                 UI8.SetActive(false);
                 OverUI.SetActive(true);
                 if (!endEnabled)
                 {
                     WriteStateToText(Time.time, 9, true);
-                    endEnabled = true;
+                    //endEnabled = true;
                 }
 
                 state = tutorialState.endGame;
@@ -317,14 +321,14 @@ public class TutorialState : MonoBehaviour
         if (stateP2 == tutorialState.learnTowerBuild)
         {
 
-            if (FindObjectsOfType<TowerBuild>()[0].stage >= 1)
+            if (site2.GetComponent<TowerBuild>().stage >= 1)
             {
                 UI82.SetActive(false);
-                OverUI.SetActive(true);
+                OverUI2.SetActive(true);
                 if (!endEnabled)
                 {
                     WriteStateToText(Time.time, 9, true);
-                    endEnabled = true;
+                    //endEnabled = true;
                 }
 
                 stateP2 = tutorialState.endGame;

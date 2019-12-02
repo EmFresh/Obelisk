@@ -2152,20 +2152,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8855072481601282821, guid: b732fa660a6a60a479f40f5d6172f8f6, type: 3}
---- !u!4 &744481846
-Transform:
+--- !u!114 &744481848
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744481842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3322748bdd1c7ee49bb37bcc358178bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerParts:
+  - {fileID: -927199367670048503, guid: 664ae587d4c0b164093736c21d76b6b8, type: 3}
+  - {fileID: -927199367670048503, guid: 2cfb775a00552e141b13f0033acf8368, type: 3}
+  - {fileID: -927199367670048503, guid: 618d8e919fc5747469011de135b0ae36, type: 3}
+  buildKey: 9
+  buildJoy: 32768
+  stage: 0
+  woodNeeded: 0
+  stoneNeeded: 0
+  crystalNeeded: 0
+  _animator: {fileID: 864505615}
 --- !u!1 &756384132
 GameObject:
   m_ObjectHideFlags: 0
@@ -5659,6 +5668,29 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -8855072481601282821, guid: b732fa660a6a60a479f40f5d6172f8f6, type: 3}
+--- !u!114 &1925130185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925130179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3322748bdd1c7ee49bb37bcc358178bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerParts:
+  - {fileID: -927199367670048503, guid: 664ae587d4c0b164093736c21d76b6b8, type: 3}
+  - {fileID: -927199367670048503, guid: 2cfb775a00552e141b13f0033acf8368, type: 3}
+  - {fileID: -927199367670048503, guid: 618d8e919fc5747469011de135b0ae36, type: 3}
+  buildKey: 9
+  buildJoy: 32768
+  stage: 0
+  woodNeeded: 0
+  stoneNeeded: 0
+  crystalNeeded: 0
+  _animator: {fileID: 0}
 --- !u!1 &2009121133
 GameObject:
   m_ObjectHideFlags: 0
