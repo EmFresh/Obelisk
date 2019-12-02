@@ -50,7 +50,7 @@ public class FireBallBarScript : MonoBehaviour
             else
             {
                 fire[index].SetFloat("fire", percentFire[index] = Mathf.Clamp(shot.shotTimer / shot.shotCooldown, 0, 1));
-                transform.GetChild(index).GetComponent<RawImage>().color = lightGrey;
+                transform.GetChild(index).GetComponent<RawImage>().color = Color.grey;
                 break;
             }
         }
