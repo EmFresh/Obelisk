@@ -143,9 +143,9 @@ public class TutorialState : MonoBehaviour
                 UI5.SetActive(false);
                 UI6.SetActive(true);
 
-                MinimapScript._pivot.transform.position = player1Wizard.transform.position;
-                MinimapScript._pivot.transform.rotation = player1Wizard.transform.rotation;
-                MinimapScript._pivot.transform.parent = player1Wizard.transform;
+                //MinimapScript._pivot.transform.position = player1Wizard.transform.position;
+                //MinimapScript._pivot.transform.rotation = player1Wizard.transform.rotation;
+                //MinimapScript._pivot.transform.parent = player1Wizard.transform;
 
                 myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.6f, -23), transform.rotation);
                 myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.6f, -23), transform.rotation);
@@ -277,9 +277,9 @@ public class TutorialState : MonoBehaviour
                 UI5.SetActive(false);
                 UI6.SetActive(true);
 
-                MinimapScript._pivot.transform.position = player1Wizard.transform.position;
-                MinimapScript._pivot.transform.rotation = player1Wizard.transform.rotation;
-                MinimapScript._pivot.transform.parent = player1Wizard.transform;
+                //MinimapScript._pivot.transform.position = player1Wizard.transform.position;
+                //MinimapScript._pivot.transform.rotation = player1Wizard.transform.rotation;
+                //MinimapScript._pivot.transform.parent = player1Wizard.transform;
 
                 myPool.SpawnObject("ScaryBois", new Vector3(-256, 0.6f, -23), transform.rotation);
                 myPool.SpawnObject("ScaryBois", new Vector3(-260, 0.6f, -23), transform.rotation);
