@@ -160,10 +160,11 @@ public class TutorialState : MonoBehaviour
         }
         if (state == tutorialState.learnShooting)
         {
+            Debug.Log(FireballCollision.scarecrowsDown);
             if (FireballCollision.scarecrowsDown >= 3)
             {
-                UI8.SetActive(false);
-                UI5.SetActive(true);
+                UI6.SetActive(false);
+                UI7.SetActive(true);
                 WriteStateToText(Time.time, 7, true);
 
                 state = tutorialState.learnPickupFromChest;
@@ -175,8 +176,8 @@ public class TutorialState : MonoBehaviour
 
             if (WizardResourceManager.wizardWoodAmount >= 1 && WizardResourceManager.wizardStoneAmount >= 1 && WizardResourceManager.wizardCrystalAmount >= 1)
             {
-                UI5.SetActive(false);
-                UI6.SetActive(true);
+                UI7.SetActive(false);
+                UI8.SetActive(true);
                 WriteStateToText(Time.time, 8, true);
                 state = tutorialState.learnTowerBuild;
             }
@@ -186,7 +187,7 @@ public class TutorialState : MonoBehaviour
 
             if (TowerBuild.stage >= 1)
             {
-                UI6.SetActive(false);
+                UI8.SetActive(false);
                 OverUI.SetActive(true);
                 if (!endEnabled)
                 {
