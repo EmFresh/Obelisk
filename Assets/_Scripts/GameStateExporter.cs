@@ -7,6 +7,11 @@ using UnityEngine.Networking;
 
 public class GameStateExporter : MonoBehaviour
 {
+    public GameObject BuildSite1;
+    public GameObject BuildSite2;
+    public GameObject TextWin1;
+    public GameObject TextWin2;
+
     private Blink blinkScript;
     // Start is called before the first frame update
     RogueData rogueData = new RogueData();
@@ -52,9 +57,11 @@ public class GameStateExporter : MonoBehaviour
 
         string jsonData = File.ReadAllText(path);
        
-
-
-
+        if((BuildSite1.GetComponent<TowerBuild>().stage >= 3)|| (BuildSite2.GetComponent<TowerBuild>().stage >= 3))
+        {
+            TextWin1.SetActive(true);
+            TextWin2.SetActive(true);
+        }
     }
 
     private class RogueData
