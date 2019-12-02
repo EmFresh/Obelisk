@@ -56,4 +56,41 @@ public class Waypoint : MonoBehaviour
             
         }
     }
+    void OnTriggerStay(Collider other)
+    {
+                if (other.gameObject.CompareTag("Player 1") && !touchedWaypoint)
+        {
+            touchedWaypoint = true;
+            //Debug.Log("waypoint move??");
+            waypoint1.SetActive(false);//this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 25);
+            waypoint2.SetActive(true);
+            waypointTime = Time.time;
+            
+        }
+        if (other.gameObject.CompareTag("Player 1") && !touchedWaypoint2 && touchedWaypoint && Time.time - waypointTime >= 3 && other.GetComponent<Blink>().isBlinking)
+        {
+            touchedWaypoint2 = true;
+            //Debug.Log("waypoint move 2??");
+            this.gameObject.SetActive(false);
+            
+        }
+
+
+        if (other.gameObject.CompareTag("Player 2") && !P2touchedWaypoint)
+        {
+            P2touchedWaypoint = true;
+            //Debug.Log("waypoint move??");
+            waypoint1.SetActive(false);//this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 25);
+            waypoint2.SetActive(true);
+            waypointTime2 = Time.time;
+            
+        }
+        if (other.gameObject.CompareTag("Player 2") && !P2touchedWaypoint2 && P2touchedWaypoint && Time.time - waypointTime2 >= 3 && other.GetComponent<Blink>().isBlinking)
+        {
+            P2touchedWaypoint2 = true;
+            //Debug.Log("waypoint move 2??");
+            this.gameObject.SetActive(false);
+            
+        }
+    }
 }
