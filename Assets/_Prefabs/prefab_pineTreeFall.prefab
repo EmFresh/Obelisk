@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4611357120236324083}
   - component: {fileID: 8370744294670024248}
   m_Layer: 0
-  m_Name: Terrain_pineTreeFALL
+  m_Name: prefab_pineTreeFall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2864855417580007471}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
