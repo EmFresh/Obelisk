@@ -37,19 +37,15 @@ public class PlayerMovement : MonoBehaviour
         //Get the X and Y position of any input (laptop or controller)
         float x = 0;
         float y = 0;
-
-        setStickDeadZone(playerIndex, 1);
-        float f  = getStickDeadZone(playerIndex);
-
+        
         Stick stick = getSticks(playerIndex)[LS];
-        setStickDeadZone(playerIndex, 0.1f);
 
         x = Mathf.Clamp(stick.x, -1, 1);
         y = Mathf.Clamp(stick.y, -1, 1);
 
-        print(stick);
+        print(getStickDeadZone(playerIndex));
 
-         moveDirection = transform.forward * y + transform.right * x;
+        moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
         transform.position += moveDirection * MaxSpeed * Time.deltaTime;
 
@@ -57,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetFloat("VelX", x);
         _animator.SetFloat("VelY", y);
 
-        
+
         //If player is on the ground make player jump
         if ((Input.GetKey(KeyCode.Space) ||
         isButtonDown(playerIndex, (int)jumpJoy)) &&
