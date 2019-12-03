@@ -11,6 +11,11 @@
 /[Mm]emoryCaptures/
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
+
+#Never ignore InputManager asset data
+[Pp]rojectSettings/
+
+
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 # TextMesh Pro files
@@ -47,3 +52,22 @@ sysinfo.txt
 *.unitypackage
 # Crashlytics generated file
 crashlytics-build.properties
+*.csproj
+
+*.sln
+
+MetricsText.txt
+
+.vscode/
+
+fmod_editor.log
+
+Assets/ShaderlabVSCode/
+
+Assets/ShaderlabVSCode.meta
+
+Assets/Plugins/
+
+Assets/Photon/
+
+Assets/Allegorithmic/
