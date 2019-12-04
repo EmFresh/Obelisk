@@ -24002,7 +24002,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'You Have Completed The Tutorial
 
-    Press ''G'' to Comtinue to The Game
+    High Five while holding makey makey wire to start game
 
     Good Luck Out There'
 --- !u!222 &989223436
@@ -35886,7 +35886,7 @@ MonoBehaviour:
   OverUI2: {fileID: 989223433}
   state: 0
   stateP2: 0
-  key: 103
+  key: 32
   buildSite: {fileID: 539096492}
   site2: {fileID: 1953934384}
 --- !u!4 &1479266189
@@ -42372,7 +42372,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'You Have Completed The Tutorial
 
-    Press ''G'' to Comtinue to The Game
+    High Five while holding makey makey wire to start game
 
     Good Luck Out There'
 --- !u!222 &1946887926
