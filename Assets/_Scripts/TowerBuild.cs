@@ -22,10 +22,11 @@ public class TowerBuild : MonoBehaviour
     private ushort playerIndex;
     private Transform theParent;
     private const int maxStages = 3;
-
+                                                                    
     private bool initBuild = true;
     void OnTriggerStay(Collider obj)
     {
+         if  (obj.gameObject.tag.ToLower().Contains("player"))
         playerIndex = obj.gameObject.GetComponent<PlayerMovement>().playerIndex;
 
         _animator.SetBool("isBuild", false);
