@@ -57,8 +57,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //If player is on the ground make player jump
-        if ((Input.GetKey(KeyCode.Space) ||
-        isButtonDown(playerIndex, (int)jumpJoy)) &&
+        if (isButtonDown(playerIndex, (int)jumpJoy) &&
         isGrounded == true)
         {
             rb.AddForce(0, JumpHeight, 0);
