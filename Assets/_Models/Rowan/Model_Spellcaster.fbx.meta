@@ -3,7 +3,57 @@ guid: 2f2edb34eff1b4143b6641ab9ceb5fe7
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark Leather
+    second: {fileID: 2100000, guid: 0cb33dec7a768c74b8ec01b43932999a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: 7a5a1314fcc0b714dbbf10677a368a88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold
+    second: {fileID: 2100000, guid: 7097a46bbc80b3c45a3fe7ad1aa85665, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair
+    second: {fileID: 2100000, guid: a095cde450082a54897ea5173748c196, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants
+    second: {fileID: 2100000, guid: 19721489c0b8b4141bc729d0ba9b0103, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Silver
+    second: {fileID: 2100000, guid: fedd1f75671c33941ac486a3be5b95df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 7b1a4a044207c5746af86fd2c518347d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tanned Leather
+    second: {fileID: 2100000, guid: 8499acbad4d171141b63f96de54b60f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Undershirt
+    second: {fileID: 2100000, guid: 3af10f1513c677846bf5b7dc13a922cc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Vest
+    second: {fileID: 2100000, guid: b24731b88e17fa643b5c0761621670fb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

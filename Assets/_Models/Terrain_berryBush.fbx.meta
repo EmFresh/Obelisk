@@ -3,7 +3,22 @@ guid: e07a16684f6a475488c46916bef00a59
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: STEM
+    second: {fileID: 2100000, guid: 27204bf7d24c7ba4d8d9f026c30b219f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bush
+    second: {fileID: 2100000, guid: 65d8f0af0f344a946bebf66608870d4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fruit
+    second: {fileID: 2100000, guid: 41c27537897d8b647b3d000b22f81bff, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

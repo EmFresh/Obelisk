@@ -3,7 +3,27 @@ guid: b732fa660a6a60a479f40f5d6172f8f6
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base
+    second: {fileID: 2100000, guid: fae5ac083154e4747a1cfc98e9add3e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base Trim
+    second: {fileID: 2100000, guid: e7e46a2b03e000349b497d55625d1a39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold Trim
+    second: {fileID: 2100000, guid: 57fd39f4c9c906d468fbe4ab1a85ee09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Magic Material
+    second: {fileID: 2100000, guid: 5a0b11ae3d5971f40bf1edc5e39c2e8e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
