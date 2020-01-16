@@ -7,25 +7,23 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform PlayerTransform;
     public Transform pivot;
+    [Range(0.5f, 5.0f)]
     public float RotateSpeed = 1;
-    public float LookUp = 1.1f;
 
     public float _cameraLROffset = 0.5f;
     public float _cameraUDOffset = 0.6f;
 
-    [Range(0.01f, 1.0f)]
-    public float SmoothFactor = 0.3f;
-
-    private Vector3 _cameraBFOffset;
     private ushort playerIndex;
+
+    public float minYAngle = -45.0f;
+    public float maxYAngle = 45.0f;
+
+    float yRot = 0.0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //Assign Camera distence offset
-        _cameraBFOffset = transform.position - PlayerTransform.position;
-
         //Make pivot as a child to player and move to player's position
         pivot.transform.position = PlayerTransform.transform.position;
         pivot.transform.parent = PlayerTransform.transform;
@@ -49,24 +47,22 @@ public class CameraMovement : MonoBehaviour
 
         var stick = getSticks(playerIndex)[RS];
         //Get X position of the mouse and rotate the player
-        float horizontal = Mathf.Clamp(stick.x, -1, 1) * RotateSpeed;
+        float horizontal = (Input.GetAxisRaw("Mouse X") + Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed;
         PlayerTransform.Rotate(0, horizontal, 0);
 
+        //Assign camera to be a child of pivot to help it rotate with pivot
+        transform.parent = pivot.transform;
+
         //Get X position of the mouse and rotate the pivot
-        float vertical = Mathf.Clamp( stick.y, -1, 1) * RotateSpeed;
-        pivot.Rotate(-vertical, 0, 0);
+        float vertical = (Input.GetAxisRaw("Mouse Y") + Mathf.Clamp(stick.y, -1, 1)) * RotateSpeed;
+        yRot += vertical;
 
-        //Move the camera based on current ratation of player and the sidtance offset, slerp help movement smoother
-        float desiredYAngle = PlayerTransform.eulerAngles.y;
-        float desiredXAngle = pivot.eulerAngles.x;
-        Quaternion rotation = Quaternion.Euler(desiredXAngle, desiredYAngle, 0);
-        transform.position = Vector3.Slerp(transform.position, PlayerTransform.position + (rotation * _cameraBFOffset), SmoothFactor);
+        //Make sure camera not going below ground or above head
+        yRot = Mathf.Clamp(yRot, minYAngle, maxYAngle);
+        pivot.eulerAngles = new Vector3(yRot, pivot.eulerAngles.y, 0.0f);
 
-        //Make sure camera not going below ground
-        if (transform.position.y < PlayerTransform.position.y - LookUp)
-        {
-            transform.position = new Vector3(transform.position.x, PlayerTransform.position.y - LookUp, transform.position.z);
-        }
+        //Assign camera to be a child of player
+        transform.parent = PlayerTransform.transform;
 
         //Rotate camera to player's location
         transform.LookAt(PlayerTransform);
