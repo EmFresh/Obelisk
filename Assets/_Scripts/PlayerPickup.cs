@@ -29,7 +29,7 @@ public class PlayerPickup : MonoBehaviour
     bool keyPressed = false;
     bool deletThis = false;
 
-    public KeyCode pickupKey = KeyCode.Space;
+    public KeyCode pickupKey = KeyCode.R;
     public CONTROLLER_BUTTON pickupJoy = X;
     private ushort playerIndex;
 
@@ -43,17 +43,13 @@ public class PlayerPickup : MonoBehaviour
             keyPressed = true;
             timer = Time.time;
         }
-        else if (Input.GetKeyUp(pickupKey) || isButtonReleased(playerIndex, (int)pickupJoy))
+        else if ((Input.GetKeyUp(pickupKey) || (!Input.GetKey(pickupKey))) && 
+            (isButtonReleased(playerIndex, (int)pickupJoy) || (!isButtonPressed(playerIndex, (int)pickupJoy))))
         {
             keyPressed = false;
             resourceCollected = 0;
             _animator.SetBool("isGather", false);
         }
-
-        //if (!Input.GetKey(pickupKey) && isButtonPressed(playerIndex, (int)pickupJoy))
-        //{
-        //  _animator.SetBool("isGather", false);
-        //}
 
         //Picks up resource after 1 second of holding the key down (Key is public, it is et in Unity)
         //Also sends a bool to onTriggerStay
