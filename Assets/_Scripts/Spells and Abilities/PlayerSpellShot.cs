@@ -36,11 +36,11 @@ public class PlayerSpellShot : MonoBehaviour
             Projcopy.Add(Instantiate(projectial));
             projCounter.Add(0);
             direction.Add(transform.forward);
-            Projcopy[Projcopy.Count - 1].transform.position = transform.position;
+            Projcopy[Projcopy.Count - 1].transform.position = transform.position + new Vector3(0.2f,1.5f,0);
             Projcopy[Projcopy.Count - 1].transform.rotation = transform.rotation;
 
             movement = .1f;
-            Projcopy[Projcopy.Count - 1].transform.position = transform.position;
+           // Projcopy[Projcopy.Count - 1].transform.position = transform.position;
 
             for (int a = shots.Length - 1; a >= 0; --a)
                 if (shots[a])
