@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1766342224774468128}
   - component: {fileID: -5365781402157650551}
   m_Layer: 0
-  m_Name: Resource_Wood_Large
+  m_Name: Resource_Wood
   m_TagString: Resource(Wood)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,9 +58,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2248681729751764099, guid: 49b9303264100a14d8f0cdd84205903c, type: 3}
-  - {fileID: -8761910824519130491, guid: 49b9303264100a14d8f0cdd84205903c, type: 3}
-  - {fileID: 1378427682111057981, guid: 49b9303264100a14d8f0cdd84205903c, type: 3}
+  - {fileID: 2100000, guid: c498dbca5219026468002097063f15ee, type: 2}
+  - {fileID: 2100000, guid: 816684410ef89ed42800f8aff5c4d263, type: 2}
+  - {fileID: 2100000, guid: fdb4f486f04c1d14aa9e3a7db3805301, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

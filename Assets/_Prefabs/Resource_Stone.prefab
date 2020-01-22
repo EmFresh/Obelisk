@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1551940920149330719}
   - component: {fileID: -706257936006497573}
   m_Layer: 0
-  m_Name: Resource_Stone_Large
+  m_Name: Resource_Stone
   m_TagString: Resource(Stone)
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 88827d0c922262640ab523de55b4e240, type: 3}
+  - {fileID: 2100000, guid: d9a6620af0616d54bb8b644990506b4a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
