@@ -54,7 +54,7 @@ public class CameraMovement : MonoBehaviour
         transform.parent = pivot.transform;
 
         //Get X position of the mouse and rotate the pivot
-        float vertical = (Input.GetAxisRaw("Mouse Y") + Mathf.Clamp(stick.y, -1, 1)) * RotateSpeed;
+        float vertical = (-Input.GetAxisRaw("Mouse Y") + Mathf.Clamp(stick.y, -1, 1)) * RotateSpeed;
         yRot += vertical;
 
         //Make sure camera not going below ground or above head

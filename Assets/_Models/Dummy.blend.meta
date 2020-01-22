@@ -3,7 +3,37 @@ guid: e33f6b6d476550741bac2977451a861f
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cloth
+    second: {fileID: 2100000, guid: 9c50c1b293cb56641850e36a290e4c1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves
+    second: {fileID: 2100000, guid: 17a64d53db379bd488e228484ac3432d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light
+    second: {fileID: 2100000, guid: 04f4d22ef0466ff45bb549f782ab39ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pumpkin
+    second: {fileID: 2100000, guid: 6d10a613f8e3d0f43b24e51d7fddafa9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rope
+    second: {fileID: 2100000, guid: f2e9cf6c0e47fdd4e8f836316ea5cf5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: e0ead34536dee68438ad59d7636530cd, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

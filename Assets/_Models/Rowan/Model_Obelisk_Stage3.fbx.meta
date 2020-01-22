@@ -3,7 +3,17 @@ guid: 618d8e919fc5747469011de135b0ae36
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Crystal
+    second: {fileID: 2100000, guid: ab0de5c5128c67e4797ad5698f032a4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold Trim
+    second: {fileID: 2100000, guid: 8b7d882f732743f45aecba2ac3ab4b3a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

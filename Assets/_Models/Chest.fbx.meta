@@ -9,7 +9,32 @@ ModelImporter:
   - first:
       74: -5453949285864061777
     second: Cube|chestAnim.001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: ca726d14bbbf67d4c977b3fa7c88dbfa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: a829c587ccfdb3646a97d18d93618b47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gold
+    second: {fileID: 2100000, guid: 874ec650955732a4f803c318e5eddf93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gold.001
+    second: {fileID: 2100000, guid: 4f95878ce3cb6454fb23828a205322d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: a748877ba504c1c4a807640035aee69c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
