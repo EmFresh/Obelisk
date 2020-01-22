@@ -14,12 +14,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: ca726d14bbbf67d4c977b3fa7c88dbfa, type: 2}
+    second: {fileID: 2100000, guid: c878c0dfbecf3974c895b943812646e0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.002
-    second: {fileID: 2100000, guid: a829c587ccfdb3646a97d18d93618b47, type: 2}
+    second: {fileID: 2100000, guid: 07910b809aae4624281df24b1f4426fc, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -34,7 +34,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: wood
-    second: {fileID: 2100000, guid: a748877ba504c1c4a807640035aee69c, type: 2}
+    second: {fileID: 2100000, guid: e0ead34536dee68438ad59d7636530cd, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

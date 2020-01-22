@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public CONTROLLER_BUTTON jumpJoy = A;
     public Animator _animator;
-    public float MaxSpeed = 5;
+    public float MaxSpeed = 15;
     public float JumpHeight = 7;
     public bool isGrounded;
 
