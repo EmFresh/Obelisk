@@ -34,16 +34,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Get the X and Y position of any input (laptop or controller)
-        float x = 0;
-        float y = 0;
-
         Stick stick = getSticks(playerIndex)[LS];
 
-        x = Mathf.Clamp(stick.x, -1, 1);
-        y = Mathf.Clamp(stick.y, -1, 1);
-
-//        print(stick);
+        //Get the X and Y position of any input (laptop or controller)
+        float x = Input.GetAxis("Horizontal") + Mathf.Clamp(stick.x, -1, 1);
+        float y = Input.GetAxis("Vertical") + Mathf.Clamp(stick.y, -1, 1);
 
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
@@ -57,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //If player is on the ground make player jump
-        if (isButtonDown(playerIndex, (int)jumpJoy) &&
+        if ((isButtonDown(playerIndex, (int)jumpJoy) || Input.GetKey(KeyCode.Space)) &&
         isGrounded == true)
         {
             rb.AddForce(0, JumpHeight, 0);
