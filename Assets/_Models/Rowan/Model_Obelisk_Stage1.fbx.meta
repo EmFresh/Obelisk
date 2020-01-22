@@ -3,7 +3,27 @@ guid: 664ae587d4c0b164093736c21d76b6b8
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bark
+    second: {fileID: 2100000, guid: 6e225cc7d833ebb4db224be2f665419c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold Trim
+    second: {fileID: 2100000, guid: e1f00f4d261f9cf40a98a49475e831ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Inner Trunk
+    second: {fileID: 2100000, guid: 92376574ed833454985cd4ee2bb28779, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Outer Trunk
+    second: {fileID: 2100000, guid: c88c215c9ebc3c84996fc887ba7ec94a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

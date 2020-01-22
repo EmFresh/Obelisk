@@ -6,7 +6,57 @@ ModelImporter:
   - first:
       74: -8069942258797100781
     second: Armature|RoughAnimation
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark Leather
+    second: {fileID: 2100000, guid: f1d929c06f6f3534f83fb5dd4ccc8e8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: d753218d32c6dce4489c0fc39f1edb6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold
+    second: {fileID: 2100000, guid: a08a97235d8365349abcb3e056ba76bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair
+    second: {fileID: 2100000, guid: a433c8b17a2006b499b30212b06ee6b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants
+    second: {fileID: 2100000, guid: 7b11007daf70f8a43a426543de9379d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Silver
+    second: {fileID: 2100000, guid: 50638430f9b86a542845c5f09c659756, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 3d89e75fe3574a247b4d13f50a08ee0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tanned Leather
+    second: {fileID: 2100000, guid: 5cc4258789f993c48a0d65d1621ba1c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Undershirt
+    second: {fileID: 2100000, guid: 3aa44df93e440a04dacc893a5579785c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Vest
+    second: {fileID: 2100000, guid: be49fc7f18097ef46963a3c66f53b6c3, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
