@@ -47,7 +47,7 @@ public class CameraMovement : MonoBehaviour
 
         var stick = getSticks(playerIndex)[RS];
         //Get X position of the mouse and rotate the player
-        float horizontal = (Input.GetAxisRaw("Mouse X") + Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed;
+        float horizontal = (Input.GetAxisRaw("Mouse X") - Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed;
         PlayerTransform.Rotate(0, horizontal, 0);
 
         //Assign camera to be a child of pivot to help it rotate with pivot
