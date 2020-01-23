@@ -166,30 +166,14 @@ public class PlayerPickup : MonoBehaviour
                 CrystalAmount += 1;
             }
 
-            if (other.gameObject.CompareTag("Chest(Wood)"))
+            if (other.gameObject.CompareTag("Team 1 Chest") && this.gameObject.tag == "Player 1")
             {
-
-
                 woodStock += WoodAmount;
                 WoodAmount = 0;
                 Debug.Log(woodStock);
-
-            }
-            if (other.gameObject.CompareTag("Chest(Stone)"))
-            {
-
-
-
                 stoneStock += StoneAmount;
                 StoneAmount = 0;
                 Debug.Log(stoneStock);
-
-            }
-            if (other.gameObject.CompareTag("Chest(Crystal)"))
-            {
-
-
-
                 crystalStock += CrystalAmount;
                 CrystalAmount = 0;
                 Debug.Log(crystalStock);
