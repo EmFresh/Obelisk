@@ -33,10 +33,20 @@ public class PlayerPickup : MonoBehaviour
     public CONTROLLER_BUTTON pickupJoy = X;
     private ushort playerIndex;
 
+    public float gatherPercent = 0;
+    public GameObject icon;
 
     // Update is called once per frame
     void Update()
     {
+        if(gatherPercent == 0)
+        {
+            icon.SetActive(false);
+        }
+        else
+        {
+            icon.SetActive(true);
+        }
         playerIndex = GetComponent<PlayerMovement>().playerIndex;
         if (Input.GetKeyDown(pickupKey) || isButtonDown(playerIndex, (int)pickupJoy))
         {
@@ -48,6 +58,7 @@ public class PlayerPickup : MonoBehaviour
         {
             keyPressed = false;
             resourceCollected = 0;
+            gatherPercent = 0;
             _animator.SetBool("isGather", false);
         }
 
@@ -59,6 +70,7 @@ public class PlayerPickup : MonoBehaviour
 
             {
                 _animator.SetBool("isGather", true);
+                gatherPercent = Time.time - timer;
                 if (Time.time - timer >= pickupDuration)
                 {
                     Debug.Log("hi");
@@ -68,12 +80,14 @@ public class PlayerPickup : MonoBehaviour
                     woodCollision = false;
                     timer = 0;
                     deletThis = true;
+                    gatherPercent = 0;
                     _animator.SetBool("isGather", false);
                 }
             }
             else if (stoneCollision == true)
             {
                 _animator.SetBool("isGather", true);
+                gatherPercent = Time.time - timer;
                 if (Time.time - timer >= pickupDuration)
                 {
                     Debug.Log("hi");
@@ -83,12 +97,14 @@ public class PlayerPickup : MonoBehaviour
                     stoneCollision = false;
                     timer = 0;
                     deletThis = true;
+                    gatherPercent = 0;
                     _animator.SetBool("isGather", false);
                 }
             }
             else if (crystalCollision == true)
             {
                 _animator.SetBool("isGather", true);
+                gatherPercent = Time.time - timer;
                 if (Time.time - timer >= pickupDuration)
                 {
                     Debug.Log("hi");
@@ -98,6 +114,7 @@ public class PlayerPickup : MonoBehaviour
                     crystalCollision = false;
                     timer = 0;
                     deletThis = true;
+                    gatherPercent = 0;
                     _animator.SetBool("isGather", false);
                 }
             }
