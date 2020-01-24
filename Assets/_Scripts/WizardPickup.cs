@@ -9,6 +9,7 @@ public class WizardPickup : MonoBehaviour
     bool speedBoost = false;
     float speedtimer = 5;
     float timer = 0;
+    float speedbuff=4;
     void Start()
     {
 
@@ -17,18 +18,19 @@ public class WizardPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        float maxtmp = 0;
         if (Time.time - timer > speedtimer)
         {
             speedBoost = false;
         }
         if (speedBoost)
         {
-            GetComponent<PlayerMovement>().MaxSpeed = 10;
+
+            GetComponent<PlayerMovement>().speed *= speedbuff;
         }
         else
         {
-            GetComponent<PlayerMovement>().MaxSpeed = 5;
+            GetComponent<PlayerMovement>().speed = PlayerMovement.MaxSpeed;
         }
     }
     void OnTriggerEnter(Collider other)

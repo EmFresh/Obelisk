@@ -7,10 +7,7 @@ ModelImporter:
       74: -8069942258797100781
     second: Armature|RoughAnimation
   - first:
-      74: 5269128506079621549
-    second: Armature|running.001
-  - first:
-      74: -2797134668357508131
+      74: -3001859460957078426
     second: IdelR
   - first:
       74: -579379402234594205
@@ -57,97 +54,7 @@ ModelImporter:
   - first:
       74: 7049187601056577901
     second: Collecting
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Black
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 9ebb0ee6d6fe9c34180cc325f9164973, type: 2}
-=======
-    second: {fileID: 2100000, guid: f5ce2bf82260a8148a10734de2f97000, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cape
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 4c9f211b2bf9bd647b5bdbb663af0db8, type: 2}
-=======
-    second: {fileID: 2100000, guid: 14d47a5c7897a8d46bac555f53cb38cf, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Dark Brown
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 77155e82c7da30548be96e9ef85eefd9, type: 2}
-=======
-    second: {fileID: 2100000, guid: 1475973dadd15fb428159cb0ea81deed, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hair
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 9f65b5b4b092b434e8d98c437ab88d74, type: 2}
-=======
-    second: {fileID: 2100000, guid: 68192760cc297524bbbc7af7de684ca9, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Light Brown
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 659141dbd9048a041a4f1bacc41b98e2, type: 2}
-=======
-    second: {fileID: 2100000, guid: 3bab690cf7b7e2d4c9fbdd0b21f3cff6, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 1cb1987f4e83835488dca1c0e2ef0e2a, type: 2}
-=======
-    second: {fileID: 2100000, guid: 71082f915768ce049820c02b56dacfce, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pants
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 07503a86a344c0c4295a4adafe45a9ae, type: 2}
-=======
-    second: {fileID: 2100000, guid: 895626fc2294e004f8bc691daafee374, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Shirt
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 56a22d56f0182634bba14db7118dc2b9, type: 2}
-=======
-    second: {fileID: 2100000, guid: 871c921eba5ef2c46a7c40b343cc39f0, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Skintone
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 670b0fe2c3da138428cdd44544a030ec, type: 2}
-=======
-    second: {fileID: 2100000, guid: fe3a7b1b0e0cca14391cabfb87547a56, type: 2}
->>>>>>> Rob'sTestingZone
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: White
-<<<<<<< HEAD
-    second: {fileID: 2100000, guid: 31dcda7e0f705ba4abb6c272a71b0d1c, type: 2}
-=======
-    second: {fileID: 2100000, guid: 7e2ff330da96ee144977f17acda8c894, type: 2}
->>>>>>> Rob'sTestingZone
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

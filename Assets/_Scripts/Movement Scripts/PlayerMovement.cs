@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public CONTROLLER_BUTTON jumpJoy = A;
     public Animator _animator;
-    public float MaxSpeed = 15;
+    public static float MaxSpeed = 15;
+    public float speed= MaxSpeed;
     public float JumpHeight = 7;
     public bool isGrounded;
 
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
-        transform.position += moveDirection * MaxSpeed * Time.deltaTime;
+        transform.position += moveDirection * speed * Time.deltaTime;
 
         //Set running animation base on input runnning direction
         if (_animator)
