@@ -3,7 +3,17 @@ guid: 3a249c8ae5f80b74d848e60f39967404
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Magic
+    second: {fileID: 2100000, guid: 286d7bd696edc574498be8739677780e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trim
+    second: {fileID: 2100000, guid: e70670355cc46104eb144852d98c338b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
