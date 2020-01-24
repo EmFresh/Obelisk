@@ -59,7 +59,7 @@ public class ResourceSpawn : MonoBehaviour
         {
             spawnPointX = Random.Range(-9, 14);
             spawnPointZ = Random.Range(-9, 14);
-            myPool.SpawnObject("Resource(Crystal)", new Vector3(spawnPointX, 115, spawnPointZ), transform.rotation, true);
+            myPool.SpawnObject("Resource(Crystal)", new Vector3(spawnPointX, 114.8f, spawnPointZ), transform.rotation, true);
             Debug.Log("Spawn Crystal");
             crystalSpawnTimer = 0;
         }
