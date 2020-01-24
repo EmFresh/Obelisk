@@ -8,6 +8,7 @@ public class RecipeCrystalCount : MonoBehaviour
     public GameObject player;
     private Text crystalText;
     public GameObject buildSite;
+    public GameObject chest;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class RecipeCrystalCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int crystalInstock = player.GetComponent<PlayerPickup>().crystalStock;
+        int crystalInstock = chest.GetComponent<ChestResources>().crystalStock;
         int crystalNeed = buildSite.GetComponent<TowerBuild>().crystalNeeded;
         crystalText.text = crystalInstock + "/" + crystalNeed;
     }

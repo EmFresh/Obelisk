@@ -20,12 +20,7 @@ public class PlayerPickup : MonoBehaviour
     bool woodCollision = false;
     bool stoneCollision = false;
     bool crystalCollision = false;
-    //bool woodSmallCollision = false;
-    //bool stoneSmallCollision = false;
-    //bool crystalSmallCollision = false;
-    public int woodStock = 0;
-    public int stoneStock = 0;
-    public int crystalStock = 0;
+
     bool keyPressed = false;
     bool deletThis = false;
 
@@ -165,21 +160,6 @@ public class PlayerPickup : MonoBehaviour
                 other.gameObject.SetActive(false);
                 CrystalAmount += 1;
             }
-
-            if (other.gameObject.CompareTag("Team 1 Chest") && this.gameObject.tag == "Player 1")
-            {
-                woodStock += WoodAmount;
-                WoodAmount = 0;
-                Debug.Log(woodStock);
-                stoneStock += StoneAmount;
-                StoneAmount = 0;
-                Debug.Log(stoneStock);
-                crystalStock += CrystalAmount;
-                CrystalAmount = 0;
-                Debug.Log(crystalStock);
-
-            }
-
         }
     }
 

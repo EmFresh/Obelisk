@@ -8,6 +8,7 @@ public class RecipeStoneCount : MonoBehaviour
     public GameObject player;
     private Text stoneText;
     public GameObject buildSite;
+    public GameObject chest;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class RecipeStoneCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int stoneInstock = player.GetComponent<PlayerPickup>().stoneStock;
+        int stoneInstock = chest.GetComponent<ChestResources>().stoneStock;
         int stoneNeed = buildSite.GetComponent<TowerBuild>().stoneNeeded;
         stoneText.text = stoneInstock + "/" + stoneNeed;
     }

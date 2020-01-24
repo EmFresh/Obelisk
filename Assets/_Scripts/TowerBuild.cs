@@ -36,7 +36,7 @@ public class TowerBuild : MonoBehaviour
             {
                 if (stage < maxStages)
                 {
-                    if (obj.GetComponent<WizardResourceManager>().wizardWoodAmount >= woodNeeded && obj.GetComponent<WizardResourceManager>().wizardStoneAmount >= stoneNeeded && obj.GetComponent<WizardResourceManager>().wizardCrystalAmount >= crystalNeeded)
+                    if (obj.GetComponent<ChestResources>().woodStock >= woodNeeded && obj.GetComponent<ChestResources>().stoneStock >= stoneNeeded && obj.GetComponent<ChestResources>().crystalStock >= crystalNeeded)
                     {
                         //play animation
                         _animator.SetBool("isBuild", true);
@@ -66,9 +66,9 @@ public class TowerBuild : MonoBehaviour
 
                         initBuild = false;
                         //increase the build stage
-                        obj.GetComponent<WizardResourceManager>().wizardWoodAmount -= woodNeeded;
-                        obj.GetComponent<WizardResourceManager>().wizardStoneAmount -= stoneNeeded;
-                        obj.GetComponent<WizardResourceManager>().wizardCrystalAmount -= crystalNeeded;
+                        obj.GetComponent<ChestResources>().woodStock -= woodNeeded;
+                        obj.GetComponent<ChestResources>().stoneStock -= stoneNeeded;
+                        obj.GetComponent<ChestResources>().crystalStock -= crystalNeeded;
 
                         stage++;
                     }

@@ -308,17 +308,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85671501}
-  m_LocalRotation: {x: -0.03489949, y: -0, z: -0, w: 0.99939084}
+  m_LocalRotation: {x: 0.004363274, y: 0, z: 0, w: 0.9999905}
   m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 2035178702}
   m_Father: {fileID: 1379700690}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.5, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -63, y: -63}
+  m_AnchoredPosition: {x: -63, y: -62.399994}
   m_SizeDelta: {x: 155, y: 155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &85671503
@@ -781,6 +781,9 @@ MonoBehaviour:
   wizardWoodAmount: 0
   wizardStoneAmount: 0
   wizardCrystalAmount: 0
+  woodChestCollision: 0
+  stoneChestCollision: 0
+  crystalChestCollision: 0
   pickupKey: 101
   pickupJoy: 16384
   _animator: {fileID: 864505615}
@@ -1510,7 +1513,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 124, y: -29}
+  m_AnchoredPosition: {x: 122.3, y: -31.899994}
   m_SizeDelta: {x: 225, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445395234
@@ -1628,6 +1631,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 3058799818440415467, guid: 18c61188d3dfd814881f44aa3a68c0df, type: 3}
+--- !u!1 &529889881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: f4e90b18f1b750848bfd7ee408e51274,
+    type: 3}
+  m_PrefabInstance: {fileID: 1423633184}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &529889886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529889881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd64c95d54758a94faa3c14fe67f3c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  woodStock: 0
+  stoneStock: 0
+  crystalStock: 0
+  player: {fileID: 1649983636}
+--- !u!65 &529889887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529889881}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.022768535, y: 0.022876792, z: 0.025054041}
+  m_Center: {x: 0, y: 0.0004529738, z: 0.011218601}
 --- !u!1 &541144989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,7 +1928,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653267911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6.2}
+  m_LocalPosition: {x: 0, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2147094670}
@@ -1901,7 +1939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 99, y: -30.600006}
+  m_AnchoredPosition: {x: 99, y: -31}
   m_SizeDelta: {x: 180, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &653267913
@@ -4840,6 +4878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1649983636}
   buildSite: {fileID: 733940502}
+  chest: {fileID: 529889881}
 --- !u!114 &1594015874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4957,9 +4996,6 @@ MonoBehaviour:
   WoodAmount: 0
   StoneAmount: 0
   CrystalAmount: 0
-  woodStock: 0
-  stoneStock: 0
-  crystalStock: 0
   pickupKey: 114
   pickupJoy: 16384
   gatherPercent: 0
@@ -5100,6 +5136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1649983636}
+  chest: {fileID: 529889881}
   buildSite: {fileID: 733940502}
 --- !u!114 &1657853889
 MonoBehaviour:
@@ -5848,6 +5885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1649983636}
   buildSite: {fileID: 733940502}
+  chest: {fileID: 529889881}
 --- !u!114 &1866735124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6005,7 +6043,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009121133}
   m_LocalRotation: {x: 0.004363274, y: 0, z: 0, w: 0.9999905}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 0.6005874, y: 0.60058737, z: 1}
   m_Children:
   - {fileID: 1662243390}
@@ -6014,7 +6052,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0.5, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -63, y: -63}
+  m_AnchoredPosition: {x: -63, y: -62.399994}
   m_SizeDelta: {x: 155, y: 155}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2009121135
