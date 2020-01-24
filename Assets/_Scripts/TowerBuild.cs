@@ -22,6 +22,8 @@ public class TowerBuild : MonoBehaviour
     private ushort playerIndex;
     private Transform theParent;
     private const int maxStages = 3;
+
+    public GameObject chest;
                                                                     
     private bool initBuild = true;
     void OnTriggerStay(Collider obj)
@@ -36,7 +38,7 @@ public class TowerBuild : MonoBehaviour
             {
                 if (stage < maxStages)
                 {
-                    if (obj.GetComponent<ChestResources>().woodStock >= woodNeeded && obj.GetComponent<ChestResources>().stoneStock >= stoneNeeded && obj.GetComponent<ChestResources>().crystalStock >= crystalNeeded)
+                    if (chest.GetComponent<ChestResources>().woodStock >= woodNeeded && chest.GetComponent<ChestResources>().stoneStock >= stoneNeeded && chest.GetComponent<ChestResources>().crystalStock >= crystalNeeded)
                     {
                         //play animation
                         _animator.SetBool("isBuild", true);
@@ -51,7 +53,7 @@ public class TowerBuild : MonoBehaviour
                         //sets the tower part as the child of the previous object
                         towerPart.transform.parent = theParent;
 
-                        towerPart.transform.position = theParent.position;
+                        towerPart.transform.position = theParent.position + new Vector3(0, 0,-45);
                         //if (theParent.childCount > 0)
                         //    theParent = theParent.GetChild(theParent.childCount - 1);
                         
@@ -66,9 +68,9 @@ public class TowerBuild : MonoBehaviour
 
                         initBuild = false;
                         //increase the build stage
-                        obj.GetComponent<ChestResources>().woodStock -= woodNeeded;
-                        obj.GetComponent<ChestResources>().stoneStock -= stoneNeeded;
-                        obj.GetComponent<ChestResources>().crystalStock -= crystalNeeded;
+                        chest.GetComponent<ChestResources>().woodStock -= woodNeeded;
+                        chest.GetComponent<ChestResources>().stoneStock -= stoneNeeded;
+                        chest.GetComponent<ChestResources>().crystalStock -= crystalNeeded;
 
                         stage++;
                     }
