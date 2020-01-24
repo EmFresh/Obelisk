@@ -528,7 +528,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 3a249c8ae5f80b74d848e60f39967404,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 3a249c8ae5f80b74d848e60f39967404,
         type: 3}
@@ -3164,7 +3164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: Resource(Crystal)
-    prefab: {fileID: 1812501344933303194, guid: df90884e546a0ad4d950d0a8d8ed54eb,
+    prefab: {fileID: 1022948457091870956, guid: a8f798185e7955144b37f39755e726a1,
       type: 3}
     size: 8
   - tag: Resource(CrystalSmall)
@@ -3651,7 +3651,7 @@ Transform:
   - {fileID: 881607075}
   - {fileID: 538004450}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &864505614 stripped
 Transform:
@@ -6559,6 +6559,20 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 5104992987186273946, guid: b732fa660a6a60a479f40f5d6172f8f6, type: 3}
+--- !u!64 &1644808419
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644808413}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 5104992987186273946, guid: b732fa660a6a60a479f40f5d6172f8f6, type: 3}
 --- !u!1 &1649983636
