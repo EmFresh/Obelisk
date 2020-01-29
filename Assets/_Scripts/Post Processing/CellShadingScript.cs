@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
 [Serializable]
-[PostProcess(typeof(CellShadingRenderer), PostProcessEvent.AfterStack, "Custom/CellShading")]
+[PostProcess(typeof(CellShadingRenderer), PostProcessEvent.BeforeStack, "Shader Graphs/PosterizeGraph")]
 public sealed class  CellShadingScript : PostProcessEffectSettings
 {
-    [Range(0f, 1f), Tooltip("Grayscale effect intensity.")]
-    public FloatParameter blend = new FloatParameter { value = 0.5f };
+    [Tooltip("posterize band amount")]
+    public IntParameter posterize = new IntParameter ();
 }
 
 public sealed class CellShadingRenderer : PostProcessEffectRenderer<CellShadingScript>
@@ -15,8 +15,8 @@ public sealed class CellShadingRenderer : PostProcessEffectRenderer<CellShadingS
     public override void Render(PostProcessRenderContext context)
     {
         //context;
-        var sheet = context.propertySheets.Get(Shader.Find("Custom/CellShading"));
-        sheet.properties.SetFloat("_Blend", settings.blend);
-        context.command.BlitFullscreenTriangle(context.source, context.destination, sheet, 0);
+        var sheet = context.propertySheets.Get(Shader.Find("Shader Graphs/posterizeGraph"));
+        sheet.properties.SetFloat("Steps", settings.posterize);
+        context.command.BlitFullscreenTriangle(context.source, context.destination, sheet,1 );
     }
 }

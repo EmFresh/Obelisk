@@ -7,7 +7,7 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform PlayerTransform;
     public Transform pivot;
-    [Range(0.5f, 5.0f)]
+    [Range(0, 5.0f)]
     public float RotateSpeed = 1;
 
     public float _cameraLROffset = 0.5f;

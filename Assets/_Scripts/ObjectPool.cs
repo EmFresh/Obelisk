@@ -18,9 +18,11 @@ public class ObjectPool : MonoBehaviour
         public int size;
     }
 
+    public GameObject parent;
+
     //Create Object Pool as a Singleton
     #region Singleton
-    
+
     public static ObjectPool Instance;
     
     private void Awake()
@@ -52,6 +54,9 @@ public class ObjectPool : MonoBehaviour
             {
                 //Create a gameobject inside the game world
                 GameObject ob = Instantiate(pool.prefab);
+
+                if(parent)
+                    ob.transform.parent = parent.transform;
                 //Set this gameobject unactive
                 ob.SetActive(false);
                 //Put new object at the end of queue

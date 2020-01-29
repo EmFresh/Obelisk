@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PosterizeMaterial
+  m_Name: ToonPosterizeMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 6d9116addb3bc8345836bc06d803595c,
     type: 3}
   m_ShaderKeywords: 
