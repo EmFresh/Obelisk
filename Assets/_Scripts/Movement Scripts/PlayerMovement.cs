@@ -11,8 +11,9 @@ public class PlayerMovement : MonoBehaviour
 
     public CONTROLLER_BUTTON jumpJoy = A;
     public Animator _animator;
-    public static float MaxSpeed = 15;
-    public float speed= MaxSpeed;
+    public bool enableKeyboard = false;
+    public float MaxSpeed = 15;
+    public float speed = 0;
     public float JumpHeight = 7;
     public bool isGrounded;
 
@@ -24,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        speed = MaxSpeed;
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
@@ -38,8 +39,8 @@ public class PlayerMovement : MonoBehaviour
         Stick stick = getSticks(playerIndex)[LS];
 
         //Get the X and Y position of any input (laptop or controller)
-        float x = Input.GetAxis("Horizontal") + Mathf.Clamp(stick.x, -1, 1);
-        float y = Input.GetAxis("Vertical") + Mathf.Clamp(stick.y, -1, 1);
+        float x = (enableKeyboard ? Input.GetAxis("Horizontal") : 0) + Mathf.Clamp(stick.x, -1, 1);
+        float y = (enableKeyboard ? Input.GetAxis("Vertical") : 0 )+ Mathf.Clamp(stick.y, -1, 1);
 
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
@@ -60,8 +61,8 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
 
             //Set jump animation to true
-            if(_animator)
-            _animator.SetBool("isJump", true);
+            if (_animator)
+                _animator.SetBool("isJump", true);
         }
 
     }
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Set jump animation to false
         if (_animator)
-        _animator.SetBool("isJump", false);
+            _animator.SetBool("isJump", false);
     }
 
 

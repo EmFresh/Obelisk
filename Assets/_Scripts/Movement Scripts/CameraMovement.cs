@@ -7,16 +7,19 @@ public class CameraMovement : MonoBehaviour
 {
     public Transform PlayerTransform;
     public Transform pivot;
+
+    public bool invertYJoy = false;
+    public bool invertYKeyboard = true;
     [Range(0, 5.0f)]
     public float RotateSpeed = 1;
 
     public float _cameraLROffset = 0.5f;
     public float _cameraUDOffset = 0.6f;
 
-    private ushort playerIndex;
+    ushort playerIndex;
 
-    public float minYAngle = -45.0f;
-    public float maxYAngle = 45.0f;
+    float minYAngle = -45.0f;
+    float maxYAngle = 45.0f;
 
     float yRot = 0.0f;
 
@@ -46,15 +49,16 @@ public class CameraMovement : MonoBehaviour
         transform.position -= transform.up * _cameraUDOffset;
 
         var stick = getSticks(playerIndex)[RS];
+        var keyEnabled = GetComponentInParent<PlayerMovement>().enableKeyboard;
         //Get X position of the mouse and rotate the player
-        float horizontal = (Input.GetAxisRaw("Mouse X") + Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed;
+        float horizontal = keyEnabled ? (Input.GetAxisRaw("Mouse X") + Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed : 0;
         PlayerTransform.Rotate(0, horizontal, 0);
 
         //Assign camera to be a child of pivot to help it rotate with pivot
         transform.parent = pivot.transform;
 
         //Get X position of the mouse and rotate the pivot
-        float vertical = (-Input.GetAxisRaw("Mouse Y") + Mathf.Clamp(stick.y, -1, 1)) * RotateSpeed;
+        float vertical = keyEnabled ? ((invertYKeyboard ? -1 : 1) * Input.GetAxisRaw("Mouse Y") + (invertYJoy ? -1 : 1) * Mathf.Clamp(stick.y, -1, 1)) * RotateSpeed : 0;
         yRot += vertical;
 
         //Make sure camera not going below ground or above head

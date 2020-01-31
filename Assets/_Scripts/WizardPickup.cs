@@ -30,7 +30,7 @@ public class WizardPickup : MonoBehaviour
         }
         else
         {
-            GetComponent<PlayerMovement>().speed = PlayerMovement.MaxSpeed;
+            GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().MaxSpeed;
         }
     }
     void OnTriggerEnter(Collider other)
