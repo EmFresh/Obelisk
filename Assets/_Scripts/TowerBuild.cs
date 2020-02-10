@@ -8,6 +8,7 @@ public class TowerBuild : MonoBehaviour
 {
 
     public List<GameObject> towerParts = new List<GameObject>();
+    public List<GameObject> towerParts2 = new List<GameObject>();
     public KeyCode buildKey = KeyCode.Tab;
     public CONTROLLER_BUTTON buildJoy = Y;
 
@@ -43,28 +44,30 @@ public class TowerBuild : MonoBehaviour
                         //play animation
                         _animator.SetBool("isBuild", true);
 
-                        //get the next Parent
-                        theParent = gameObject.transform;
-                        if (theParent.childCount != 3)
-                            while (theParent.childCount > 0) theParent = theParent.GetChild(theParent.childCount - 1);
+                        ////get the next Parent
+                        //theParent = gameObject.transform;
+                        //if (theParent.childCount != 3)
+                        //    while (theParent.childCount > 0) theParent = theParent.GetChild(theParent.childCount - 1);
 
-                        GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count]);
+                        //GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count]);
 
-                        //sets the tower part as the child of the previous object
-                        towerPart.transform.parent = theParent;
+                        ////sets the tower part as the child of the previous object
+                        //towerPart.transform.parent = theParent;
 
-                        towerPart.transform.position = theParent.position + new Vector3(0, 0,-45);
-                        //if (theParent.childCount > 0)
-                        //    theParent = theParent.GetChild(theParent.childCount - 1);
-                        
-                        
-                        //get the size of the two objects
-                        Bounds obj1 = theParent.gameObject.GetComponent<MeshRenderer>().bounds;
-                        Bounds obj2 = towerPart.GetComponent<MeshRenderer>().bounds;
-                        Vector3 size1 = obj1.max - obj2.min, size2 = obj2.max - obj2.min;
+                        //towerPart.transform.position = theParent.position + new Vector3(0, 0,-45);
+                        ////if (theParent.childCount > 0)
+                        ////    theParent = theParent.GetChild(theParent.childCount - 1);
 
-                        //place the new object on top of the old one
-                        towerPart.transform.position += new Vector3(0, (size1.y * .5f + size2.y * .5f) + 3 * (initBuild ? 1 : 0), 0);
+
+                        ////get the size of the two objects
+                        //Bounds obj1 = theParent.gameObject.GetComponent<MeshRenderer>().bounds;
+                        //Bounds obj2 = towerPart.GetComponent<MeshRenderer>().bounds;
+                        //Vector3 size1 = obj1.max - obj2.min, size2 = obj2.max - obj2.min;
+
+                        ////place the new object on top of the old one
+                        //towerPart.transform.position += new Vector3(0, (size1.y * .5f + size2.y * .5f) + 3 * (initBuild ? 1 : 0), 0);
+
+                        towerParts2[stage % towerParts.Count].SetActive(true);
 
                         initBuild = false;
                         //increase the build stage

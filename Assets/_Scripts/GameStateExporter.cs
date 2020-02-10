@@ -12,6 +12,10 @@ public class GameStateExporter : MonoBehaviour
     public GameObject TextWin1;
     public GameObject TextWin2;
 
+    public KeyCode SwitchCharacterKey = KeyCode.O;
+    public GameObject Player1;
+    public GameObject Player2;
+
     private Blink blinkScript;
     // Start is called before the first frame update
     RogueData rogueData = new RogueData();
@@ -39,6 +43,19 @@ public class GameStateExporter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(SwitchCharacterKey))
+        {
+            if (Player1.activeSelf)
+            {
+                Player1.SetActive(false);
+                Player2.SetActive(true);
+            }
+            else
+            {
+                Player1.SetActive(true);
+                Player2.SetActive(false);
+            }
+        }
         path = Application.dataPath + "/gameState.json";
         blinkScript = GameObject.Find("Player 2 (Runner)").GetComponent<Blink>();
         rogueData.isBlinking = blinkScript.isBlinking;
