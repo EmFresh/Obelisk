@@ -3,7 +3,12 @@ guid: a5d9be0290e3ed045a83589da4b4db4c
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tumbleweed
+    second: {fileID: 2100000, guid: 3458a3abda76dc44784986680d4c8a5b, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
