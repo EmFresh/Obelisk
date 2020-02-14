@@ -174,7 +174,7 @@ public class PlayerPickup : MonoBehaviour
 
             }
             //deletes resource object
-            else if (!other.gameObject.tag.Contains("Build Zone"))
+            else if (other.gameObject.tag.Contains("Resource"))
             {
                 other.gameObject.SetActive(false);
                 Debug.Log("Y do we play gaem2");
