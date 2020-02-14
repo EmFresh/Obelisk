@@ -23,7 +23,7 @@ public class GameStateExporter : MonoBehaviour
     string json;
 
     readonly string postURL = "192.168.0.100/index.php";
-    
+
     void Start()
     {
         path = Application.dataPath + "/gameState.json";
@@ -73,8 +73,8 @@ public class GameStateExporter : MonoBehaviour
         File.WriteAllText(path, json);
 
         string jsonData = File.ReadAllText(path);
-       
-        if((BuildSite1.GetComponent<TowerBuild>().stage >= 3)|| (BuildSite2.GetComponent<TowerBuild>().stage >= 3))
+
+        if (((BuildSite1 != null) && (BuildSite1.GetComponent<TowerBuild>().stage >= 3)) || ((BuildSite2 != null) && (BuildSite2.GetComponent<TowerBuild>().stage >= 3)))
         {
             TextWin1.SetActive(true);
             TextWin2.SetActive(true);
@@ -87,4 +87,4 @@ public class GameStateExporter : MonoBehaviour
         public float blinkTime;
     }
 
- }
+}

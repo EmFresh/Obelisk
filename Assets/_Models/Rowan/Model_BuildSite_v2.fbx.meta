@@ -3,7 +3,17 @@ guid: 273d4a4061869654b97b5a104054b07e
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Build Site Base
+    second: {fileID: 2100000, guid: fa5834fb959aaf34482253733c893eb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Build Site Trim
+    second: {fileID: 2100000, guid: 24eb848c902f3934b95231ab65c77917, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
