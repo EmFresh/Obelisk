@@ -14,6 +14,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Gold Trim
     second: {fileID: 2100000, guid: cdb7e313380872042927f8fed341b91a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone
+    second: {fileID: 2100000, guid: 8b771bf703efd21499e263da65fefd32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trim
+    second: {fileID: 2100000, guid: fff96676faffceb458f385a6e98246a2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
