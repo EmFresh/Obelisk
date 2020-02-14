@@ -7,23 +7,31 @@ using static ControllerInput.CONTROLLER_BUTTON;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Animator _animator;
+
     public ushort playerIndex;
 
     public CONTROLLER_BUTTON jumpJoy = A;
-    public Animator _animator;
+
+    public bool enableKeyboard = false;
+
     public float MaxSpeed = 15;
+
+    [HideInInspector] public float speed = 0;
+
     public float JumpHeight = 7;
-    public bool isGrounded;
+
+    [HideInInspector] public bool isGrounded;
 
     private Vector3 moveDirection;
 
-    Rigidbody rb;
-    BoxCollider col_size;
+    private Rigidbody rb;
+    private BoxCollider col_size;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        speed = MaxSpeed;
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
@@ -37,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
         Stick stick = getSticks(playerIndex)[LS];
 
         //Get the X and Y position of any input (laptop or controller)
-        float x = Input.GetAxis("Horizontal") + Mathf.Clamp(stick.x, -1, 1);
-        float y = Input.GetAxis("Vertical") + Mathf.Clamp(stick.y, -1, 1);
+        float x = (enableKeyboard ? Input.GetAxis("Horizontal") : 0) + Mathf.Clamp(stick.x, -1, 1);
+        float y = (enableKeyboard ? Input.GetAxis("Vertical") : 0) + Mathf.Clamp(stick.y, -1, 1);
 
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
-        transform.position += moveDirection * MaxSpeed * Time.deltaTime;
+        transform.position += moveDirection * speed * Time.deltaTime;
 
         //Set running animation base on input runnning direction
         if (_animator)
@@ -59,8 +67,8 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
 
             //Set jump animation to true
-            if(_animator)
-            _animator.SetBool("isJump", true);
+            if (_animator)
+                _animator.SetBool("isJump", true);
         }
 
     }
@@ -72,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         //Set jump animation to false
         if (_animator)
-        _animator.SetBool("isJump", false);
+            _animator.SetBool("isJump", false);
     }
 
 

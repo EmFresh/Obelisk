@@ -13,6 +13,7 @@ public class PlayerSpellShot : MonoBehaviour
     public float shotCooldown;
     public bool[] shots = new bool[3] { true, true, true };
     public float shotTimer = 0;
+    [Range(0,3)]public float movement = .1f;
     public Animator _animator;
 
 
@@ -20,7 +21,6 @@ public class PlayerSpellShot : MonoBehaviour
     private IList<GameObject> Projcopy = new List<GameObject>();
     private IList<float> projCounter = new List<float>();
     private IList<Vector3> direction = new List<Vector3>();
-    float movement = 0;
 
     // Update is called once per frame
     void Update()
@@ -39,7 +39,7 @@ public class PlayerSpellShot : MonoBehaviour
             Projcopy[Projcopy.Count - 1].transform.position = transform.position + new Vector3(0.2f,1.5f,0);
             Projcopy[Projcopy.Count - 1].transform.rotation = transform.rotation;
 
-            movement = .1f;
+            
            // Projcopy[Projcopy.Count - 1].transform.position = transform.position;
 
             for (int a = shots.Length - 1; a >= 0; --a)
@@ -99,7 +99,7 @@ public class PlayerSpellShot : MonoBehaviour
             projCounter[i] += dt;
 
             //Move the object
-            Projcopy[i].transform.position += direction[i] * movement;
+            Projcopy[i].transform.position += direction[i] * movement * Time.deltaTime;
         }
     }
 }
