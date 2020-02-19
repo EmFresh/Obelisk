@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool enableKeyboard = false;
 
-    public float MaxSpeed = 15;
+    [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 15;
 
     [HideInInspector] public float speed = 0;
 

@@ -8,11 +8,10 @@ public class TowerBuild : MonoBehaviour
 {
 
     public List<GameObject> towerParts = new List<GameObject>();
-    public List<GameObject> towerParts2 = new List<GameObject>();
     public KeyCode buildKey = KeyCode.Tab;
     public CONTROLLER_BUTTON buildJoy = Y;
-
-    public int stage;
+    public float spacing = 3;
+    [HideInInspector] public int stage;
 
     public int woodNeeded;
     public int stoneNeeded;
@@ -25,12 +24,12 @@ public class TowerBuild : MonoBehaviour
     private const int maxStages = 3;
 
     public GameObject chest;
-                                                                    
+
     private bool initBuild = true;
     void OnTriggerStay(Collider obj)
     {
-         if  (obj.gameObject.tag.ToLower().Contains("player"))
-        playerIndex = obj.gameObject.GetComponent<PlayerMovement>().playerIndex;
+        if (obj.gameObject.tag.ToLower().Contains("player"))
+            playerIndex = obj.gameObject.GetComponent<PlayerMovement>().playerIndex;
 
         _animator.SetBool("isBuild", false);
 
@@ -44,36 +43,47 @@ public class TowerBuild : MonoBehaviour
                         //play animation
                         _animator.SetBool("isBuild", true);
 
-                        ////get the next Parent
-                        //theParent = gameObject.transform;
-                        //if (theParent.childCount != 3)
-                        //    while (theParent.childCount > 0) theParent = theParent.GetChild(theParent.childCount - 1);
+                        //get the next Parent
+                        theParent = gameObject.transform.GetChild(0);
 
-                        //GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count]);
-
-                        ////sets the tower part as the child of the previous object
+                        //while (theParent.childCount > 0) theParent = theParent.GetChild(0);
+                        GameObject towerPart = Instantiate(towerParts[stage % towerParts.Count], theParent);
+                        towerPart.transform.localScale = new Vector3(1, 1, 1);
+                        towerPart.transform.localRotation = Quaternion.AngleAxis(0, new Vector3(1, 1, 1));
+                        //sets the tower part as the child of the previous object
                         //towerPart.transform.parent = theParent;
+                        towerPart.transform.position = theParent.position;
+                        //if (theParent.childCount > 0)
+                        //    theParent = theParent.GetChild(theParent.childCount - 1);
+                        //get the size of the two objects
+                        Bounds obj1 = theParent.gameObject.GetComponent<MeshRenderer>().bounds;
+                        Bounds obj2 = towerPart.GetComponent<MeshRenderer>().bounds;
+                        Vector3 size1 = obj1.max - obj2.min, size2 = obj2.max - obj2.min;
 
-                        //towerPart.transform.position = theParent.position + new Vector3(0, 0,-45);
-                        ////if (theParent.childCount > 0)
-                        ////    theParent = theParent.GetChild(theParent.childCount - 1);
+
+                        //place the new object on top of the old one
+                        towerPart.transform.position += new Vector3(0, obj1.size.y * 1.5f, 0);
+
+                        for (int a = 0; a < theParent.childCount - 1; a++)
+                        {
+                            obj1 = theParent.GetChild(a).gameObject.GetComponent<MeshRenderer>().bounds;
+                            //place the new object on top of the old one
+                            towerPart.transform.position += new Vector3(0, obj1.size.y + spacing, 0);
+                        }
 
 
-                        ////get the size of the two objects
-                        //Bounds obj1 = theParent.gameObject.GetComponent<MeshRenderer>().bounds;
-                        //Bounds obj2 = towerPart.GetComponent<MeshRenderer>().bounds;
-                        //Vector3 size1 = obj1.max - obj2.min, size2 = obj2.max - obj2.min;
-
-                        ////place the new object on top of the old one
-                        //towerPart.transform.position += new Vector3(0, (size1.y * .5f + size2.y * .5f) + 3 * (initBuild ? 1 : 0), 0);
-
-                        towerParts2[stage % towerParts.Count].SetActive(true);
+                        //Rob / Lilian's solution IDK
+                        //towerParts2[stage % towerParts.Count].SetActive(true);
 
                         initBuild = false;
                         //increase the build stage
                         chest.GetComponent<ChestResources>().woodStock -= woodNeeded;
                         chest.GetComponent<ChestResources>().stoneStock -= stoneNeeded;
                         chest.GetComponent<ChestResources>().crystalStock -= crystalNeeded;
+                        var tmp = towerPart.AddComponent<ObeliskRotation>();
+
+                        tmp.right = (stage % 2) != 0;
+                        tmp.speed = 10;
 
                         stage++;
                     }
