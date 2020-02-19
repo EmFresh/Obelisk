@@ -17,6 +17,13 @@ public class RecipeStageCount : MonoBehaviour
     void Update()
     {
         int stageNum = buildSite.GetComponent<TowerBuild>().stage + 1;
-        stageText.text = "Stage\n" + stageNum;
+        if(stageNum == 4)
+        {
+            stageText.text = "Finish";
+        }
+        else
+        {
+            stageText.text = "Stage " + stageNum;
+        }
     }
 }

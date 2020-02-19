@@ -68,6 +68,7 @@ public class ControllerInput
     [StructLayout(LayoutKind.Sequential)]
     public struct Stick
     {
+       
         public override string ToString() => "(" + x + ", " + y + ")";
         public float x, y;
     }
