@@ -25,7 +25,7 @@ public class TowerBuild : MonoBehaviour
 
     public GameObject chest;
 
-    private bool initBuild = true;
+    //private bool initBuild = true;
     void OnTriggerStay(Collider obj)
     {
         if (obj.gameObject.tag.ToLower().Contains("player"))
@@ -75,7 +75,7 @@ public class TowerBuild : MonoBehaviour
                         //Rob / Lilian's solution IDK
                         //towerParts2[stage % towerParts.Count].SetActive(true);
 
-                        initBuild = false;
+                        //initBuild = false;
                         //increase the build stage
                         chest.GetComponent<ChestResources>().woodStock -= woodNeeded;
                         chest.GetComponent<ChestResources>().stoneStock -= stoneNeeded;
@@ -83,7 +83,7 @@ public class TowerBuild : MonoBehaviour
                         var tmp = towerPart.AddComponent<ObeliskRotation>();
 
                         tmp.right = (stage % 2) != 0;
-                        tmp.speed = 10;
+                        tmp.speed = stage * 5 + 10;
 
                         stage++;
                     }

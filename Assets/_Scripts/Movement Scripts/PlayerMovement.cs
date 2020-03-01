@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
+using static Networking;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -35,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
-
         isGrounded = true;
+
+       
+        //print("The Error:"+getLastError());
     }
 
     // Update is called once per frame

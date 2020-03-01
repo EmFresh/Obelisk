@@ -8,6 +8,7 @@ public class DynamicAudio : MonoBehaviour
     public string source = "vca:/Forest";
     [Range(0, 5)] public float speed = 1.0f;
     bool onIsland = false;
+    [Range(0, 1)] public float maxVol = 1;
     float vol = 0;
 
     void Start()
@@ -17,9 +18,9 @@ public class DynamicAudio : MonoBehaviour
     void Update()
     {
 
-        vol += speed * Time.deltaTime * (onIsland ? 1 : -1);
+        vol += speed * maxVol * Time.deltaTime * (onIsland ? 1 : -1);
 
-        FMODUnity.RuntimeManager.GetVCA(source).setVolume(vol = Mathf.Clamp(vol, 0, 1));
+        FMODUnity.RuntimeManager.GetVCA(source).setVolume(vol = Mathf.Clamp(vol, 0, maxVol));
 
     }
     void OnTriggerEnter(Collider other) => onIsland = other.tag.Contains("Player") ? true : onIsland;

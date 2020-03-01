@@ -68,7 +68,7 @@ public class GameStateExporter : MonoBehaviour
             rogueData.blinkTime = 0;
 
         json = JsonUtility.ToJson(rogueData);
-        Debug.Log(json);
+//        Debug.Log(json);
 
         File.WriteAllText(path, json);
 

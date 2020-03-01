@@ -84,6 +84,9 @@ public class PlayerSpellShot : MonoBehaviour
             //Object destruction after 5 seconds
             if (projCounter[i] >= duration)
             {
+                var explosion = (GameObject)Resources.Load("_Prefabs/fireballImpact");
+                explosion.transform.position = Projcopy[i].transform.position;
+
                 Debug.Log(direction[i]);
                 Destroy(Projcopy[i]);
                 Projcopy.RemoveAt(i);

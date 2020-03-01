@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class FireballCollision : MonoBehaviour
 {
-    private bool exitPlayer = false;
+    private bool exitPlayer = true;
+    private GameObject explosion;
     public static int scarecrowsDown = 0;
+
+    private void Awake()
+    {
+
+    }
     void OnTriggerEnter(Collider ent)
     {
-        if(ent.gameObject.tag.Contains("crow"))
+        if (ent.gameObject.tag.Contains("crow"))
         {
             scarecrowsDown += 1;
             //Debug.Log(scarecrowsDown);
@@ -16,6 +22,10 @@ public class FireballCollision : MonoBehaviour
         }
         if (exitPlayer)
         {
+
+            explosion = (GameObject)Resources.Load("_Prefabs/fireballImpact");
+            explosion.transform.position = this.transform.position;
+
             Destroy(this.gameObject);
             print("deleat this garbage");
         }
@@ -23,7 +33,7 @@ public class FireballCollision : MonoBehaviour
 
     void OnTriggerExit(Collider ent)
     {
-        
+
         exitPlayer = true;
         print("Exited the player!!!");
     }
