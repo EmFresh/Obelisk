@@ -1,4 +1,5 @@
-#include <Networking/IncludeThis.h>
+#pragma once
+#include <../Networking/IncludeThis.h>
 #include <iostream>
 #include <thread>
 #include "keyinput.h"
