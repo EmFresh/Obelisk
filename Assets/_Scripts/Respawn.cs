@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Respawn : MonoBehaviour
 {
-    GameObject OK;
-    GameObject spawnpoint;
+    public GameObject area;
+    public GameObject spawnpoint;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+   //trigger
+   private void OnTriggerExit(Collider other)
     {
-        
+        if (other.gameObject == area)
+        {
+            transform.position = spawnpoint.transform.position;
+            transform.rotation = spawnpoint.transform.rotation;
+        }
     }
 }
