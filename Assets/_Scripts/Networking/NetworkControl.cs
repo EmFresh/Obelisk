@@ -82,50 +82,11 @@ public class NetworkControl : MonoBehaviour
         public IPEndpointData endp;
         public void Execute()
         {
-            int size = 0, dump = 0;
-            vec3 dat = new vec3();
-            vec3 last = new vec3();
+
             for (; ; )
             {
-                bool printit = true;
-                float move = 0.001f;
-                if (left)
-                {
-                    dat.x -= move;
-                }
-                if (up)
-                {
-                    dat.y += move;
-                }
-                if (down)
-                {
-                    dat.y -= move;
-                }
-                if (right)
-                {
-                    dat.x += move;
-                }
-
-                if (vec3.dist(dat, last) >= 0.5f)
-                {
-                    size = Marshal.SizeOf<vec3>();
-                    if (sendToPacket(ref sock, ref size, 4, ref dump, ref endp) == P_GenericError)
-                    {
-                        printit = false; Debug.LogError(getLastNetworkError());
-                    }
-
-                    if (sendToPacket(ref sock, ref dat, size, ref dump, ref endp) == P_GenericError)
-                    {
-                        printit = false; Debug.LogError(getLastNetworkError());
-                    }
-
-                    if (printit)
-                        print(dat);
-                        
-                    last = dat;
-                }
-
-
+                string tmp = "hello?";
+                sendToPacket(ref sock, ref tmp, ref endp);
                 if (NetworkControl.close)
                     break;
             }
@@ -137,29 +98,11 @@ public class NetworkControl : MonoBehaviour
 
     private void Awake()
     {
-        ////UDP Server
-        //shutdownNetwork();//just incase there was some sort of error
-        //Networking.initNetwork();
-        //endp = createIPEndpointData("localhost", 22);
-        //sock = initSocketData();
-        //
-        //if (createSocket(ref sock, SocketType.UDP) == P_GenericError)
-        //    Debug.LogError(getLastNetworkError());
-        //
-        //if (bindEndpointToSocket(ref endp, ref sock) == P_GenericError)
-        //    Debug.LogError(getLastNetworkError());
-        //
-        //job = new NetworkJob()
-        //{
-        //    sock = this.sock,
-        //    endp = this.endp
-        //};
-        //hnd = job.Schedule();//schedules the job to start asynchronously like std::detach in c++
-
+    
         //UDP Client
         shutdownNetwork();//just incase there was some sort of error last time
         Networking.initNetwork();
-        endp = createIPEndpointData("localhost", 22);
+        endp = createIPEndpointData("10.150.32.203", 8888);
         sock = initSocketData();
 
         if (createSocket(ref sock, SocketType.UDP) == P_GenericError)
