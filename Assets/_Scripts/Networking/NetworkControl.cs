@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
-using UnityEngine;
 using Unity.Jobs;
+using UnityEngine;
 using static Networking;
 using static Networking.PResult;
 
@@ -31,7 +31,6 @@ public class NetworkControl : MonoBehaviour
 
         public static float dist(vec3 v1, vec3 v2) => (v1 - v2).length();
 
-
         public override string ToString() => "(" + x + ", " + y + ", " + z + ")";
     }
 
@@ -45,21 +44,21 @@ public class NetworkControl : MonoBehaviour
         {
             int size = 0, dump = 0;
             vec3 dat = new vec3();
-            for (; ; )
+            for (;;)
             {
                 bool printit = true;
 
                 if (recvFromPacket(ref sock, ref size, 4, ref dump, ref endp) == P_GenericError)
                 {
-                    printit = false; Debug.LogError(getLastNetworkError());
+                    printit = false;
+                    Debug.LogError(getLastNetworkError());
 
                 }
 
-
-
                 if (recvFromPacket(ref sock, ref dat, size, ref dump, ref endp) == P_GenericError)
                 {
-                    printit = false; Debug.LogError(getLastNetworkError());
+                    printit = false;
+                    Debug.LogError(getLastNetworkError());
                 }
 
                 if (printit)
@@ -83,7 +82,7 @@ public class NetworkControl : MonoBehaviour
         public void Execute()
         {
 
-            for (; ; )
+            for (;;)
             {
                 string tmp = "hello?";
                 sendToPacket(ref sock, ref tmp, ref endp);
@@ -95,12 +94,11 @@ public class NetworkControl : MonoBehaviour
         }
     }
 
-
     private void Awake()
     {
-    
+
         //UDP Client
-        shutdownNetwork();//just incase there was some sort of error last time
+        shutdownNetwork(); //just incase there was some sort of error last time
         Networking.initNetwork();
         endp = createIPEndpointData("10.150.32.203", 8888);
         sock = initSocketData();
@@ -116,7 +114,7 @@ public class NetworkControl : MonoBehaviour
             sock = this.sock,
             endp = this.endp
         };
-        hnd = jobClient.Schedule();//schedules the job to start asynchronously like std::detach in c++
+        hnd = jobClient.Schedule(); //schedules the job to start asynchronously like std::detach in c++
 
     }
 
@@ -144,9 +142,8 @@ public class NetworkControl : MonoBehaviour
     {
         close = true;
 
-
         closeSocket(ref sock);
         shutdownNetwork();
-        hnd.Complete();//should be the same as thread::join in c++
+        hnd.Complete(); //should be the same as thread::join in c++
     }
 }
