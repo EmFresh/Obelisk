@@ -67,16 +67,16 @@ public class ResourceSpawn : MonoBehaviour
         {
             spawnPointX = Random.Range(-46, -70);
             spawnPointZ = Random.Range(-9, 15);
-            myPool.SpawnObject("Resource(WoodSmall)", new Vector3(spawnPointX, 124.5f, spawnPointZ), transform.rotation, true);
-           //Debug.Log("Spawn Small Wood");
+            myPool.SpawnObject("Resource(WoodSmall)", new Vector3(spawnPointX, 124.45f, spawnPointZ), transform.rotation, true);
+            Debug.Log("Spawn Small Wood");
             woodSmallSpawnTimer = 0;
         }
          if(stoneSmallSpawnTimer > 3)
         {
             spawnPointX = Random.Range(51, 73);
             spawnPointZ = Random.Range(-8, 11);
-            myPool.SpawnObject("Resource(StoneSmall)", new Vector3(spawnPointX, 124, spawnPointZ), transform.rotation, true);
-           //Debug.Log("Spawn Small Stone");
+            myPool.SpawnObject("Resource(StoneSmall)", new Vector3(spawnPointX, 123.5f, spawnPointZ), transform.rotation, true);
+            Debug.Log("Spawn Small Stone");
             stoneSmallSpawnTimer = 0;
         }
          if(crystalSmallSpawnTimer > 4)

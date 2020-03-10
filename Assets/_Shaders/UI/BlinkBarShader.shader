@@ -50,7 +50,7 @@
                // uv.y = uv.y*uv.x / cos(_Time.y);
                 fixed4 col = tex2D(_MainTex, uv) * i.color;
                 // just invert the colors
-                col.a = col.a * float(uv.y < blink);
+                col.a = col.a * float(uv.x < blink);
                 //col = float4(blink,blink,blink,1);
                 return col;
             }

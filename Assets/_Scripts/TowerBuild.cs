@@ -11,7 +11,7 @@ public class TowerBuild : MonoBehaviour
     public KeyCode buildKey = KeyCode.Tab;
     public CONTROLLER_BUTTON buildJoy = Y;
     public float spacing = 3;
-    [HideInInspector] public int stage;
+    [HideInInspector] public int stage=0;
 
     public int woodNeeded;
     public int stoneNeeded;

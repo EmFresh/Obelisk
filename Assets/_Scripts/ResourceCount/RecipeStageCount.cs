@@ -16,14 +16,14 @@ public class RecipeStageCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int stageNum = buildSite.GetComponent<TowerBuild>().stage + 1;
-        if(stageNum == 4)
+        int stageNum = buildSite.GetComponent<TowerBuild>().stage;
+        if(stageNum == 3)
         {
-            stageText.text = "Finish";
+            stageText.text = "Completed";
         }
         else
         {
-            stageText.text = "Stage " + stageNum;
+            stageText.text = "Stage " + (stageNum);
         }
     }
 }
