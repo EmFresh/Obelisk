@@ -287,7 +287,7 @@ public class Networking
     {
         IntPtr tmp = Marshal.AllocHGlobal (numberOfBytes); //allocates to unmanaged memory
         PResult res = recvFromPacketDataEx (ref soc, tmp, numberOfBytes, ref bytesSent, ref ip);
-        data = Marshal.PtrToStringAnsi (tmp, numberOfBytes);
+        data = Marshal.PtrToStringAnsi (tmp);
         Marshal.FreeHGlobal (tmp);
         return res;
     }
