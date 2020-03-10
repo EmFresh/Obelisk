@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     public CONTROLLER_BUTTON jumpJoy = A;
 
+    public ParticleSystem walkParticles;
+
     public bool enableKeyboard = false;
 
     [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 15;
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         isGrounded == true)
         {
             rb.AddForce(0, JumpHeight, 0);
+            CreateWalkParticles();
             isGrounded = false;
 
             //Set jump animation to true
@@ -84,6 +87,12 @@ public class PlayerMovement : MonoBehaviour
         //Set jump animation to false
         if (_animator)
             _animator.SetBool("isJump", false);
+    }
+
+
+    void CreateWalkParticles()
+    {
+        walkParticles.Play();
     }
 
 
