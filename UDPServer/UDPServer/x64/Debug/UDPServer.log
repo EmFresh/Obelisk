@@ -1,0 +1,3 @@
+﻿  Server.cpp
+D:\My File\Desktop\GDW II\UDPServer\UDPServer\Server.cpp(235,41): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  UDPServer.vcxproj -> D:\My File\Desktop\GDW II\UDPServer\x64\Debug\UDPServer.exe
