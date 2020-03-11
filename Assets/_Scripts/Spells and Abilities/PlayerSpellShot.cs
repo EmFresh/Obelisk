@@ -7,15 +7,15 @@ using static ControllerInput.CONTROLLER_BUTTON;
 public class PlayerSpellShot : MonoBehaviour
 {
     public GameObject projectial;
+    public GameObject explosion;
     public KeyCode fireKey = KeyCode.F;
     public CONTROLLER_BUTTON fireJoy = B;
     public float duration;
     public float shotCooldown;
     public bool[] shots = new bool[3] { true, true, true };
     public float shotTimer = 0;
-    [Range(0,50)]public float movement = .1f;
+    [Range(0, 50)] public float movement = .1f;
     public Animator _animator;
-
 
     private ushort playerIndex;
     private IList<GameObject> Projcopy = new List<GameObject>();
@@ -36,11 +36,10 @@ public class PlayerSpellShot : MonoBehaviour
             Projcopy.Add(Instantiate(projectial));
             projCounter.Add(0);
             direction.Add(transform.forward);
-            Projcopy[Projcopy.Count - 1].transform.position = transform.position + new Vector3(0.2f,1.5f,0);
+            Projcopy[Projcopy.Count - 1].transform.position = transform.position + new Vector3(0.2f, 1.5f, 0);
             Projcopy[Projcopy.Count - 1].transform.rotation = transform.rotation;
 
-            
-           // Projcopy[Projcopy.Count - 1].transform.position = transform.position;
+            // Projcopy[Projcopy.Count - 1].transform.position = transform.position;
 
             for (int a = shots.Length - 1; a >= 0; --a)
                 if (shots[a])
@@ -67,12 +66,14 @@ public class PlayerSpellShot : MonoBehaviour
                 }
         }
 
-
         for (int i = 0; i < projCounter.Count; i++)
         {
             //Remove all destroyed objects
             if (Projcopy[i] == null)
             {
+                var tmp = Projcopy[i].transform.position;
+                var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
+
                 Projcopy.RemoveAt(i);
                 projCounter.RemoveAt(i);
                 direction.RemoveAt(i);
@@ -84,8 +85,8 @@ public class PlayerSpellShot : MonoBehaviour
             //Object destruction after 5 seconds
             if (projCounter[i] >= duration)
             {
-                var explosion = (GameObject)Resources.Load("_Prefabs/fireballImpact");
-                explosion.transform.position = Projcopy[i].transform.position;
+                var tmp = Projcopy[i].transform.position;
+                var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
 
                 Debug.Log(direction[i]);
                 Destroy(Projcopy[i]);
