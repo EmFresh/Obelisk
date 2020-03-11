@@ -23,7 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 5;
 
-   public float speed = 0;
+    public float speed = 0;
+
+    [Tooltip("Value added to speed per update")] public float speedTime = 0.5f; 
 
     public float JumpHeight = 7;
 
@@ -62,9 +64,16 @@ public class PlayerMovement : MonoBehaviour
         // maxSpeed per character. Slower max speed for spellcaster, higher for Rogue
 
         //Rogue movement envelope is snappy and responsive.
-        speed += moveDirection.magnitude * 0.5f;
         if (speed > MaxSpeed)
             speed = MaxSpeed;
+
+        if (moveDirection.magnitude == 0)
+        {
+            if (speed > 0)
+                speed -= 0.25f;
+        }
+
+        speed += moveDirection.magnitude * speedTime;
 
         transform.position += moveDirection * speed * Time.deltaTime;
 
