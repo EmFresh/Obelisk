@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     public CONTROLLER_BUTTON jumpJoy = A;
 
-    public ParticleSystem walkParticles;
+    public ParticleSystem jumpParticles;
+    public ParticleSystem landParticles;
+
+    bool hasJumped = false;
 
     public bool enableKeyboard = false;
 
@@ -69,7 +72,8 @@ public class PlayerMovement : MonoBehaviour
         isGrounded == true)
         {
             rb.AddForce(0, JumpHeight, 0);
-            CreateWalkParticles();
+            CreateJumpParticles(gameObject.transform.position);
+            hasJumped = true;
             isGrounded = false;
 
             //Set jump animation to true
@@ -83,6 +87,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         isGrounded = true;
+        if (hasJumped)
+        {
+            CreateLandParticles(gameObject.transform.position);
+            hasJumped = false;
+        }
+
 
         //Set jump animation to false
         if (_animator)
@@ -90,10 +100,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void CreateWalkParticles()
+    void CreateJumpParticles(Vector3 playerPos)
     {
-        walkParticles.Play();
+        jumpParticles.transform.position = playerPos;
+        jumpParticles.Play();
     }
 
+
+    void CreateLandParticles(Vector3 playerPos)
+    {
+        landParticles.transform.position = playerPos;
+        landParticles.Play();
+    }
 
 }
