@@ -6,7 +6,57 @@ ModelImporter:
   - first:
       74: -6733580307047935323
     second: Armature|Armature|Armature|RoughAnimation|Armature|RoughAnimation
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dark Leather
+    second: {fileID: 2100000, guid: 2e0d01fd838559f4ea42e0242f07d7a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: 2875ffd24f633fd4a8086f5900d9b220, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gold
+    second: {fileID: 2100000, guid: 16f9b02aae485b04a8efc21ead4c60e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair
+    second: {fileID: 2100000, guid: 181d600e0fae21c4cbc61e6f14c90ec2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pants
+    second: {fileID: 2100000, guid: ca8cd811b910dc44e8c957de77903ec7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Silver
+    second: {fileID: 2100000, guid: 0f1211c143203af45ba138491242d603, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: f17468fc73cc02c42941f8c3d4a1334e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tanned Leather
+    second: {fileID: 2100000, guid: e95578a37d73b55459e70ec151dae11e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Undershirt
+    second: {fileID: 2100000, guid: 4583291d186a75949bf7326d3c120834, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Vest
+    second: {fileID: 2100000, guid: d6e99a1ae74ac1b4ab87498920cc212f, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

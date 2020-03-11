@@ -291,7 +291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56800052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11, y: 40.6, z: -17.1}
+  m_LocalPosition: {x: -13.27, y: 34.9, z: -17.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -968,6 +968,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RogueMenuPose
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651062367082650294, guid: 824211c235bde5c4aba2d965374222b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: -5637652675625914632, guid: 9e443d020cb0691498dbd5ae2c7a3c07,
+        type: 3}
+    - target: {fileID: 4874326156311524766, guid: 824211c235bde5c4aba2d965374222b5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 824211c235bde5c4aba2d965374222b5, type: 3}
@@ -1670,13 +1681,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005796448}
-  m_LocalRotation: {x: 0.23126656, y: 0.42241824, z: -0.112396784, w: 0.86916375}
+  m_LocalRotation: {x: 0.2853513, y: 0.31991205, z: -0.15976907, w: 0.8892158}
   m_LocalPosition: {x: -68, y: 56.4, z: -39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 29.8, y: 51.84, z: 0}
+  m_LocalEulerAnglesHint: {x: 37.568, y: 37.067, z: -7.3620005}
 --- !u!1001 &1010838575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2353,6 +2364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScale: {x: 5, y: 5, z: 1}
   targetScaleAfter: 1.3
+  hover: 
 --- !u!65 &1461625984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2595,6 +2607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScale: {x: 5, y: 5, z: 1}
   targetScaleAfter: 1.3
+  hover: 
 --- !u!65 &1531413072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2905,6 +2918,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScale: {x: 6, y: 6, z: 1}
   targetScaleAfter: 1.3
+  hover: 
 --- !u!65 &1585385776
 BoxCollider:
   m_ObjectHideFlags: 0

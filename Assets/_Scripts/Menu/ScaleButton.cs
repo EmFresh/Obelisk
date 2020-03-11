@@ -16,6 +16,9 @@ public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public float  targetScaleAfter;
     private Vector3 maxScale;
 
+    [FMODUnity.EventRef]
+    public string hover = "";
+    FMOD.Studio.EventInstance hoverEvent;
     private void Start()
     {
         maxScale = targetScale * targetScaleAfter;
@@ -37,7 +40,9 @@ public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (mouseOver)
         {
+            
             minScale = transform.localScale;
+            hoverEvent.start();
             transform.localScale = Vector2.Lerp(minScale, maxScale, .25f);
         }
 
