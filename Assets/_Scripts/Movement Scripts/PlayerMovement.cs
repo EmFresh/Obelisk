@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool enableKeyboard = false;
 
-    [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 15;
+    [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 5;
 
-    [HideInInspector] public float speed = 0;
+   public float speed = 0;
 
     public float JumpHeight = 7;
 
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = MaxSpeed;
+        speed = 0;
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
@@ -58,7 +58,20 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
+
+        // maxSpeed per character. Slower max speed for spellcaster, higher for Rogue
+
+        //Rogue movement envelope is snappy and responsive.
+        speed += moveDirection.magnitude * 0.5f;
+        if (speed > MaxSpeed)
+            speed = MaxSpeed;
+
         transform.position += moveDirection * speed * Time.deltaTime;
+
+
+        //Spellcaster isn't.
+
+
 
         //Set running animation base on input runnning direction
         if (_animator)
