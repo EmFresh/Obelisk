@@ -152,13 +152,13 @@ void Server::UpdateSend()
 	while (isServerRunning) {
 		if (status == ServerStatus::Lobby)
 		{
-			std::string line;
-			std::getline(std::cin, line);
+			//std::string line;
+			//std::getline(std::cin, line);
 
-			if (line.size() > 0)
-				//BroadcastMessageToAll(line);
-				//////For Testing
-				HandleSending(line, temp);
+			//if (line.size() > 0)
+			//	//BroadcastMessageToAll(line);
+			//	//////For Testing
+			//	HandleSending(line, temp);
 
 			// check for start game
 			if (checkAllStartPressed()) {

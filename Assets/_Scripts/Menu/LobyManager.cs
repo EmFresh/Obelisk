@@ -36,13 +36,13 @@ public class LobyManager : MonoBehaviour
         texts = new Text[] { RRtext, RWtext, BRtext, BWtext };
         updateText();
         updateImage();
-        chatBox.text = "Welcome " + NetworkControl.thisUser._name + ", you successful joined the game!";
+        chatBox.text = "Welcome " + NetworkControl.thisUser._name + ", you have successfully joined the game!";
         userCount = NetworkControl.users.Count;
         if (NetworkControl.users.Count != 0)
         {
             for (int i = 0; i < NetworkControl.users.Count; i++)
             {
-                chatBox.text = NetworkControl.users[i]._name + " join the game!\n" + chatBox.text;
+                chatBox.text = NetworkControl.users[i]._name + " joined the game!\n" + chatBox.text;
             }
         }
     }                                       
@@ -56,7 +56,7 @@ public class LobyManager : MonoBehaviour
         {
             for (int i = 0; i < NetworkControl.users.Count - userCount; i++)
             {
-                chatBox.text = NetworkControl.users[userCount + i]._name + " join the game!\n" + chatBox.text;
+                chatBox.text = NetworkControl.users[userCount + i]._name + " joined the game!\n" + chatBox.text;
             }
             userCount = NetworkControl.users.Count;
         }
@@ -68,7 +68,7 @@ public class LobyManager : MonoBehaviour
         {
             if(NetworkControl.seat[i] == 0)
             {
-                texts[i].text = "Click To Join";
+                texts[i].text = "Click to Join";
             }
             else
             {
