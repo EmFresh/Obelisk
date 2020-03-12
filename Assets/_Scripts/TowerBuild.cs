@@ -24,6 +24,7 @@ public class TowerBuild : MonoBehaviour
     private const int maxStages = 3;
 
     public GameObject chest;
+    //public GameObject spellcaster;
 
     //private bool initBuild = true;
     void OnTriggerStay(Collider obj)
@@ -33,7 +34,7 @@ public class TowerBuild : MonoBehaviour
 
         _animator.SetBool("isBuild", false);
 
-        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone 1")) || (obj.gameObject.CompareTag("Player 2") && this.gameObject.tag.Contains("Build Zone 2")))
+        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone 1")) || (obj.gameObject.CompareTag("Player 3") && this.gameObject.tag.Contains("Build Zone 2")))
             if (Input.GetKeyDown(buildKey) || isButtonDown(playerIndex, (int)buildJoy))
             {
                 if (stage < maxStages)
