@@ -34,7 +34,7 @@ public class PlayerPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gatherPercent == 0)
+        if (gatherPercent == 0)
         {
             icon.SetActive(false);
         }
@@ -48,7 +48,7 @@ public class PlayerPickup : MonoBehaviour
             keyPressed = true;
             timer = Time.time;
         }
-        else if ((Input.GetKeyUp(pickupKey) || (!Input.GetKey(pickupKey))) && 
+        else if ((Input.GetKeyUp(pickupKey) || (!Input.GetKey(pickupKey))) &&
             (isButtonReleased(playerIndex, (int)pickupJoy) || (!isButtonPressed(playerIndex, (int)pickupJoy))))
         {
             keyPressed = false;
@@ -181,6 +181,33 @@ public class PlayerPickup : MonoBehaviour
                 deletThis = false;
             }
             //}
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Resource(Wood)"))
+        {
+            //Debug.Log("hello");
+            timer = 0;
+            gatherPercent = 0;
+            _animator.SetBool("isGather", false);
+            woodCollision = false;
+        }
+        if (other.gameObject.CompareTag("Resource(Stone)"))
+        {
+            //Debug.Log("hello");
+            timer = 0;
+            gatherPercent = 0;
+            _animator.SetBool("isGather", false);
+            stoneCollision = false;
+        }
+        if (other.gameObject.CompareTag("Resource(Crystal)"))
+        {
+            //Debug.Log("hello");
+            timer = 0;
+            gatherPercent = 0;
+            _animator.SetBool("isGather", false);
+            crystalCollision = false;
         }
     }
 }

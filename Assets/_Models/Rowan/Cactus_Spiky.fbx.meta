@@ -3,7 +3,12 @@ guid: 24bc4ac5cd21e8e42811e4e401bc6840
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus Stalk
+    second: {fileID: 2100000, guid: 9a23cf65a9a86fc4783a4dd4a5235b4e, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

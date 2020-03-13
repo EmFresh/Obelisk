@@ -3,7 +3,22 @@ guid: 72776beb2abe4bc43923a8f3e32d9ff1
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus Flower Petals
+    second: {fileID: 2100000, guid: c743d167a9f62334d8c91be647fd9540, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus Flower Pistil
+    second: {fileID: 2100000, guid: 3a8a72e75e40a444f854544956ee05c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cactus Stalk
+    second: {fileID: 2100000, guid: edfb382bd0f48494cb9c1c1187154f2d, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
