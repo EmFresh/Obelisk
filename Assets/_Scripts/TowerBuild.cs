@@ -11,7 +11,7 @@ public class TowerBuild : MonoBehaviour
     public KeyCode buildKey = KeyCode.Tab;
     public CONTROLLER_BUTTON buildJoy = Y;
     public float spacing = 3;
-    [HideInInspector] public int stage=0;
+    [HideInInspector] public int stage = 0;
 
     public int woodNeeded;
     public int stoneNeeded;
@@ -61,7 +61,6 @@ public class TowerBuild : MonoBehaviour
                         Bounds obj2 = towerPart.GetComponent<MeshRenderer>().bounds;
                         Vector3 size1 = obj1.max - obj2.min, size2 = obj2.max - obj2.min;
 
-
                         //place the new object on top of the old one
                         towerPart.transform.position += new Vector3(0, obj1.size.y * 1.5f, 0);
 
@@ -71,7 +70,6 @@ public class TowerBuild : MonoBehaviour
                             //place the new object on top of the old one
                             towerPart.transform.position += new Vector3(0, obj1.size.y + spacing, 0);
                         }
-
 
                         //Rob / Lilian's solution IDK
                         //towerParts2[stage % towerParts.Count].SetActive(true);

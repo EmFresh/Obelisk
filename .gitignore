@@ -73,3 +73,7 @@ Assets/Plugins/
 Assets/Photon/
 
 Assets/Allegorithmic/
+
+Assets/StreamingAssets/
+
+*.log
