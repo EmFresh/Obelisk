@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using UnityEngine;
 using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
 using static Networking;
-
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private BoxCollider col_size;
+    [HideInInspector] public Vector3 lastPosition;
+    [HideInInspector] public Vector3 velocity;
+    [HideInInspector] public float dt;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         col_size = GetComponent<BoxCollider>();
         isGrounded = true;
 
-       
         //print("The Error:"+getLastError());
     }
 
@@ -53,7 +55,10 @@ public class PlayerMovement : MonoBehaviour
 
         moveDirection = transform.forward * y + transform.right * x;
         moveDirection = moveDirection.normalized;
+        lastPosition = transform.position;
         transform.position += moveDirection * speed * Time.deltaTime;
+        velocity = transform.position - lastPosition;
+        dt = Time.deltaTime;
 
         //Set running animation base on input runnning direction
         if (_animator)
@@ -64,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
         //If player is on the ground make player jump
         if ((isButtonDown(playerIndex, (int)jumpJoy) || Input.GetKey(KeyCode.Space)) &&
-        isGrounded == true)
+            isGrounded == true)
         {
             rb.AddForce(0, JumpHeight, 0);
             isGrounded = false;
@@ -85,6 +90,5 @@ public class PlayerMovement : MonoBehaviour
         if (_animator)
             _animator.SetBool("isJump", false);
     }
-
 
 }
