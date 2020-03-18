@@ -20,9 +20,10 @@ public class ObjectPool : MonoBehaviour
 
     //Create Object Pool as a Singleton
     #region Singleton
-    
+
+    public GameObject category;
     public static ObjectPool Instance;
-    
+
     private void Awake()
     {
         Instance = this;
@@ -43,7 +44,7 @@ public class ObjectPool : MonoBehaviour
         poolDict = new Dictionary<string, Queue<GameObject>>();
 
         //call all pools in the list of pool
-        foreach (Pool pool in pools)
+        foreach (var pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
@@ -52,6 +53,8 @@ public class ObjectPool : MonoBehaviour
             {
                 //Create a gameobject inside the game world
                 GameObject ob = Instantiate(pool.prefab);
+                ob.transform.parent = category.transform;
+                
                 //Set this gameobject unactive
                 ob.SetActive(false);
                 //Put new object at the end of queue
@@ -61,7 +64,7 @@ public class ObjectPool : MonoBehaviour
             //Save the name tag of the pool and the queue of objects into dictionary 
             poolDict.Add(pool.tag, objectPool);
         }
-    }   
+    }
 
     //using certain pool's name inside the pool dictionary to spawn object in certain position and rotation
     public GameObject SpawnObject(string tag, Vector3 pos, Quaternion rot, bool keepInQueue)
