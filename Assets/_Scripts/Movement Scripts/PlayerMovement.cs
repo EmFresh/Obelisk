@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         speed += moveDirection.magnitude * speedTime;
 
-        transform.position += moveDirection * speed * Time.deltaTime;
+        transform.position += 1 * moveDirection * speed * Time.deltaTime;
 
 
         //Spellcaster isn't.
