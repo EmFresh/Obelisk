@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
@@ -19,9 +20,10 @@ public class PlayerSpellShot : MonoBehaviour
     public Animator _animator;
 
     private ushort playerIndex;
-    private IList<GameObject> Projcopy = new List<GameObject>();
+    private IList<GameObject> projcopy = new List<GameObject>();
     private IList<float> projCounter = new List<float>();
     private IList<Vector3> direction = new List<Vector3>();
+    private IList<Vector3> position = new List<Vector3>();
 
     // Update is called once per frame
     void Update()
@@ -34,7 +36,8 @@ public class PlayerSpellShot : MonoBehaviour
         if ((Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy)) && shots[0])
         {
             _animator.SetBool("isShoot", true);
-            Projcopy.Add(Instantiate(projectial));
+            projcopy.Add(Instantiate(projectial));
+            projcopy.Last().GetComponent<FireballCollision>().caster = gameObject;
             projCounter.Add(0);
 
             var forw = transform.forward;
@@ -45,8 +48,9 @@ public class PlayerSpellShot : MonoBehaviour
             forw = Quaternion.Euler(directionOffset) * forw;
             direction.Add(forw);
 
-            Projcopy[Projcopy.Count - 1].transform.position = transform.position + new Vector3(0.2f, 1.5f, 0);
-            Projcopy[Projcopy.Count - 1].transform.rotation = transform.rotation;
+            position.Add(transform.position + new Vector3(0.2f, 1.5f, 0));
+            projcopy.Last().transform.position = position.Last();
+            projcopy.Last().transform.rotation = transform.rotation;
 
             // Projcopy[Projcopy.Count - 1].transform.position = transform.position;
 
@@ -78,14 +82,15 @@ public class PlayerSpellShot : MonoBehaviour
         for (int i = 0; i < projCounter.Count; i++)
         {
             //Remove all destroyed objects
-            if (Projcopy[i] == null)
+            if (projcopy[i] == null)
             {
-                var tmp = Projcopy[i].transform.position;
+                var tmp = position[i];
                 var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
 
-                Projcopy.RemoveAt(i);
+                projcopy.RemoveAt(i);
                 projCounter.RemoveAt(i);
                 direction.RemoveAt(i);
+                position.RemoveAt(i);
                 i--;
 
                 continue;
@@ -94,14 +99,15 @@ public class PlayerSpellShot : MonoBehaviour
             //Object destruction after 5 seconds
             if (projCounter[i] >= duration)
             {
-                var tmp = Projcopy[i].transform.position;
+                var tmp = projcopy[i].transform.position;
                 var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
 
-                Debug.Log(direction[i]);
-                Destroy(Projcopy[i]);
-                Projcopy.RemoveAt(i);
+                // Debug.Log(direction[i]);
+                Destroy(projcopy[i]);
+                projcopy.RemoveAt(i);
                 projCounter.RemoveAt(i);
                 direction.RemoveAt(i);
+                position.RemoveAt(i);
                 i--;
 
                 continue;
@@ -112,7 +118,8 @@ public class PlayerSpellShot : MonoBehaviour
             projCounter[i] += dt;
 
             //Move the object
-            Projcopy[i].transform.position += direction[i] * movement * Time.deltaTime;
+            position[i] += direction[i] * movement * Time.deltaTime;
+            projcopy[i].transform.position = position[i];
         }
     }
 }
