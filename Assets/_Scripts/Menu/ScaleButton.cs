@@ -1,21 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using FMOD.Studio;
 using FMODUnity;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
-    [FMODUnity.EventRef] public string Event;
+    [FMODUnity.EventRef] public string mouseOver;
+    [FMODUnity.EventRef] public string mouseClick;
     EventInstance instance;
     EventDescription eventDescription;
 
-    bool mouseOver = false;
-    bool mouseOverExit = false;
+    bool isMouseOver = false;
     Vector3 minScale;
     Vector3 currentScale;
     public Vector3 targetScale;
@@ -30,37 +30,34 @@ public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void Start()
     {
         maxScale = targetScale * targetScaleAfter;
-       eventDescription = RuntimeManager.GetEventDescription(Event);
+        eventDescription = RuntimeManager.GetEventDescription(mouseOver);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        mouseOver = true;
-        mouseOverExit = false;
+        isMouseOver = true;
+
         eventDescription.createInstance(out instance);
         instance.start();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        mouseOver = false;
-        mouseOverExit = true;
+        isMouseOver = false;
     }
 
     void Update()
     {
-        if (mouseOver)
+        if (isMouseOver)
         {
 
             minScale = transform.localScale;
-            //hoverEvent.start();
             transform.localScale = Vector2.Lerp(minScale, maxScale, .25f);
+            return;
         }
 
-        if (mouseOverExit)
-        {
-            currentScale = transform.localScale;
-            transform.localScale = Vector2.Lerp(currentScale, targetScale, .25f);
-        }
+        currentScale = transform.localScale;
+        transform.localScale = Vector2.Lerp(currentScale, targetScale, .25f);
+
     }
 }

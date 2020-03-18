@@ -123,7 +123,7 @@ public class PlayerPickup : MonoBehaviour
 
         if (!keyPressed)
         {
-            Debug.Log("Y do we play gaem");
+            //Debug.Log("Y do we play gaem");
             if (other.gameObject.CompareTag("Resource(Wood)"))
             {
                 //Debug.Log("hello");

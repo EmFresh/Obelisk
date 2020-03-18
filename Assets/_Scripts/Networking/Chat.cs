@@ -23,18 +23,18 @@ public class Chat : MonoBehaviour
 
     private void Awake()
     {
-        Networking.initNetwork();
-        serverIP = createIPEndpointData("localhost", 8888);
-        sock = initSocketData();
-
-        string test = "Strings are wack bro";
-        if (createSocket(ref sock, SocketType.UDP) != P_GenericError)
-        {
-            if (sendToPacket(ref sock, ref test, test.Length, ref serverIP) == P_GenericError)
-                print(getLastNetworkError());
-
-        }
-        print(getLastNetworkError());
+       // Networking.initNetwork();
+       // serverIP = createIPEndpointData("localhost", 8888);
+       // sock = initSocketData();
+       //
+       // string test = "Strings are wack bro";
+       // if (createSocket(ref sock, SocketType.UDP) != P_GenericError)
+       // {
+       //     if (sendToPacket(ref sock, ref test, test.Length, ref serverIP) == P_GenericError)
+       //         print(getLastNetworkError());
+       //
+       // }
+       // print(getLastNetworkError());
 
 
     }
@@ -42,7 +42,7 @@ public class Chat : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (closeSocket(ref sock) == P_GenericError) print(getLastNetworkError());
-        shutdownNetwork();
+       // if (closeSocket(ref sock) == P_GenericError) print(getLastNetworkError());
+       // shutdownNetwork();
     }
 }

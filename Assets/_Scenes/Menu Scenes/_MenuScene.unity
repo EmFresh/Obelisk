@@ -2445,7 +2445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69d11ab29a166541a8881d1840e636c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Button Over
+  mouseOver: event:/SFX/Button Over
+  mouseClick: 
   targetScale: {x: 5, y: 5, z: 1}
   targetScaleAfter: 1.3
 --- !u!65 &1461625984
@@ -2688,7 +2689,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69d11ab29a166541a8881d1840e636c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Button Over
+  mouseOver: event:/SFX/Button Over
+  mouseClick: 
   targetScale: {x: 5, y: 5, z: 1}
   targetScaleAfter: 1.3
 --- !u!65 &1531413072
@@ -3000,7 +3002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69d11ab29a166541a8881d1840e636c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Button Over
+  mouseOver: event:/SFX/Button Over
+  mouseClick: 
   targetScale: {x: 6, y: 6, z: 1}
   targetScaleAfter: 1.3
 --- !u!65 &1585385776
