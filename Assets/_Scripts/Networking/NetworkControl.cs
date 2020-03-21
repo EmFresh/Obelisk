@@ -4,8 +4,8 @@ using Unity.Jobs;
 using UnityEngine;
 using static Networking;
 using static Networking.PResult;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NetworkControl : MonoBehaviour
 {
@@ -21,28 +21,24 @@ public class NetworkControl : MonoBehaviour
 
     static SocketData sock;
     static IPEndpointData endp;
-    NetworkClientJob jobClient;
-    JobHandle hnd;
+    static NetworkLobyRecvJob jobLobyRecv;
+    static JobHandle hndLoby, hndGame;
     [HideInInspector] public static bool close;
-    [StructLayout(LayoutKind.Sequential)]
-    struct vec3
+
+    enum MessageType : int
     {
-        public float x, y, z;
-        public vec3(float x, float y, float z)
-        {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-        public static vec3 operator -(vec3 v1, vec3 v2) => new vec3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
-
-        public float length() => Mathf.Sqrt(x * x + y * y + z * z);
-
-        public static float dist(vec3 v1, vec3 v2) => (v1 - v2).length();
-
-        public override string ToString() => "(" + x + ", " + y + ", " + z + ")";
+        Movement,
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    public class Movement
+    {
+        MessageType type = MessageType.Movement;
+        int size = Marshal.SizeOf<Movement>();
+        public float dt;
+        public Vector3 pos, vel;
+        public Quaternion rot;
+    }
     public struct user
     {
         public user(string n, int d)
@@ -54,103 +50,104 @@ public class NetworkControl : MonoBehaviour
         public int _id;
     }
 
-    void PrintError(object msg) => Debug.LogError(msg);
-
-    public struct NetworkClientJob : IJob
+    public struct NetworkLobyRecvJob : IJob
     {
         public SocketData sock;
         public IPEndpointData endp;
         public void Execute()
         {
-            int size = 512, dump = 0;
+            int size = 512, dump=0;
             string recv = "";
             for (;;)
             {
                 bool printable = true;
-                if (recvFromPacket(ref sock, ref recv, size, ref dump, ref endp) == P_GenericError)
+                if (isNetworkInit)
                 {
-                    printable = false;
-                    Debug.LogError(getLastNetworkError());
-                }
-
-                if (printable)
-                {
-                    if (recv[0] == '@')
+                    if (recvFromPacket(in sock, out recv, size,  in endp) == P_GenericError)
                     {
-                        recv = recv.Substring(1);
-                        string[] strings = recv.Split(':');
-                        int index = 0;
+                        printable = false;
+                        PrintError(getLastNetworkError());
+                    }
 
-                        // update the user's id
-                        thisUser._id = int.Parse(strings[index]);
-                        index++;
-
-                        print(strings[index]);
-                        // update other users
-                        if (strings[index] != "0")
+                    if (printable)
+                    {
+                        if (recv[0] == '@')
                         {
-                            int t = int.Parse(strings[index]);
-                            for (int i = 0; i < t; i++)
+                            recv = recv.Substring(1);
+                            string[] strings = recv.Split(':');
+                            int index = 0;
+
+                            // update the user's id
+                            thisUser._id = int.Parse(strings[index]);
+                            index++;
+
+                            print(strings[index]);
+                            // update other users
+                            if (strings[index] != "0")
                             {
+                                int t = int.Parse(strings[index]);
+                                for (int i = 0; i < t; i++)
+                                {
+                                    index++;
+                                    users.Add(new user(strings[index], int.Parse(strings[index + 1])));
+                                    index++;
+                                }
+                            }
+                            // update seat status
+                            index++;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                print(strings[index]);
+                                seat[i] = int.Parse(strings[index]);
                                 index++;
-                                users.Add(new user(strings[index], int.Parse(strings[index + 1])));
+                            }
+                            // update start status
+                            for (int i = 0; i < 4; i++)
+                            {
+                                start[i] = int.Parse(strings[index]);
+                                index++;
+                            }
+                            // go next scene
+                            goLobby = true;
+                        }
+                        else if (recv[0] == '!')
+                        {
+                            recv = recv.Substring(1);
+                            string[] strings = recv.Split(':');
+                            users.Add(new user(strings[0], int.Parse(strings[1])));
+                            print(strings[0] + "join");
+                        }
+                        else if (recv[0] == '#')
+                        {
+                            recv = recv.Substring(2);
+                            string[] strings = recv.Split(':');
+                            int index = 0;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                print(strings[index] + ":");
+                                seat[i] = int.Parse(strings[index]);
                                 index++;
                             }
                         }
-                        // update seat status
-                        index++;
-                        for (int i = 0; i < 4; i++)
+                        else if (recv[0] == '%')
                         {
-                            print(strings[index]);
-                            seat[i] = int.Parse(strings[index]);
-                            index++;
+                            print(recv);
+                            recv = recv.Substring(2);
+                            string[] strings = recv.Split(':');
+                            int index = 0;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                start[i] = int.Parse(strings[index]);
+                                index++;
+                            }
                         }
-                        // update start status
-                        for (int i = 0; i < 4; i++)
+                        else if (recv[0] == '$')
                         {
-                            start[i] = int.Parse(strings[index]);
-                            index++;
+                            goGame = true;
                         }
-                        // go next scene
-                        goLobby = true;
+                        else
+                            print(recv);
                     }
-                    else if (recv[0] == '!')
-                    {
-                        recv = recv.Substring(1);
-                        string[] strings = recv.Split(':');
-                        users.Add(new user(strings[0], int.Parse(strings[1])));
-                        print(strings[0] + "join");
-                    }
-                    else if (recv[0] == '#')
-                    {
-                        recv = recv.Substring(2);
-                        string[] strings = recv.Split(':');
-                        int index = 0;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            print(strings[index] + ":");
-                            seat[i] = int.Parse(strings[index]);
-                            index++;
-                        }
-                    }
-                    else if (recv[0] == '%')
-                    {
-                        print(recv);
-                        recv = recv.Substring(2);
-                        string[] strings = recv.Split(':');
-                        int index = 0;
-                        for (int i = 0; i < 4; i++)
-                        {
-                            start[i] = int.Parse(strings[index]);
-                            index++;
-                        }
-                    }
-                    else if (recv[0] == '$')
-                    {
-                        goGame = true;
-                    }
-                    else
-                        print(recv);
                 }
 
                 if (NetworkControl.close)
@@ -160,23 +157,51 @@ public class NetworkControl : MonoBehaviour
         }
     }
 
+    public struct NetworkGameJob : IJob
+    {
+        public SocketData sock;
+        public IPEndpointData endp;
+
+        public void Execute()
+        {
+
+        }
+    }
     #region Singleton
-    public static NetworkControl Instance;
+    public static NetworkControl inst;
 
     private void Awake()
     {
-        if(Instance == null)
+        if (inst == null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            inst = this;
+            DontDestroyOnLoad(inst);
         }
-        else
+        if (!ipText)
+            ipText = inst.ipText;
+
+        if (!nameText)
+            nameText = inst.nameText;
+
+        if (ipText)
         {
-            Destroy(gameObject);
+            if (inst.ipText != ipText)
+                Destroy(inst.ipText);
+            DontDestroyOnLoad(ipText);
         }
+        if (nameText)
+        {
+            if (inst.nameText != nameText)
+                Destroy(inst.nameText);
+            DontDestroyOnLoad(nameText);
+        }
+
+        inst.ipText = ipText;
+        inst.nameText = nameText;
     }
     #endregion
 
+    #region Loby
     public void connectToInternet()
     {
 
@@ -186,64 +211,65 @@ public class NetworkControl : MonoBehaviour
         thisUser._name = userName;
 
         // Create UDP Client
-        shutdownNetwork(); //just incase there was some sort of error last time
+
+        shutdownNetwork();
+        close = true; //close the running job
+        closeSocket(in sock);
+        hndLoby.Complete();
+
         Networking.initNetwork();
+
         endp = createIPEndpointData(serverAddr, 8888);
         sock = initSocketData();
-
-        if (createSocket(ref sock, SocketType.UDP) == P_GenericError)
+        if (createSocket(in sock, SocketType.UDP) == P_GenericError)
             Debug.LogError(getLastNetworkError());
 
-        if (connectEndpoint(ref endp, ref sock) == P_GenericError)
+        if (connectEndpoint(in endp, in sock) == P_GenericError)
             Debug.LogError(getLastNetworkError());
 
-        jobClient = new NetworkClientJob()
+        jobLobyRecv = new NetworkLobyRecvJob()
         {
             sock = sock,
             endp = endp
         };
-        hnd = jobClient.Schedule(); //schedules the job to start asynchronously like std::detach in c++
+        close = false;
+        hndLoby = jobLobyRecv.Schedule(); //schedules the job to start asynchronously like std::detach in c++
 
         string tmp = "@" + userName;
 
-        int dump = 0;
-
-        if (sendToPacket(ref sock, ref tmp, ref dump, ref endp) == P_GenericError)
+        if (sendToPacket(in sock, in tmp, 512, in endp) == P_GenericError)
         {
             Debug.LogError(getLastNetworkError());
         }
 
     }
 
-    static public void sendSeatSelection(int idex)
+    static public void sendSeatSelection(int index)
     {
         if (!checkUserStart())
         {
-            if (seat[idex] == 0 && !checkUserInSeat())
+            if (seat[index] == 0 && !checkUserInSeat())
             {
-                string tmp = "#" + idex + thisUser._id;
+                string tmp = "#" + index + thisUser._id;
 
-                int dump = 0;
-
-                if (sendToPacket(ref sock, ref tmp, ref dump, ref endp) == P_GenericError)
+                if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
                 {
                     Debug.LogError(getLastNetworkError());
                 }
             }
-            if (seat[idex] == 0 && checkUserInSeat())
+            if (seat[index] == 0 && checkUserInSeat())
             {
-                int dump = 0;
 
                 string tmp = "$" + thisUser._id;
 
-                if (sendToPacket(ref sock, ref tmp, ref dump, ref endp) == P_GenericError)
+                if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
                 {
                     Debug.LogError(getLastNetworkError());
                 }
 
-                tmp = "#" + idex + thisUser._id;
+                tmp = "#" + index + thisUser._id;
 
-                if (sendToPacket(ref sock, ref tmp, ref dump, ref endp) == P_GenericError)
+                if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
                 {
                     Debug.LogError(getLastNetworkError());
                 }
@@ -255,11 +281,10 @@ public class NetworkControl : MonoBehaviour
     {
         if (checkUserInSeat())
         {
-            int dump = 0;
 
             string tmp = "%" + thisUser._id;
 
-            if (sendToPacket(ref sock, ref tmp, ref dump, ref endp) == P_GenericError)
+            if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
             {
                 Debug.LogError(getLastNetworkError());
             }
@@ -269,9 +294,9 @@ public class NetworkControl : MonoBehaviour
     static bool checkUserInSeat()
     {
         bool inSeat = false;
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
-            if(seat[i] == thisUser._id)
+            if (seat[i] == thisUser._id)
             {
                 inSeat = true;
                 break;
@@ -299,7 +324,7 @@ public class NetworkControl : MonoBehaviour
         string name = "";
         if (id == thisUser._id)
             return thisUser._name;
-        for(int i = 0; i<users.Count; i++)
+        for (int i = 0; i < users.Count; i++)
         {
             if (users[i]._id == id)
             {
@@ -309,12 +334,13 @@ public class NetworkControl : MonoBehaviour
         }
         return name;
     }
+    #endregion
 
     private void Start()
     {
         seat = new int[] { 0, 0, 0, 0 };
         start = new int[] { 0, 0, 0, 0 };
-        users = new List<user> { };
+        users = new List<user> {};
     }
 
     private void Update()
@@ -338,8 +364,9 @@ public class NetworkControl : MonoBehaviour
     {
         close = true;
 
-        closeSocket(ref sock);
-        shutdownNetwork();
-        hnd.Complete(); //should be the same as thread::join in c++
+        if (!shutdownNetwork())
+            PrintError(getLastNetworkError());
+        closeSocket(in sock);
+        hndLoby.Complete(); //should be the same as thread::join in c++
     }
 }

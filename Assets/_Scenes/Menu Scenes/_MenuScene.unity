@@ -273,7 +273,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2197,8 +2197,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1411976509}
   - component: {fileID: 1411976508}
-  - component: {fileID: 1411976507}
   - component: {fileID: 1411976510}
+  - component: {fileID: 1411976507}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2206,14 +2206,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1411976507
-AudioListener:
+--- !u!114 &1411976507
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411976506}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ListenerNumber: -1
 --- !u!20 &1411976508
 Camera:
   m_ObjectHideFlags: 0
@@ -2446,7 +2451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOver: event:/SFX/Button Over
-  mouseClick: 
+  mouseClick: event:/SFX/Button Press
   targetScale: {x: 5, y: 5, z: 1}
   targetScaleAfter: 1.3
 --- !u!65 &1461625984
@@ -2690,7 +2695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOver: event:/SFX/Button Over
-  mouseClick: 
+  mouseClick: event:/SFX/Button Press
   targetScale: {x: 5, y: 5, z: 1}
   targetScaleAfter: 1.3
 --- !u!65 &1531413072
@@ -2845,7 +2850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350eefd0de513724c96b162440c00cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/Button Press
+  Event: event:/SFX/Button Press
   scene: 
 --- !u!114 &1549001999
 MonoBehaviour:
@@ -3003,7 +3008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseOver: event:/SFX/Button Over
-  mouseClick: 
+  mouseClick: event:/SFX/Button Press
   targetScale: {x: 6, y: 6, z: 1}
   targetScaleAfter: 1.3
 --- !u!65 &1585385776

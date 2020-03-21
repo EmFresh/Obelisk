@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using FMOD.Studio;
+﻿using FMOD.Studio;
 using FMODUnity;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -13,7 +9,7 @@ public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [FMODUnity.EventRef] public string mouseOver;
     [FMODUnity.EventRef] public string mouseClick;
     EventInstance instance;
-    EventDescription eventDescription;
+    EventDescription overDescription, clickDescription;
 
     bool isMouseOver = false;
     Vector3 minScale;
@@ -30,20 +26,23 @@ public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private void Start()
     {
         maxScale = targetScale * targetScaleAfter;
-        eventDescription = RuntimeManager.GetEventDescription(mouseOver);
+        overDescription = RuntimeManager.GetEventDescription(mouseOver);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         isMouseOver = true;
-
-        eventDescription.createInstance(out instance);
+        instance.release();
+        overDescription.createInstance(out instance);
         instance.start();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isMouseOver = false;
+        instance.release();
+        clickDescription.createInstance(out instance);
+        instance.start();
     }
 
     void Update()
