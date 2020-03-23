@@ -164,6 +164,11 @@ public class Networking
     ///<summary>
     ///Send packet over TCP server. Not guaranteed to send all bytes.
     ///</summary>
+    public static PResult sendPacket<T>(in SocketData soc, in T data, out int bytesSent) => sendPacket(soc, data, Marshal.SizeOf<T>(), out bytesSent);
+
+    ///<summary>
+    ///Send packet over TCP server. Not guaranteed to send all bytes.
+    ///</summary>
     public static PResult sendPacket(in SocketData soc, in string data, int datasize, out int bytesSent)
     {
         IntPtr tmp = Marshal.StringToHGlobalAnsi(data);
@@ -175,8 +180,14 @@ public class Networking
     ///<summary>
     ///Send packet over TCP server. Not guaranteed to send all bytes.
     ///</summary>
-    public static PResult sendPacket(in SocketData soc, in string data, int datasize)
+    public static PResult sendPacket(in SocketData soc, in string data, out int bytesSent) => sendPacket(soc, data, data.Length + 1, out bytesSent);
+
+    ///<summary>
+    ///Send packet over TCP server. Not guaranteed to send all bytes.
+    ///</summary>
+    public static PResult sendPacket(in SocketData soc, in string data, int datasize = -1)
     {
+        datasize = datasize >= 0 ? datasize : data.Length + 1;
         IntPtr tmp = Marshal.StringToHGlobalAnsi(data);
         int bytesSent = 0;
         PResult res = sendPacketData(in soc, tmp, datasize, out bytesSent);
@@ -191,7 +202,7 @@ public class Networking
     public static PResult recvPacket<T>(in SocketData soc, out T dest, int numberOfBytes, out int bytesRecv)
     {
 
-        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
+        IntPtr tmp = Marshal.AllocHGlobal(numberOfBytes);
         //Marshal.StructureToPtr(dest, tmp, true);
         bytesRecv = 0;
         PResult res = recvPacketData(in soc, tmp, numberOfBytes, out bytesRecv);
@@ -202,6 +213,11 @@ public class Networking
 
         return res;
     }
+    ///<summary>
+    ///Receive packet over TCP server. Not guaranteed to recieve all bytes.
+    ///</summary>
+    public static PResult recvPacket<T>(in SocketData soc, out T dest, out int bytesRecv) => recvPacket(soc, out dest, Marshal.SizeOf<T>(), out bytesRecv);
+
     ///<summary>
     ///Receive packet over TCP server. Not guaranteed to recieve all bytes.
     ///</summary>
@@ -239,8 +255,10 @@ public class Networking
     ///<summary>
     ///Send entire packet over TCP server. guaranteed to send all bytes.
     ///</summary>
-    public static PResult sendAllPacket<T>(in SocketData soc, in T data, int numberOfBytes)
+    public static PResult sendAllPacket<T>(in SocketData soc, in T data, int numberOfBytes = -1)
     {
+        numberOfBytes = numberOfBytes >= 0 ? numberOfBytes : Marshal.SizeOf<T>();
+
         IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
         Marshal.StructureToPtr(data, tmp, true);
         PResult res = sendAllPacketData(in soc, tmp, numberOfBytes);
@@ -252,20 +270,12 @@ public class Networking
     ///<summary>
     ///Send entire packet over TCP server. guaranteed to send all bytes.
     ///</summary>
-    public static PResult sendAllPacket(in SocketData soc, in string data, int numberOfBytes)
+    public static PResult sendAllPacket(in SocketData soc, in string data, int numberOfBytes = -1)
     {
+        numberOfBytes = numberOfBytes >= 0 ? numberOfBytes : data.Length + 1;
+
         IntPtr tmp = Marshal.StringToHGlobalAnsi(data);
         PResult res = sendAllPacketData(in soc, tmp, numberOfBytes);
-
-        return res;
-    }
-    ///<summary>
-    ///Send entire packet over TCP server. guaranteed to send all bytes.
-    ///</summary>
-    public static PResult sendAllPacket(in SocketData soc, in string data)
-    {
-        IntPtr tmp = Marshal.StringToHGlobalAnsi(data);
-        PResult res = sendAllPacketData(in soc, tmp, data.Length + 1);
 
         return res;
     }
@@ -274,9 +284,12 @@ public class Networking
     ///<summary>
     ///Receive entire packet over TCP server. guaranteed to recieve all bytes.
     ///</summary>
-    public static PResult recvAllPacket<T>(in SocketData soc, out T dest, int numberOfBytes)
+    public static PResult recvAllPacket<T>(in SocketData soc, out T dest, int numberOfBytes = -1)
     {
-        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
+
+        numberOfBytes = numberOfBytes >= 0 ? numberOfBytes : Marshal.SizeOf<T>();
+
+        IntPtr tmp = Marshal.AllocHGlobal(numberOfBytes);
         //Marshal.StructureToPtr(dest, tmp, true);
         PResult res = recvAllPacketData(in soc, tmp, numberOfBytes);
         dest = default(T);
@@ -309,7 +322,7 @@ public class Networking
     ///</summary>
     public static PResult recvFromPacket<T>(in SocketData soc, out T data, int numberOfBytes, out int bytesRecv, in IPEndpointData ip)
     {
-        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
+        IntPtr tmp = Marshal.AllocHGlobal(numberOfBytes);
         bytesRecv = 0;
         PResult res = recvFromPacketDataEx(in soc, tmp, numberOfBytes, out bytesRecv, in ip);
         data = default(T);
@@ -319,6 +332,11 @@ public class Networking
 
         return res;
     }
+    ///<summary>
+    ///Receive packet over UDP server. Not guaranteed to recieve all bytes.
+    ///</summary>
+    public static PResult recvFromPacket<T>(in SocketData soc, out T data, out int bytesRecv, in IPEndpointData ip) => recvFromPacket(soc, out data, Marshal.SizeOf<T>(), out bytesRecv, ip);
+
     ///<summary>
     ///Receive packet over UDP server. Not guaranteed to recieve all bytes.
     ///</summary>
@@ -339,7 +357,7 @@ public class Networking
     ///</summary>
     public static PResult recvFromPacket<T>(in SocketData soc, out T data, int numberOfBytes, in IPEndpointData ip)
     {
-        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
+        IntPtr tmp = Marshal.AllocHGlobal(numberOfBytes);
         PResult res = recvFromPacketData(in soc, tmp, numberOfBytes, in ip);
         data = default(T);
         if (res == PResult.P_Success)
@@ -348,6 +366,11 @@ public class Networking
 
         return res;
     }
+    ///<summary>
+    ///Receive packet over UDP server. Not guaranteed to recieve all bytes.
+    ///</summary>
+    public static PResult recvFromPacket<T>(in SocketData soc, out T data, in IPEndpointData ip) => recvFromPacket(soc, out data, Marshal.SizeOf<T>(), ip);
+
     ///<summary>
     ///Receive packet over UDP server. Not guaranteed to recieve all bytes.
     ///</summary>
@@ -369,7 +392,7 @@ public class Networking
     ///</summary>
     public static PResult sendToPacket<T>(in SocketData soc, in T data, int numberOfBytes, out int bytesSent, in IPEndpointData ip)
     {
-        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>(data));
+        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
         Marshal.StructureToPtr(data, tmp, true);
         bytesSent = 0;
         PResult res = sendToPacketDataEx(in soc, tmp, numberOfBytes, out bytesSent, in ip);
@@ -377,6 +400,11 @@ public class Networking
 
         return res;
     }
+    ///<summary>
+    ///Send packet over UDP server. Not guaranteed to send all bytes.
+    ///</summary>
+    public static PResult sendToPacket<T>(in SocketData soc, in T data, out int bytesSent, in IPEndpointData ip) => sendToPacket(soc, data, Marshal.SizeOf<T>(), out bytesSent, ip);
+
     ///<summary>
     ///Send packet over UDP server. Not guaranteed to send all bytes.
     ///</summary>
@@ -391,14 +419,7 @@ public class Networking
     ///<summary>
     ///Send packet over UDP server. Not guaranteed to send all bytes.
     ///</summary>
-    public static PResult sendToPacket(in SocketData soc, in string data, out int bytesSent, in IPEndpointData ip)
-    {
-        IntPtr tmp = Marshal.StringToHGlobalAnsi(data);
-        bytesSent = 0;
-        PResult res = sendToPacketDataEx(in soc, tmp, data.Length + 1, out bytesSent, in ip);
-
-        return res;
-    }
+    public static PResult sendToPacket(in SocketData soc, in string data, out int bytesSent, in IPEndpointData ip) => sendToPacket(soc, data, data.Length + 1, out bytesSent, ip);
 
     [DllImport(DLL)] private static extern PResult sendToPacketData(in SocketData soc, IntPtr data, int numberOfBytes, in IPEndpointData ip);
     ///<summary>
@@ -406,13 +427,18 @@ public class Networking
     ///</summary>
     public static PResult sendToPacket<T>(in SocketData soc, in T data, int numberOfBytes, in IPEndpointData ip)
     {
-        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>(data));
+        IntPtr tmp = Marshal.AllocHGlobal(Marshal.SizeOf<T>());
         Marshal.StructureToPtr(data, tmp, true);
         PResult res = sendToPacketData(in soc, tmp, numberOfBytes, in ip);
         Marshal.FreeHGlobal(tmp);
 
         return res;
     }
+    ///<summary>
+    ///Send packet over UDP server. Not guaranteed to send all bytes.
+    ///</summary>
+    public static PResult sendToPacket<T>(in SocketData soc, in T data, in IPEndpointData ip) => sendToPacket(soc, data, Marshal.SizeOf<T>(), ip);
+
     ///<summary>
     ///Send packet over UDP server. Not guaranteed to send all bytes.
     ///</summary>
@@ -423,15 +449,10 @@ public class Networking
 
         return res;
     }
+
     ///<summary>
     ///Send packet over UDP server. Not guaranteed to send all bytes.
     ///</summary>
-    public static PResult sendToPacket(in SocketData soc, in string data, in IPEndpointData ip)
-    {
-        IntPtr tmp = Marshal.StringToHGlobalAnsi(data);
-        PResult res = sendToPacketData(in soc, tmp, data.Length + 1, in ip);
-
-        return res;
-    }
+    public static PResult sendToPacket(in SocketData soc, in string data, in IPEndpointData ip) => sendToPacket(soc, data, data.Length + 1, ip);
 
 }

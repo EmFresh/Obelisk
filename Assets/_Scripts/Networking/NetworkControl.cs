@@ -50,20 +50,22 @@ public class NetworkControl : MonoBehaviour
         public int _id;
     }
 
+    #region IJobs
+
     public struct NetworkLobyRecvJob : IJob
     {
         public SocketData sock;
-        public IPEndpointData endp;
+        public IPEndpointData ip;
         public void Execute()
         {
-            int size = 512, dump=0;
+            int size = 512, dump = 0;
             string recv = "";
             for (;;)
             {
                 bool printable = true;
                 if (isNetworkInit)
                 {
-                    if (recvFromPacket(in sock, out recv, size,  in endp) == P_GenericError)
+                    if (recvFromPacket(sock, out recv, size, ip) == P_GenericError)
                     {
                         printable = false;
                         PrintError(getLastNetworkError());
@@ -157,16 +159,23 @@ public class NetworkControl : MonoBehaviour
         }
     }
 
-    public struct NetworkGameJob : IJob
+    public struct NetworkGameRecvJob : IJob
     {
         public SocketData sock;
-        public IPEndpointData endp;
+        public IPEndpointData ip;
+
+        public Movement move;
 
         public void Execute()
         {
-
+            if(isNetworkInit)
+            {
+                recvFromPacket(sock, out move, ip);
+            }
         }
     }
+    #endregion
+
     #region Singleton
     public static NetworkControl inst;
 
@@ -214,30 +223,30 @@ public class NetworkControl : MonoBehaviour
 
         shutdownNetwork();
         close = true; //close the running job
-        closeSocket(in sock);
+        closeSocket(sock);
         hndLoby.Complete();
 
         Networking.initNetwork();
 
         endp = createIPEndpointData(serverAddr, 8888);
         sock = initSocketData();
-        if (createSocket(in sock, SocketType.UDP) == P_GenericError)
+        if (createSocket(sock, SocketType.UDP) == P_GenericError)
             Debug.LogError(getLastNetworkError());
 
-        if (connectEndpoint(in endp, in sock) == P_GenericError)
+        if (connectEndpoint(endp, sock) == P_GenericError)
             Debug.LogError(getLastNetworkError());
 
         jobLobyRecv = new NetworkLobyRecvJob()
         {
             sock = sock,
-            endp = endp
+            ip = endp
         };
         close = false;
-        hndLoby = jobLobyRecv.Schedule(); //schedules the job to start asynchronously like std::detach in c++
+        hndLoby = jobLobyRecv.Schedule(); //schedules the job to start asynchronously like std::detach c++
 
         string tmp = "@" + userName;
 
-        if (sendToPacket(in sock, in tmp, 512, in endp) == P_GenericError)
+        if (sendToPacket(sock, tmp, 512, endp) == P_GenericError)
         {
             Debug.LogError(getLastNetworkError());
         }
@@ -252,7 +261,7 @@ public class NetworkControl : MonoBehaviour
             {
                 string tmp = "#" + index + thisUser._id;
 
-                if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
+                if (sendToPacket(sock, tmp, endp) == P_GenericError)
                 {
                     Debug.LogError(getLastNetworkError());
                 }
@@ -262,14 +271,14 @@ public class NetworkControl : MonoBehaviour
 
                 string tmp = "$" + thisUser._id;
 
-                if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
+                if (sendToPacket(sock, tmp, endp) == P_GenericError)
                 {
                     Debug.LogError(getLastNetworkError());
                 }
 
                 tmp = "#" + index + thisUser._id;
 
-                if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
+                if (sendToPacket(sock, tmp, endp) == P_GenericError)
                 {
                     Debug.LogError(getLastNetworkError());
                 }
@@ -284,7 +293,7 @@ public class NetworkControl : MonoBehaviour
 
             string tmp = "%" + thisUser._id;
 
-            if (sendToPacket(in sock, in tmp, in endp) == P_GenericError)
+            if (sendToPacket(sock, tmp, endp) == P_GenericError)
             {
                 Debug.LogError(getLastNetworkError());
             }
@@ -366,7 +375,7 @@ public class NetworkControl : MonoBehaviour
 
         if (!shutdownNetwork())
             PrintError(getLastNetworkError());
-        closeSocket(in sock);
-        hndLoby.Complete(); //should be the same as thread::join in c++
+        // closeSocket(sock);
+        hndLoby.Complete(); //should be the same as thread::join c++
     }
 }
