@@ -9,14 +9,23 @@
 
 #define PORT "8888" 
 #define BUF_LEN 512
+#define reclass(a_class, a_val) (*(a_class*)&(a_val))
 
-enum class ServerStatus
+enum class ServerStatus:int
 {
 	Lobby = 1,
 	Game = 2,
 };
 
-class Server {
+enum class MessageType:int
+{
+	Unknown,
+	Movement,
+};
+
+
+class Server
+{
 public:
 	Server();
 	~Server();
@@ -25,9 +34,7 @@ public:
 	void UpdateRecv();// Handle the receiving loop
 	void UpdateSend();// Handle the sending loop
 	void HandleSending(std::string _message, struct sockaddr_in _adress);// Send a string to certain adress
-	void HandleSending(char* _message, struct sockaddr_in _adress);// Send a char* to certain adress
 	void BroadcastMessageToAll(std::string _message);// Send a string to all users (Also print in command)
-	void BroadcastMessageToAll(char* _message);// Send a char* to all users (Also print in command)
 	void CloseServer();// Shutdown server
 
 	void join(std::string _name, struct sockaddr_in _adress);// Process when a new player join server
@@ -42,7 +49,7 @@ public:
 
 private:
 	SOCKET server_socket;
-	struct addrinfo hints, *ptr;
+	struct addrinfo hints, * ptr;
 	char recv_buf[BUF_LEN];
 
 	AllUsers users;

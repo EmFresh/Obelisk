@@ -3,27 +3,16 @@
 #include <thread>
 
 Server myServer;
-std::thread receiveThread, sendThread;
 
-void receiveFunction() {
-	myServer.UpdateRecv();
-}
-
-void sendFunction() {
-	myServer.UpdateSend();
-	exit(0);
-}
-
-int main() {
+int main()
+{
+	atexit([](){myServer.CloseServer(); });//cleans up server once program exits
 	myServer.CreateServer();
 
-	std::thread receiveThread = std::thread(receiveFunction);
-	std::thread sendThread = std::thread(sendFunction);
+	std::thread receiveThread = std::thread([](){myServer.UpdateRecv();	});
+	std::thread sendThread = std::thread([](){myServer.UpdateSend(); });
 
-	receiveThread.join();
-	sendThread.join();
-
-	myServer.CloseServer();
+	while(true)if(!myServer.isServerRunning)break;
 
 	return 0;
 }

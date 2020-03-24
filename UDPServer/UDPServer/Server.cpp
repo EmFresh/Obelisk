@@ -18,7 +18,21 @@ Server::Server()
 }
 
 Server::~Server()
+{}
+
+//takes a string and splits it using the seperator character(s)
+std::vector<std::string> split(std::string str, const char* seperators)
 {
+	std::vector<std::string> ans;
+	char* tmp = strtok_s((char*)str.c_str(), seperators, nullptr);
+	ans.push_back(tmp);
+
+	while(tmp)
+	{
+		tmp = strtok_s(nullptr, seperators, nullptr);
+		if(tmp)	ans.push_back(tmp);
+	}
+	return ans;
 }
 
 void Server::CreateServer()
@@ -29,7 +43,8 @@ void Server::CreateServer()
 	int error;
 	error = WSAStartup(MAKEWORD(2, 2), &wsa);
 
-	if (error != 0) {
+	if(error != 0)
+	{
 		printf("Failed to initialize %d\n", error);
 		return;
 	}
@@ -41,7 +56,8 @@ void Server::CreateServer()
 	hints.ai_protocol = IPPROTO_UDP;
 	hints.ai_flags = AI_PASSIVE;
 
-	if (getaddrinfo(NULL, PORT, &hints, &ptr) != 0) {
+	if(getaddrinfo(NULL, PORT, &hints, &ptr) != 0)
+	{
 		printf("Getaddrinfo failed!! %d\n", WSAGetLastError());
 		WSACleanup();
 		return;
@@ -49,14 +65,16 @@ void Server::CreateServer()
 
 	server_socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
-	if (server_socket == INVALID_SOCKET) {
+	if(server_socket == INVALID_SOCKET)
+	{
 		printf("Failed creating a socket %d\n", WSAGetLastError());
 		WSACleanup();
 		return;
 	}
 
 	// Bind socket
-	if (bind(server_socket, ptr->ai_addr, (int)ptr->ai_addrlen) == SOCKET_ERROR) {
+	if(bind(server_socket, ptr->ai_addr, (int)ptr->ai_addrlen) == SOCKET_ERROR)
+	{
 		printf("Bind failed: %d\n", WSAGetLastError());
 		closesocket(server_socket);
 		freeaddrinfo(ptr);
@@ -69,16 +87,18 @@ void Server::CreateServer()
 
 void Server::UpdateRecv()
 {
-	while (isServerRunning) {
-		if (status == ServerStatus::Lobby)
+	while(isServerRunning)
+	{
+		if(status == ServerStatus::Lobby)
 		{
 			struct sockaddr_in fromAddr;
 			int fromlen;
 			fromlen = sizeof(fromAddr);
 			memset(recv_buf, 0, BUF_LEN);
-			if (recvfrom(server_socket, recv_buf, sizeof(recv_buf), 0, (struct sockaddr*) & fromAddr, &fromlen) == SOCKET_ERROR) {
+			if(recvfrom(server_socket, recv_buf, sizeof(recv_buf), 0, (struct sockaddr*) & fromAddr, &fromlen) == SOCKET_ERROR)
+			{
 				printf("recvfrom() failed...%d\n", WSAGetLastError());
-				return;
+				continue;//goes to the top of the while loop
 			}
 
 			//////For Testing
@@ -88,59 +108,124 @@ void Server::UpdateRecv()
 			std::string message = std::string(recv_buf);
 			char code = message[0];
 
-			// Join require
-			if (code == '@') {
+			////what you had before//
+			//// Join require
+			//if(code == '@')
+			//{
+			//	message.erase(0, 1);
+			//	join(message, fromAddr);
+			//}
+			//// Seat require
+			//else if(code == '#')
+			//{
+			//	message.erase(0, 1);
+			//	int seatId = message[0] - '0';
+			//	message.erase(0, 1);
+			//	int userId = std::stoi(message);
+			//	takeSeat(userId, seatId);
+			//}
+			//// Player leave seat
+			//else if(code == '$')
+			//{
+			//	message.erase(0, 1);
+			//	int userId = std::stoi(message);
+			//	leftSeat(userId);
+			//}
+			//// Player pressed start
+			//else if(code == '%')
+			//{
+			//	message.erase(0, 1);
+			//	int userId = std::stoi(message);
+			//	pressedStart(userId);
+			//}
+			//// Player leave Lobby
+			//else if(code == '&')
+			//{
+			//	message.erase(0, 1);
+			//	int userId = std::stoi(message);
+			//	leftGame(userId);
+			//} else
+			//{
+			//	printf("Received: %s\n", recv_buf);
+			//}
+
+
+			//alternitive method (looks a bit cleaner... thats all)//
+			int userId, seatId;
+			switch(code)
+			{
+			case '@':// Join require
 				message.erase(0, 1);
 				join(message, fromAddr);
-			}
-			// Seat require
-			else if (code == '#') {
+				break;
+
+			case '#':// Seat require
 				message.erase(0, 1);
-				int seatId = message[0] - '0';
+				seatId = message[0] - '0';
 				message.erase(0, 1);
-				int userId = std::stoi(message);
+				userId = std::stoi(message);
 				takeSeat(userId, seatId);
-			}
-			// Player leave seat
-			else if (code == '$') {
+				break;
+
+			case '$':// Player leave seat
 				message.erase(0, 1);
-				int userId = std::stoi(message);
+				userId = std::stoi(message);
 				leftSeat(userId);
-			}
-			// Player pressed start
-			else if (code == '%') {
+				break;
+
+			case '%':// Player pressed start
 				message.erase(0, 1);
-				int userId = std::stoi(message);
+				userId = std::stoi(message);
 				pressedStart(userId);
-			}
-			// Player leave Lobby
-			else if (code == '&')
-			{
+				break;
+
+			case '&':// Player leave Lobby
 				message.erase(0, 1);
-				int userId = std::stoi(message);
+				userId = std::stoi(message);
 				leftGame(userId);
-			}
-			else {
+				break;
+
+			default:
 				printf("Received: %s\n", recv_buf);
 			}
+
 		}
-		else if (status == ServerStatus::Game)
+		else if(status == ServerStatus::Game)
 		{
 			struct sockaddr_in fromAddr;
 			int fromlen;
 			fromlen = sizeof(fromAddr);
 			memset(recv_buf, 0, BUF_LEN);
-			if (recvfrom(server_socket, recv_buf, sizeof(recv_buf), 0, (struct sockaddr*) & fromAddr, &fromlen) == SOCKET_ERROR) {
-				printf("recvfrom() failed...%d\n", WSAGetLastError());
-				return;
-			}
-			BroadcastMessageToAll(recv_buf);
 
+			if(recvfrom(server_socket, recv_buf, sizeof(recv_buf), 0, (struct sockaddr*) & fromAddr, &fromlen) == SOCKET_ERROR)
+			{
+				printf("recvfrom() failed...%d\n", WSAGetLastError());
+				continue;
+			}
+
+			if(fromlen > 8)
+			{
+				MessageType msg =(MessageType)reclass(int, recv_buf);
+				switch(msg)
+				{
+					//TODO: create movement structure here
+				case MessageType::Movement:
+					if(fromlen >= reclass(int, recv_buf[4]))//check for the correct data size
+					{
+						puts("recived Movement message from client");
+						//TODO: get player ID,Position,velocity,elapsed time and broadcast
+						BroadcastMessageToAll(recv_buf);//send it to everyone
+					}
+					break;
+				default:
+					break;
+				}
+			}
 
 			// TODO:
 			// Player leave game
 		}
-		else 
+		else
 		{
 			printf("Player status is incorrect!!!!");
 		}
@@ -149,8 +234,9 @@ void Server::UpdateRecv()
 
 void Server::UpdateSend()
 {
-	while (isServerRunning) {
-		if (status == ServerStatus::Lobby)
+	while(isServerRunning)
+	{
+		if(status == ServerStatus::Lobby)
 		{
 			//std::string line;
 			//std::getline(std::cin, line);
@@ -161,13 +247,14 @@ void Server::UpdateSend()
 			//	HandleSending(line, temp);
 
 			// check for start game
-			if (checkAllStartPressed()) {
+			if(checkAllStartPressed())
+			{
 				status = ServerStatus::Game;
 				//TODO:
 				BroadcastMessageToAll("$");
 			}
 		}
-		else if (status == ServerStatus::Game)
+		else if(status == ServerStatus::Game)
 		{
 
 		}
@@ -183,17 +270,7 @@ void Server::HandleSending(std::string _message, sockaddr_in _adress)
 	int fromlen;
 	fromlen = sizeof(_adress);
 	char* tmp = (char*)_message.c_str();
-	if (sendto(server_socket, tmp, BUF_LEN, 0, (struct sockaddr*) & _adress, fromlen) == SOCKET_ERROR)
-	{
-		printf("sendto() failed %d\n", WSAGetLastError());
-	}
-}
-
-void Server::HandleSending(char* _message, sockaddr_in _adress)
-{
-	int fromlen;
-	fromlen = sizeof(_adress);
-	if (sendto(server_socket, _message, BUF_LEN, 0, (struct sockaddr*) & _adress, fromlen) == SOCKET_ERROR)
+	if(sendto(server_socket, tmp, BUF_LEN, 0, (struct sockaddr*) & _adress, fromlen) == SOCKET_ERROR)
 	{
 		printf("sendto() failed %d\n", WSAGetLastError());
 	}
@@ -202,21 +279,9 @@ void Server::HandleSending(char* _message, sockaddr_in _adress)
 void Server::BroadcastMessageToAll(std::string _message)
 {
 	std::cout << "Send All: " << _message << std::endl;
-	if (users.listUsers.size() != 0)
+	if(users.listUsers.size() != 0)
 	{
-		for (std::list <User> ::iterator it = users.listUsers.begin(); it != users.listUsers.end(); it++)
-		{
-			HandleSending(_message, (*it)._adress);
-		};
-	}
-}
-
-void Server::BroadcastMessageToAll(char* _message)
-{
-	printf("Send All: %s\n", _message);
-	if (users.listUsers.size() != 0)
-	{
-		for (std::list <User> ::iterator it = users.listUsers.begin(); it != users.listUsers.end(); it++)
+		for(std::list <User> ::iterator it = users.listUsers.begin(); it != users.listUsers.end(); it++)
 		{
 			HandleSending(_message, (*it)._adress);
 		};
@@ -225,6 +290,7 @@ void Server::BroadcastMessageToAll(char* _message)
 
 void Server::CloseServer()
 {
+	puts("Server shutdown");
 	closesocket(server_socket);
 	freeaddrinfo(ptr);
 	WSACleanup();
@@ -247,8 +313,9 @@ void Server::join(std::string _name, sockaddr_in _adress)
 	// number of user in server
 	sendBack += std::to_string(users.listUsers.size());
 	// users info
-	if (users.listUsers.size() != 0) {
-		for (std::list <User> ::iterator it = users.listUsers.begin(); it != users.listUsers.end(); it++)
+	if(users.listUsers.size() != 0)
+	{
+		for(std::list <User> ::iterator it = users.listUsers.begin(); it != users.listUsers.end(); it++)
 		{
 			sendBack += ":";
 			sendBack += (*it)._name;
@@ -257,13 +324,13 @@ void Server::join(std::string _name, sockaddr_in _adress)
 		}
 	}
 	// seat info 
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 	{
 		sendBack += ":";
 		sendBack += std::to_string(lobbySeat[i]);
 	}
 	// start Info
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 	{
 		sendBack += ":";
 		sendBack += std::to_string(startButtons[i]);
@@ -278,9 +345,9 @@ void Server::join(std::string _name, sockaddr_in _adress)
 bool Server::checkAllStartPressed()
 {
 	bool check = true;
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 	{
-		if (startButtons[i] == 0)
+		if(startButtons[i] == 0)
 		{
 			check = false;
 			break;
@@ -291,12 +358,12 @@ bool Server::checkAllStartPressed()
 
 void Server::takeSeat(int _userId, int _seatId)
 {
-	if (lobbySeat[_seatId] == 0)
+	if(lobbySeat[_seatId] == 0)
 	{
 		lobbySeat[_seatId] = _userId;
 		// Update seat changing to all user
 		std::string seatInfo = "#";
-		for (int i = 0; i < 4; i++)
+		for(int i = 0; i < 4; i++)
 		{
 			seatInfo += ":";
 			seatInfo += std::to_string(lobbySeat[i]);
@@ -313,9 +380,9 @@ void Server::takeSeat(int _userId, int _seatId)
 void Server::leftSeat(int _id)
 {
 	// Remove user from seat
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 	{
-		if (lobbySeat[i] == _id)
+		if(lobbySeat[i] == _id)
 		{
 			lobbySeat[i] = 0;
 			break;
@@ -323,7 +390,7 @@ void Server::leftSeat(int _id)
 	}
 	// Update seat changing to all user
 	std::string seatInfo = "#";
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 	{
 		seatInfo += ":";
 		seatInfo += std::to_string(lobbySeat[i]);
@@ -344,8 +411,10 @@ void Server::leftLobby(int _id)
 void Server::pressedStart(int _userId)
 {
 	int _id = 0;
-	for (int i = 0; i < 4; i++) {
-		if (lobbySeat[i] == _userId) {
+	for(int i = 0; i < 4; i++)
+	{
+		if(lobbySeat[i] == _userId)
+		{
 			_id = i;
 			break;
 		}
@@ -354,7 +423,7 @@ void Server::pressedStart(int _userId)
 
 	// Update seat changing to all user
 	std::string startInfo = "%";
-	for (int i = 0; i < 4; i++)
+	for(int i = 0; i < 4; i++)
 	{
 		startInfo += ":";
 		startInfo += std::to_string(startButtons[i]);

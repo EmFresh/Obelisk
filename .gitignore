@@ -79,3 +79,7 @@ Assets/StreamingAssets/
 *.log
 
 UDPServer/x64/
+
+UDPServer/UDPServer/Debug/
+
+UDPServer/UDPServer/x64/
