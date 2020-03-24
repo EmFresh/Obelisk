@@ -14,7 +14,7 @@ public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     bool isMouseOver = false;
     Vector3 minScale;
     Vector3 currentScale;
-    public Vector3 targetScale;
+    private Vector3 targetScale;
     public float targetScaleAfter;
     private Vector3 maxScale;
 
@@ -25,6 +25,7 @@ public class ScaleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     //float vol = 0;
     private void Start()
     {
+        targetScale = transform.localScale;
         maxScale = targetScale * targetScaleAfter;
         overDescription = RuntimeManager.GetEventDescription(mouseOver);
     }
