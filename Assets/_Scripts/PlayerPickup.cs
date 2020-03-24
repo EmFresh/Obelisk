@@ -42,7 +42,7 @@ public class PlayerPickup : MonoBehaviour
         {
             icon.SetActive(true);
         }
-        playerIndex = GetComponent<PlayerMovement>().playerIndex;
+        playerIndex = GetComponent<PlayerMovement>().controllerIndex;
         if (Input.GetKeyDown(pickupKey) || isButtonDown(playerIndex, (int)pickupJoy))
         {
             keyPressed = true;

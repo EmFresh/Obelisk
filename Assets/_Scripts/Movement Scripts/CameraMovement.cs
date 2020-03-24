@@ -23,10 +23,17 @@ public class CameraMovement : MonoBehaviour
 
     float yRot = 0.0f;
 
-
     // Start is called before the first frame update
     void Start()
     {
+        if (transform.parent.GetComponent<PlayerMovement>().isNetworkedPlayer)
+        {
+            GetComponent<Camera>().rect = new Rect(0, 0, 0, 0); // (x,y,w,h)
+            return;
+        }
+
+        GetComponent<Camera>().rect = new Rect(0, 0, 1, 1); // (x,y,w,h)
+
         //Make pivot as a child to player and move to player's position
         pivot.transform.position = PlayerTransform.transform.position;
         pivot.transform.parent = PlayerTransform.transform;
@@ -42,37 +49,40 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        playerIndex = transform.parent.GetComponent<PlayerMovement>().playerIndex;
+        if (transform.parent.GetComponent<PlayerMovement>().isNetworkedPlayer)
+        {
+            playerIndex = transform.parent.GetComponent<PlayerMovement>().controllerIndex;
 
-        //Remove moveup and move right offset to help calculation
-        transform.position -= transform.right * _cameraLROffset;
-        transform.position -= transform.up * _cameraUDOffset;
+            //Remove moveup and move right offset to help calculation
+            transform.position -= transform.right * _cameraLROffset;
+            transform.position -= transform.up * _cameraUDOffset;
 
-        var stick = getSticks(playerIndex)[RS];
-        var keyEnabled = GetComponentInParent<PlayerMovement>().enableKeyboard;
-        //Get X position of the mouse and rotate the player
-        float horizontal = keyEnabled ? (Input.GetAxisRaw("Mouse X") + Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed : 0;
-        PlayerTransform.Rotate(0, horizontal, 0);
+            var stick = getSticks(playerIndex)[RS];
+            var keyEnabled = GetComponentInParent<PlayerMovement>().enableKeyboard;
+            //Get X position of the mouse and rotate the player
+            float horizontal = keyEnabled ? (Input.GetAxisRaw("Mouse X") + Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed : 0;
+            PlayerTransform.Rotate(0, horizontal, 0);
 
-        //Assign camera to be a child of pivot to help it rotate with pivot
-        transform.parent = pivot.transform;
+            //Assign camera to be a child of pivot to help it rotate with pivot
+            transform.parent = pivot.transform;
 
-        //Get X position of the mouse and rotate the pivot
-        float vertical = keyEnabled ? ((invertYKeyboard ? -1 : 1) * Input.GetAxisRaw("Mouse Y") + (invertYJoy ? -1 : 1) * Mathf.Clamp(stick.y, -1, 1)) * RotateSpeed : 0;
-        yRot += vertical;
+            //Get X position of the mouse and rotate the pivot
+            float vertical = keyEnabled ? ((invertYKeyboard ? -1 : 1) * Input.GetAxisRaw("Mouse Y") + (invertYJoy ? -1 : 1) * Mathf.Clamp(stick.y, -1, 1)) * RotateSpeed : 0;
+            yRot += vertical;
 
-        //Make sure camera not going below ground or above head
-        yRot = Mathf.Clamp(yRot, minYAngle, maxYAngle);
-        pivot.eulerAngles = new Vector3(yRot, pivot.eulerAngles.y, 0.0f);
+            //Make sure camera not going below ground or above head
+            yRot = Mathf.Clamp(yRot, minYAngle, maxYAngle);
+            pivot.eulerAngles = new Vector3(yRot, pivot.eulerAngles.y, 0.0f);
 
-        //Assign camera to be a child of player
-        transform.parent = PlayerTransform.transform;
+            //Assign camera to be a child of player
+            transform.parent = PlayerTransform.transform;
 
-        //Rotate camera to player's location
-        transform.LookAt(PlayerTransform);
+            //Rotate camera to player's location
+            transform.LookAt(PlayerTransform);
 
-        //Assign moveup and move right offset to camera
-        transform.position += transform.right * _cameraLROffset;
-        transform.position += transform.up * _cameraUDOffset;
+            //Assign moveup and move right offset to camera
+            transform.position += transform.right * _cameraLROffset;
+            transform.position += transform.up * _cameraUDOffset;
+        }
     }
 }

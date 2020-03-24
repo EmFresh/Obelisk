@@ -45,8 +45,8 @@ public class LobyManager : MonoBehaviour
                 chatBox.text = NetworkControl.users[i]._name + " joined the game!\n" + chatBox.text;
             }
         }
-    }                                       
-                                           
+    }
+
     // Update is called once per frame      
     void Update()
     {
@@ -64,9 +64,9 @@ public class LobyManager : MonoBehaviour
 
     void updateText()
     {
-        for(int i = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
-            if(NetworkControl.seat[i] == 0)
+            if (NetworkControl.seat[i] == 0)
             {
                 texts[i].text = "Click to Join";
             }

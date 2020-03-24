@@ -4,16 +4,19 @@ using UnityEngine;
 using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
 using static Networking;
+using static NetworkControl;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Animator _animator;
+    public Animator animator;
 
-    public ushort playerIndex;
+    public bool isNetworkedPlayer = false;
+    public ushort networkID;
+    public ushort controllerIndex;
 
     public CONTROLLER_BUTTON jumpJoy = A;
 
-    public bool enableKeyboard = false;
+    public bool enableKeyboard;
 
     [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 15;
 
@@ -28,13 +31,14 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private BoxCollider col_size;
     [HideInInspector] public Vector3 lastPosition;
-    [HideInInspector] public Vector3 velocity;
+    [HideInInspector] public Vector3 direction;
     [HideInInspector] public float dt;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = MaxSpeed;
+
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
@@ -46,39 +50,73 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Stick stick = getSticks(playerIndex)[LS];
 
-        //Get the X and Y position of any input (laptop or controller)
-        float x = (enableKeyboard ? Input.GetAxis("Horizontal") : 0) + Mathf.Clamp(stick.x, -1, 1);
-        float y = (enableKeyboard ? Input.GetAxis("Vertical") : 0) + Mathf.Clamp(stick.y, -1, 1);
-
-        moveDirection = transform.forward * y + transform.right * x;
-        moveDirection = moveDirection.normalized;
-        lastPosition = transform.position;
-        transform.position += moveDirection * speed * Time.deltaTime;
-        velocity = transform.position - lastPosition;
-        dt = Time.deltaTime;
-
-        //Set running animation base on input runnning direction
-        if (_animator)
+        if (!isNetworkedPlayer)
         {
-            _animator.SetFloat("VelX", x);
-            _animator.SetFloat("VelY", y);
-        }
+            Stick stick = getSticks(controllerIndex)[LS];
 
-        //If player is on the ground make player jump
-        if ((isButtonDown(playerIndex, (int)jumpJoy) || Input.GetKey(KeyCode.Space)) &&
-            isGrounded == true)
+            //Get the X and Y position of any input (laptop or controller)
+            float x = (enableKeyboard ? Input.GetAxis("Horizontal") : 0) + Mathf.Clamp(stick.x, -1, 1);
+            float y = (enableKeyboard ? Input.GetAxis("Vertical") : 0) + Mathf.Clamp(stick.y, -1, 1);
+
+            moveDirection = transform.forward * y + transform.right * x;
+            moveDirection = moveDirection.normalized;
+
+            lastPosition = transform.position;
+            transform.position += moveDirection * speed * Time.deltaTime;
+            direction = transform.position - lastPosition;
+            dt = Time.deltaTime;
+
+            //Set running animation base on input runnning direction
+            if (animator)
+            {
+                animator.SetFloat("VelX", x);
+                animator.SetFloat("VelY", y);
+            }
+
+            //If player is on the ground make player jump
+            if ((isButtonDown(controllerIndex, (int)jumpJoy) || Input.GetKey(KeyCode.Space)) &&
+                isGrounded == true)
+            {
+                rb.AddForce(0, JumpHeight, 0);
+                isGrounded = false;
+
+                //Set jump animation to true
+                if (animator)
+                    animator.SetBool("isJump", true);
+            }
+
+        }
+        else
         {
-            rb.AddForce(0, JumpHeight, 0);
-            isGrounded = false;
+            //TODO: move player based on networked positions (testing)
 
-            //Set jump animation to true
-            if (_animator)
-                _animator.SetBool("isJump", true);
+            var move = NetworkControl.movements[networkID];
+            if (move.isUpdated)
+                transform.position = move.pos;
+            else
+                transform.position += divideVec(1, (move.dir * move.dt)) * Time.deltaTime;
         }
-
     }
+
+    /// <summary>
+    /// LateUpdate is called every frame, if the Behaviour is enabled.
+    /// It is called after all Update functions have been called.
+    /// </summary>
+    void LateUpdate()
+    {
+        //TODO: send information tp server
+        Movement movement = new Movement();
+        movement.pos = transform.position;
+        movement.dir = direction;
+        movement.rot = transform.rotation;
+        movement.dt = dt;
+        movement.id = networkID;
+        movement.isUpdated = false;
+        sendToPacket(sock, movement, ip);
+    }
+
+    Vector3 divideVec(float scale, Vector3 vec) => new Vector3(scale / vec.x, scale / vec.y, scale / vec.z);
 
     // Check player on the ground or not (Unity build in function)
     private void OnCollisionEnter(Collision collision)
@@ -86,8 +124,8 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = true;
 
         //Set jump animation to false
-        if (_animator)
-            _animator.SetBool("isJump", false);
+        if (animator)
+            animator.SetBool("isJump", false);
     }
 
 }

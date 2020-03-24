@@ -36,7 +36,7 @@ public class Blink : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerIndex = GetComponent<PlayerMovement>().playerIndex;
+        playerIndex = GetComponent<PlayerMovement>().controllerIndex;
 
         if ((Input.GetKeyDown(blinkKey) || isButtonDown(playerIndex, (int)blinkJoy)) && Time.time > nextBlinkTime && !isBlinking)
         {

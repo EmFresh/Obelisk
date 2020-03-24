@@ -30,7 +30,7 @@ public class PlayerSpellShot : MonoBehaviour
     {
         _animator.SetBool("isShoot", false);
         float dt = Time.deltaTime;
-        playerIndex = GetComponent<PlayerMovement>().playerIndex;
+        playerIndex = GetComponent<PlayerMovement>().controllerIndex;
 
         //creates a new gameObject every time a key is pressed
         if ((Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy)) && shots[0])

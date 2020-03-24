@@ -11,7 +11,10 @@ public class NetworkControl : MonoBehaviour
 {
     public Text ipText;
     public Text nameText;
+    public GameObject connectionerror;
+
     public static List<user> users;
+    public static Movement[] movements = new Movement[4];
     public static user thisUser;
     public static int[] seat;
     public static int[] start;
@@ -19,24 +22,52 @@ public class NetworkControl : MonoBehaviour
     static bool goLobby = false;
     static bool goGame = false;
 
-    static SocketData sock;
-    static IPEndpointData endp;
-    static NetworkLobyRecvJob jobLobyRecv;
-    static JobHandle hndLoby, hndGame;
+    public static SocketData sock;
+    public static IPEndpointData ip;
+    static NetworkLobyRecvJob jobLobbyRecv;
+    static JobHandle hndLobby, hndGame;
     [HideInInspector] public static bool close;
 
-    enum MessageType : int
+    public enum MessageType : int
     {
+        Unknown,
         Movement,
+        HealthInfo,
+        Fireball,
+        ResourceSpawn,
+        ResourceCollected
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public class Movement
+    public class Packet
     {
-        MessageType type = MessageType.Movement;
-        int size = Marshal.SizeOf<Movement>();
+        public MessageType type = NetworkControl.MessageType.Unknown;
+        public int size = Marshal.SizeOf<Packet>();
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public class Unknown : Packet
+    {
+        public Unknown()
+        {
+            type = MessageType.Movement; //int
+            size = Marshal.SizeOf<Movement>(); //int
+        }
+        public char[] data = new char[80];
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public class Movement : Packet
+    {
+        public Movement()
+        {
+            type = MessageType.Movement; //int
+            size = Marshal.SizeOf<Movement>(); //int
+        }
+        public uint id;
+        public bool isUpdated;
         public float dt;
-        public Vector3 pos, vel;
+        public Vector3 pos, dir;
         public Quaternion rot;
     }
     public struct user
@@ -164,13 +195,40 @@ public class NetworkControl : MonoBehaviour
         public SocketData sock;
         public IPEndpointData ip;
 
-        public Movement move;
+        public Unknown unknown;
 
         public void Execute()
         {
-            if(isNetworkInit)
+            if (isNetworkInit)
             {
-                recvFromPacket(sock, out move, ip);
+                while (true)
+                {
+                    unknown = new Unknown();
+                    if (recvFromPacket(sock, out unknown, ip) == PResult.P_Success)
+                        switch (unknown.type)
+                        {
+                            case MessageType.Movement:
+                                //TODO: recv the movement variable from other clients
+                                Movement move = (Movement)(Packet)unknown; //I cant believe this works
+                                move.isUpdated = true;
+                                movements[move.id] = move;
+                                break;
+                            case MessageType.Fireball:
+                                //TODO: recv position, velocity/sec and start time
+                                break;
+                            case MessageType.ResourceSpawn:
+                                //TODO: recv position and resource type
+                                break;
+                            case MessageType.ResourceCollected:
+                                //TODO: recv resource type and what position in the array was deleted
+                                break;
+                            default:
+                                break;
+                        }
+
+                    if (NetworkControl.close)
+                        break;
+                }
             }
         }
     }
@@ -224,31 +282,33 @@ public class NetworkControl : MonoBehaviour
         shutdownNetwork();
         close = true; //close the running job
         closeSocket(sock);
-        hndLoby.Complete();
+        hndLobby.Complete();
 
         Networking.initNetwork();
 
-        endp = createIPEndpointData(serverAddr, 8888);
+        ip = createIPEndpointData(serverAddr, 8888);
         sock = initSocketData();
         if (createSocket(sock, SocketType.UDP) == P_GenericError)
-            Debug.LogError(getLastNetworkError());
+            PrintError(getLastNetworkError());
 
-        if (connectEndpoint(endp, sock) == P_GenericError)
-            Debug.LogError(getLastNetworkError());
-
-        jobLobyRecv = new NetworkLobyRecvJob()
+        if (connectEndpoint(ip, sock) == P_GenericError)
+        {
+            PrintError(getLastNetworkError());
+            connectionerror.SetActive(true);
+        }
+        jobLobbyRecv = new NetworkLobyRecvJob()
         {
             sock = sock,
-            ip = endp
+            ip = ip
         };
         close = false;
-        hndLoby = jobLobyRecv.Schedule(); //schedules the job to start asynchronously like std::detach c++
+        hndLobby = jobLobbyRecv.Schedule(); //schedules the job to start asynchronously like std::detach c++
 
         string tmp = "@" + userName;
 
-        if (sendToPacket(sock, tmp, 512, endp) == P_GenericError)
+        if (sendToPacket(sock, tmp, 512, ip) == P_GenericError)
         {
-            Debug.LogError(getLastNetworkError());
+            PrintError(getLastNetworkError());
         }
 
     }
@@ -261,9 +321,9 @@ public class NetworkControl : MonoBehaviour
             {
                 string tmp = "#" + index + thisUser._id;
 
-                if (sendToPacket(sock, tmp, endp) == P_GenericError)
+                if (sendToPacket(sock, tmp, ip) == P_GenericError)
                 {
-                    Debug.LogError(getLastNetworkError());
+                    PrintError(getLastNetworkError());
                 }
             }
             if (seat[index] == 0 && checkUserInSeat())
@@ -271,16 +331,16 @@ public class NetworkControl : MonoBehaviour
 
                 string tmp = "$" + thisUser._id;
 
-                if (sendToPacket(sock, tmp, endp) == P_GenericError)
+                if (sendToPacket(sock, tmp, ip) == P_GenericError)
                 {
-                    Debug.LogError(getLastNetworkError());
+                    PrintError(getLastNetworkError());
                 }
 
                 tmp = "#" + index + thisUser._id;
 
-                if (sendToPacket(sock, tmp, endp) == P_GenericError)
+                if (sendToPacket(sock, tmp, ip) == P_GenericError)
                 {
-                    Debug.LogError(getLastNetworkError());
+                    PrintError(getLastNetworkError());
                 }
             }
         }
@@ -293,9 +353,9 @@ public class NetworkControl : MonoBehaviour
 
             string tmp = "%" + thisUser._id;
 
-            if (sendToPacket(sock, tmp, endp) == P_GenericError)
+            if (sendToPacket(sock, tmp, ip) == P_GenericError)
             {
-                Debug.LogError(getLastNetworkError());
+                PrintError(getLastNetworkError());
             }
         }
     }
@@ -375,7 +435,7 @@ public class NetworkControl : MonoBehaviour
 
         if (!shutdownNetwork())
             PrintError(getLastNetworkError());
-        // closeSocket(sock);
-        hndLoby.Complete(); //should be the same as thread::join c++
+        closeSocket(sock);
+        hndLobby.Complete(); //should be the same as thread::join c++
     }
 }

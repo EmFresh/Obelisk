@@ -30,7 +30,7 @@ public class TowerBuild : MonoBehaviour
     void OnTriggerStay(Collider obj)
     {
         if (obj.gameObject.tag.ToLower().Contains("player"))
-            playerIndex = obj.gameObject.GetComponent<PlayerMovement>().playerIndex;
+            playerIndex = obj.gameObject.GetComponent<PlayerMovement>().controllerIndex;
 
         _animator.SetBool("isBuild", false);
 

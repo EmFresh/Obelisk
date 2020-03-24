@@ -7,16 +7,16 @@ public class Respawn : MonoBehaviour
     public GameObject area;
     public GameObject spawnpoint;
 
-
-   //trigger
-   private void OnTriggerExit(Collider other)
+    //trigger
+    private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == area)
-        {
-            transform.position = spawnpoint.transform.position;
-            transform.rotation = spawnpoint.transform.rotation;
+        if (!GetComponent<PlayerMovement>().isNetworkedPlayer)
+            if (other.gameObject == area)
+            {
+                transform.position = spawnpoint.transform.position;
+                transform.rotation = spawnpoint.transform.rotation;
 
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
     }
 }
