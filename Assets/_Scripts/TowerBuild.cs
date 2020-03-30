@@ -85,6 +85,18 @@ public class TowerBuild : MonoBehaviour
                         tmp.speed = stage * 5 + 10;
 
                         stage++;
+
+                        if (stage >= 3)
+                        {
+                            if (this.gameObject.tag == "Build Zone 1")
+                            {
+                                Debug.Log("Team 1 Wins");
+                            }
+                            else 
+                            {
+                                Debug.Log("Team 2 Wins");
+                            }
+                        }
                     }
                 }
             }
