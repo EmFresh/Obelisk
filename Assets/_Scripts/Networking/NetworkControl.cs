@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class NetworkControl : MonoBehaviour
 {
+    #region Variables
+
     public Text ipText;
     public Text nameText;
     public GameObject connectionerror;
@@ -25,8 +27,10 @@ public class NetworkControl : MonoBehaviour
     public static SocketData sock;
     public static IPEndpointData ip;
     static NetworkLobyRecvJob jobLobbyRecv;
+    static NetworkGameRecvJob jobGameRecv;
     static JobHandle hndLobby, hndGame;
     [HideInInspector] public static bool close;
+    #endregion
 
     public enum MessageType : int
     {
@@ -37,6 +41,8 @@ public class NetworkControl : MonoBehaviour
         ResourceSpawn,
         ResourceCollected
     }
+
+    #region classes
 
     [StructLayout(LayoutKind.Sequential)]
     public class Packet
@@ -70,6 +76,8 @@ public class NetworkControl : MonoBehaviour
         public Vector3 pos, dir;
         public Quaternion rot;
     }
+    #endregion
+
     public struct user
     {
         public user(string n, int d)
@@ -86,17 +94,17 @@ public class NetworkControl : MonoBehaviour
     public struct NetworkLobyRecvJob : IJob
     {
         public SocketData sock;
-        public IPEndpointData ip;
+        private IPEndpointData ip;
         public void Execute()
         {
-            int size = 512, dump = 0;
+            int size = 512, dump;
             string recv = "";
             for (;;)
             {
                 bool printable = true;
                 if (isNetworkInit)
                 {
-                    if (recvFromPacket(sock, out recv, size, ip) == P_GenericError)
+                    if (recvFromPacket(sock, out recv, size, out dump, out ip) == P_GenericError)
                     {
                         printable = false;
                         PrintError(getLastNetworkError());
@@ -193,7 +201,7 @@ public class NetworkControl : MonoBehaviour
     public struct NetworkGameRecvJob : IJob
     {
         public SocketData sock;
-        public IPEndpointData ip;
+        private IPEndpointData ip;
 
         public Unknown unknown;
 
@@ -204,7 +212,7 @@ public class NetworkControl : MonoBehaviour
                 while (true)
                 {
                     unknown = new Unknown();
-                    if (recvFromPacket(sock, out unknown, ip) == PResult.P_Success)
+                    if (recvFromPacket(sock, out unknown, out ip) == PResult.P_Success)
                         switch (unknown.type)
                         {
                             case MessageType.Movement:
@@ -299,7 +307,7 @@ public class NetworkControl : MonoBehaviour
         jobLobbyRecv = new NetworkLobyRecvJob()
         {
             sock = sock,
-            ip = ip
+            //ip = ip
         };
         close = false;
         hndLobby = jobLobbyRecv.Schedule(); //schedules the job to start asynchronously like std::detach c++
@@ -407,9 +415,12 @@ public class NetworkControl : MonoBehaviour
 
     private void Start()
     {
-        seat = new int[] { 0, 0, 0, 0 };
-        start = new int[] { 0, 0, 0, 0 };
-        users = new List<user> {};
+        if (users == null)
+        {
+            seat = new int[] { 0, 0, 0, 0 };
+            start = new int[] { 0, 0, 0, 0 };
+            users = new List<user> {};
+        }
     }
 
     private void Update()
@@ -422,7 +433,21 @@ public class NetworkControl : MonoBehaviour
         }
         if (goGame)
         {
+
+            closeSocket(sock);
+            hndLobby.Complete(); //should be the same as thread::join c++
+           
+            if (createSocket(sock, SocketType.UDP) == P_GenericError)
+                PrintError(getLastNetworkError());
+
+            jobGameRecv = new NetworkGameRecvJob()
+            {
+                sock = sock
+            };
+            hndGame = jobGameRecv.Schedule();
+
             goGame = false;
+
             // Go to Game
             SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
 
@@ -436,6 +461,8 @@ public class NetworkControl : MonoBehaviour
         if (!shutdownNetwork())
             PrintError(getLastNetworkError());
         closeSocket(sock);
+        
         hndLobby.Complete(); //should be the same as thread::join c++
+        hndGame .Complete();
     }
 }

@@ -49,7 +49,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (transform.parent.GetComponent<PlayerMovement>().isNetworkedPlayer)
+        if (!transform.parent.GetComponent<PlayerMovement>().isNetworkedPlayer)
         {
             playerIndex = transform.parent.GetComponent<PlayerMovement>().controllerIndex;
 
@@ -59,6 +59,7 @@ public class CameraMovement : MonoBehaviour
 
             var stick = getSticks(playerIndex)[RS];
             var keyEnabled = GetComponentInParent<PlayerMovement>().enableKeyboard;
+            
             //Get X position of the mouse and rotate the player
             float horizontal = keyEnabled ? (Input.GetAxisRaw("Mouse X") + Mathf.Clamp(stick.x, -1, 1)) * RotateSpeed : 0;
             PlayerTransform.Rotate(0, horizontal, 0);

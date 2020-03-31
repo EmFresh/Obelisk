@@ -7,7 +7,8 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-#define PORT "8888" 
+#define PORT "8080"
+//#define IP   "0.0.0.0"
 #define BUF_LEN 512
 #define reclass(a_class, a_val) (*(a_class*)&(a_val))
 
@@ -45,7 +46,7 @@ public:
 	void pressedStart(int _userId);// Process when user press the start
 	void leftGame(int _id);// Process when user left during the gameplay
 
-	bool isServerRunning;
+	bool isServerRunning=false;
 
 private:
 	SOCKET server_socket;

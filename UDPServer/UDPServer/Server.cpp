@@ -2,17 +2,6 @@
 
 Server::Server()
 {
-	isServerRunning = true;
-	lobbySeat[0] = 0;
-	lobbySeat[1] = 0;
-	lobbySeat[2] = 0;
-	lobbySeat[3] = 0;
-
-	startButtons[0] = 0;
-	startButtons[1] = 0;
-	startButtons[2] = 0;
-	startButtons[3] = 0;
-
 	status = ServerStatus::Lobby;
 	ptr = NULL;
 }
@@ -56,7 +45,7 @@ void Server::CreateServer()
 	hints.ai_protocol = IPPROTO_UDP;
 	hints.ai_flags = AI_PASSIVE;
 
-	if(getaddrinfo(NULL, PORT, &hints, &ptr) != 0)
+	if(getaddrinfo(nullptr, PORT, &hints, &ptr) != 0)
 	{
 		printf("Getaddrinfo failed!! %d\n", WSAGetLastError());
 		WSACleanup();
@@ -83,6 +72,7 @@ void Server::CreateServer()
 	}
 
 	printf("Server is now running!\n");
+	isServerRunning = true;
 }
 
 void Server::UpdateRecv()
@@ -216,8 +206,10 @@ void Server::UpdateRecv()
 						//TODO: get player ID,Position,velocity,elapsed time and broadcast
 						BroadcastMessageToAll(recv_buf);//send it to everyone
 					}
+
 					break;
 				default:
+
 					break;
 				}
 			}

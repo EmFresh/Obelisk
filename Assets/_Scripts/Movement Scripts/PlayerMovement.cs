@@ -20,9 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 15;
 
-    [HideInInspector] public float speed = 0;
-
     public float JumpHeight = 7;
+    public float minMovement = 1;
+
+    [HideInInspector] public float speed = 0;
 
     [HideInInspector] public bool isGrounded;
 
@@ -62,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = transform.forward * y + transform.right * x;
             moveDirection = moveDirection.normalized;
 
-            lastPosition = transform.position;
+            if ((lastPosition - transform.position).magnitude >= minMovement)
+                lastPosition = transform.position;
             transform.position += moveDirection * speed * Time.deltaTime;
             direction = transform.position - lastPosition;
             dt = Time.deltaTime;
@@ -105,17 +107,21 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     void LateUpdate()
     {
-        //TODO: send information tp server
-        Movement movement = new Movement();
-        movement.pos = transform.position;
-        movement.dir = direction;
-        movement.rot = transform.rotation;
-        movement.dt = dt;
-        movement.id = networkID;
-        movement.isUpdated = false;
-        sendToPacket(sock, movement, ip);
+        if (!isNetworkedPlayer)
+        {
+            if ((lastPosition - transform.position).magnitude < minMovement)
+                return;
+            //TODO: send information tp server
+            Movement movement = new Movement();
+            movement.pos = transform.position;
+            movement.dir = direction;
+            movement.rot = transform.rotation;
+            movement.dt = dt;
+            movement.id = networkID;
+            movement.isUpdated = false;
+            sendToPacket(sock, movement, ip);
+        }
     }
-
     Vector3 divideVec(float scale, Vector3 vec) => new Vector3(scale / vec.x, scale / vec.y, scale / vec.z);
 
     // Check player on the ground or not (Unity build in function)

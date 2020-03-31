@@ -36,7 +36,6 @@ public class GameInit : MonoBehaviour
             case "team 1":
                 for (ushort a = 0; a < 2; ++a)
                 {
-
                     if (NetworkControl.users[a]._id == NetworkControl.thisUser._id)
                     {
                         players[a].GetComponent<PlayerMovement>().controllerIndex = 0;
@@ -57,6 +56,7 @@ public class GameInit : MonoBehaviour
                         players[a].GetComponent<PlayerMovement>().networkID = a;
                     }
                 }
+
                 break;
             case "team 2":
                 for (int a = 0; a < 2; ++a)
@@ -68,6 +68,10 @@ public class GameInit : MonoBehaviour
                         players[a].GetComponent<PlayerMovement>().enableKeyboard = true;
                         players[a].GetComponent<PlayerMovement>().isNetworkedPlayer = false;
                         players[a].GetComponent<PlayerMovement>().networkID = (ushort)a;
+                        players[a].transform.position = spawns[a].transform.position;
+                        players[a].transform.rotation = spawns[a].transform.rotation;
+                        players[a].GetComponent<Respawn>().spawnpoint = spawns[a];
+                        players[a].GetComponent<Respawn>().area = playArea;
                     }
                     else
                     {
