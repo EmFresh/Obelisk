@@ -7,7 +7,7 @@ public class GameTimer : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    float counter = 300.0f;
+    public float counter = 300.0f;
     public Text countText;
 
     bool timeOut = false;
@@ -34,4 +34,5 @@ public class GameTimer : MonoBehaviour
             timeOut = true;
         }
     }
+
 }

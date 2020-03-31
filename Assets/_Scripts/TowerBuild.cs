@@ -25,7 +25,7 @@ public class TowerBuild : MonoBehaviour
 
     public GameObject chest;
     //public GameObject spellcaster;
-
+    //public GameTimer tim;
     //private bool initBuild = true;
     void OnTriggerStay(Collider obj)
     {
@@ -90,17 +90,32 @@ public class TowerBuild : MonoBehaviour
                         {
                             if (this.gameObject.tag == "Build Zone 1")
                             {
-                                Debug.Log("Team 1 Wins");
+                                //tim.GetComponent<>()
+                                //TODO: Get time. Also if time runs out end the game from the timer.
+                                GameEnd("Blue");
+
                             }
-                            else 
+                            else
                             {
-                                Debug.Log("Team 2 Wins");
+                                GameEnd("Red");
                             }
                         }
                     }
                 }
             }
 
+    }
+    public void GameEnd(string team)
+    {
+        if (team == "Red")
+        {
+            Debug.Log("Red Wins");
+        }
+        else if (team == "Blue")
+        {
+            Debug.Log("Blue Wins");
+        }
+        else Debug.Log("Error Ending Game");
     }
 
 }
