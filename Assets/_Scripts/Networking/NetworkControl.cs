@@ -433,10 +433,14 @@ public class NetworkControl : MonoBehaviour
         }
         if (goGame)
         {
-
+            shutdownNetwork();
             closeSocket(sock);
             hndLobby.Complete(); //should be the same as thread::join c++
-           
+
+            initNetwork();
+            if (createSocket(sock, SocketType.UDP) == P_GenericError)
+                PrintError(getLastNetworkError());
+
             if (createSocket(sock, SocketType.UDP) == P_GenericError)
                 PrintError(getLastNetworkError());
 
@@ -461,8 +465,8 @@ public class NetworkControl : MonoBehaviour
         if (!shutdownNetwork())
             PrintError(getLastNetworkError());
         closeSocket(sock);
-        
+
         hndLobby.Complete(); //should be the same as thread::join c++
-        hndGame .Complete();
+        hndGame.Complete();
     }
 }
