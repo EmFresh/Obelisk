@@ -203,7 +203,7 @@ public class NetworkControl : MonoBehaviour
         public SocketData sock;
         private IPEndpointData ip;
 
-        public Unknown unknown;
+        private Unknown unknown;
 
         public void Execute()
         {
