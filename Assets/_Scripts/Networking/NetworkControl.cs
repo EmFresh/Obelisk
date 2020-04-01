@@ -435,12 +435,10 @@ public class NetworkControl : MonoBehaviour
         {
             shutdownNetwork();
             closeSocket(sock);
+            close = true;
             hndLobby.Complete(); //should be the same as thread::join c++
 
             initNetwork();
-            if (createSocket(sock, SocketType.UDP) == P_GenericError)
-                PrintError(getLastNetworkError());
-
             if (createSocket(sock, SocketType.UDP) == P_GenericError)
                 PrintError(getLastNetworkError());
 
@@ -448,6 +446,7 @@ public class NetworkControl : MonoBehaviour
             {
                 sock = sock
             };
+
             hndGame = jobGameRecv.Schedule();
 
             goGame = false;
