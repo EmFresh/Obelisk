@@ -438,6 +438,7 @@ public class NetworkControl : MonoBehaviour
             close = true;
             hndLobby.Complete(); //should be the same as thread::join c++
 
+            close = false;
             initNetwork();
             if (createSocket(sock, SocketType.UDP) == P_GenericError)
                 PrintError(getLastNetworkError());
