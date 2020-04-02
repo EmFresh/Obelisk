@@ -25,6 +25,12 @@ public class PlayerSpellShot : MonoBehaviour
     private IList<Vector3> direction = new List<Vector3>();
     private IList<Vector3> position = new List<Vector3>();
 
+   void Start() {
+        shots[0] = true;
+        shots[1] = true;
+        shots[2] = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -32,94 +38,96 @@ public class PlayerSpellShot : MonoBehaviour
         float dt = Time.deltaTime;
         playerIndex = GetComponent<PlayerMovement>().controllerIndex;
 
-        //creates a new gameObject every time a key is pressed
-        if ((Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy)) && shots[0])
-        {
-            _animator.SetBool("isShoot", true);
-            projcopy.Add(Instantiate(projectial));
-            projcopy.Last().GetComponent<FireballCollision>().caster = gameObject;
-            projCounter.Add(0);
+        if (!GetComponent<PlayerMovement>().isNetworkedPlayer)
+        {       //creates a new gameObject every time a key is pressed
+            if ((Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy)) && shots[0])
+            {
+                _animator.SetBool("isShoot", true);
+                projcopy.Add(Instantiate(projectial));
+                projcopy.Last().GetComponent<FireballCollision>().caster = gameObject;
+                projCounter.Add(0);
 
-            var forw = transform.forward;
-            forw.y = GetComponentInChildren<CameraMovement>().gameObject.transform.forward.y;
-            forw.x *= 1 - Mathf.Abs(forw.y);
-            forw.z *= 1 - Mathf.Abs(forw.y);
-            forw.Normalize();
-            forw = Quaternion.Euler(directionOffset) * forw;
-            direction.Add(forw);
+                var forw = transform.forward;
+                forw.y = GetComponentInChildren<CameraMovement>().gameObject.transform.forward.y;
+                forw.x *= 1 - Mathf.Abs(forw.y);
+                forw.z *= 1 - Mathf.Abs(forw.y);
+                forw.Normalize();
+                forw = Quaternion.Euler(directionOffset) * forw;
+                direction.Add(forw);
 
-            position.Add(transform.position + new Vector3(0.2f, 1.5f, 0));
-            projcopy.Last().transform.position = position.Last();
-            projcopy.Last().transform.rotation = transform.rotation;
+                position.Add(transform.position + new Vector3(0.2f, 1.5f, 0));
+                projcopy.Last().transform.position = position.Last();
+                projcopy.Last().transform.rotation = transform.rotation;
 
-            // Projcopy[Projcopy.Count - 1].transform.position = transform.position;
+                // Projcopy[Projcopy.Count - 1].transform.position = transform.position;
 
-            for (int a = shots.Length - 1; a >= 0; --a)
-                if (shots[a])
-                {
-                    shots[a] = false;
-                    break;
-                }
-            //Projcopy[Projcopy.Count - 1].transform.parent = this.transform;
-        }
-
-        //checks if the player can make a shot
-        if (!(shots[0] && shots[1] && shots[2]))
-        {
-            shotTimer += Time.deltaTime * 0.5f;
-            for (int a = 0; a < shots.Length; ++a)
-                if (!shots[a])
-                {
-                    if (shotTimer > shotCooldown)
+                for (int a = shots.Length - 1; a >= 0; --a)
+                    if (shots[a])
                     {
-                        shotTimer = 0;
-                        shots[a] = true;
+                        shots[a] = false;
+                        break;
                     }
-                    break;
+                //Projcopy[Projcopy.Count - 1].transform.parent = this.transform;
+            }
+
+            //checks if the player can make a shot
+            if (!(shots[0] && shots[1] && shots[2]))
+            {
+                shotTimer += Time.deltaTime * 0.5f;
+                for (int a = 0; a < shots.Length; ++a)
+                    if (!shots[a])
+                    {
+                        if (shotTimer > shotCooldown)
+                        {
+                            shotTimer = 0;
+                            shots[a] = true;
+                        }
+                        break;
+                    }
+            }
+
+            for (int i = 0; i < projCounter.Count; i++)
+            {
+                //Remove all destroyed objects
+                if (projcopy[i] == null)
+                {
+                    var tmp = position[i];
+                    var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
+
+                    projcopy.RemoveAt(i);
+                    projCounter.RemoveAt(i);
+                    direction.RemoveAt(i);
+                    position.RemoveAt(i);
+                    i--;
+
+                    continue;
                 }
-        }
 
-        for (int i = 0; i < projCounter.Count; i++)
-        {
-            //Remove all destroyed objects
-            if (projcopy[i] == null)
-            {
-                var tmp = position[i];
-                var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
+                //Object destruction after 5 seconds
+                if (projCounter[i] >= duration)
+                {
+                    var tmp = projcopy[i].transform.position;
+                    var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
 
-                projcopy.RemoveAt(i);
-                projCounter.RemoveAt(i);
-                direction.RemoveAt(i);
-                position.RemoveAt(i);
-                i--;
+                    // Debug.Log(direction[i]);
+                    Destroy(projcopy[i]);
+                    projcopy.RemoveAt(i);
+                    projCounter.RemoveAt(i);
+                    direction.RemoveAt(i);
+                    position.RemoveAt(i);
+                    i--;
 
-                continue;
+                    continue;
+
+                }
+
+                //increase the timer
+                projCounter[i] += dt;
+
+                //Move the object
+                position[i] += direction[i] * movement * Time.deltaTime;
+                projcopy[i].transform.position = position[i];
             }
-
-            //Object destruction after 5 seconds
-            if (projCounter[i] >= duration)
-            {
-                var tmp = projcopy[i].transform.position;
-                var explosioncpy = Instantiate(explosion, new Vector3(tmp.x, tmp.y, tmp.z), Quaternion.identity);
-
-                // Debug.Log(direction[i]);
-                Destroy(projcopy[i]);
-                projcopy.RemoveAt(i);
-                projCounter.RemoveAt(i);
-                direction.RemoveAt(i);
-                position.RemoveAt(i);
-                i--;
-
-                continue;
-
-            }
-
-            //increase the timer
-            projCounter[i] += dt;
-
-            //Move the object
-            position[i] += direction[i] * movement * Time.deltaTime;
-            projcopy[i].transform.position = position[i];
         }
     }
 }
