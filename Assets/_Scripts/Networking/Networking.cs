@@ -366,7 +366,8 @@ public class Networking
     ///<summary>
     ///Receive packet over UDP server. Not guaranteed to recieve all bytes.
     ///</summary>
-    public static PResult recvFromPacket<T>(in SocketData soc, out T data, out IPEndpointData ip) => recvFromPacket(soc, out data, Marshal.SizeOf<T>(), out ip);
+    public static PResult recvFromPacket<T>(in SocketData soc, out T data, out IPEndpointData ip) => 
+    recvFromPacket(soc, out data, Marshal.SizeOf<T>(), out ip);
 
     ///<summary>
     ///Receive packet over UDP server. Not guaranteed to recieve all bytes.

@@ -57,9 +57,9 @@ public class NetworkControl : MonoBehaviour
         public Unknown()
         {
             type = MessageType.Movement; //int
-            size = Marshal.SizeOf<Movement>(); //int
+            size = Marshal.SizeOf<Unknown>(); //int
         }
-        public long l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,l14,l15;
+        public long l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -99,7 +99,7 @@ public class NetworkControl : MonoBehaviour
         {
             int size = 512, dump;
             string recv = "";
-            for (;;)
+            for (; ; )
             {
                 bool printable = true;
                 if (isNetworkInit)
@@ -203,16 +203,15 @@ public class NetworkControl : MonoBehaviour
         public SocketData sock;
         private IPEndpointData ip;
 
-        private Unknown unknown;
-
         public void Execute()
         {
             if (isNetworkInit)
             {
                 while (true)
                 {
+                    Unknown unknown;
                     unknown = new Unknown();
-                    if (recvFromPacket(sock, out unknown, out ip) == PResult.P_Success)
+                    if (recvFromPacket(sock, out unknown, 512, out ip) == PResult.P_Success)
                         switch (unknown.type)
                         {
                             case MessageType.Movement:
@@ -419,7 +418,7 @@ public class NetworkControl : MonoBehaviour
         {
             seat = new int[] { 0, 0, 0, 0 };
             start = new int[] { 0, 0, 0, 0 };
-            users = new List<user> {};
+            users = new List<user> { };
         }
     }
 
@@ -440,9 +439,12 @@ public class NetworkControl : MonoBehaviour
 
             close = false;
             initNetwork();
+            sock = initSocketData();
             if (createSocket(sock, SocketType.UDP) == P_GenericError)
                 PrintError(getLastNetworkError());
-
+            if (connectEndpoint(ip, sock) == P_GenericError)
+                   PrintError(getLastNetworkError());
+        
             jobGameRecv = new NetworkGameRecvJob()
             {
                 sock = sock
