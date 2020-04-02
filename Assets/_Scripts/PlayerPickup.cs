@@ -34,87 +34,89 @@ public class PlayerPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gatherPercent == 0)
+        if (!GetComponent<PlayerMovement>().isNetworkedPlayer)
         {
-            icon.SetActive(false);
-        }
-        else
-        {
-            icon.SetActive(true);
-        }
-        playerIndex = GetComponent<PlayerMovement>().controllerIndex;
-        if (Input.GetKeyDown(pickupKey) || isButtonDown(playerIndex, (int)pickupJoy))
-        {
-            keyPressed = true;
-            timer = Time.time;
-        }
-        else if ((Input.GetKeyUp(pickupKey) || (!Input.GetKey(pickupKey))) &&
-            (isButtonReleased(playerIndex, (int)pickupJoy) || (!isButtonPressed(playerIndex, (int)pickupJoy))))
-        {
-            keyPressed = false;
-            resourceCollected = 0;
-            gatherPercent = 0;
-            _animator.SetBool("isGather", false);
-        }
-
-        //Picks up resource after 1 second of holding the key down (Key is public, it is et in Unity)
-        //Also sends a bool to onTriggerStay
-        if (keyPressed)
-        {
-            if (woodCollision == true)
-
+            if (gatherPercent == 0)
             {
-                _animator.SetBool("isGather", true);
-                gatherPercent = Time.time - timer;
-                if (Time.time - timer >= pickupDuration)
-                {
-                    Debug.Log("hi");
+                icon.SetActive(false);
+            }
+            else
+            {
+                icon.SetActive(true);
+            }
+            playerIndex = GetComponent<PlayerMovement>().controllerIndex;
+            if (Input.GetKeyDown(pickupKey) || isButtonDown(playerIndex, (int)pickupJoy))
+            {
+                keyPressed = true;
+                timer = Time.time;
+            }
+            else if ((Input.GetKeyUp(pickupKey) || (!Input.GetKey(pickupKey))) &&
+                (isButtonReleased(playerIndex, (int)pickupJoy) || (!isButtonPressed(playerIndex, (int)pickupJoy))))
+            {
+                keyPressed = false;
+                resourceCollected = 0;
+                gatherPercent = 0;
+                _animator.SetBool("isGather", false);
+            }
 
-                    WoodAmount += 3;
-                    resourceCollected += 1;
-                    woodCollision = false;
-                    timer = 0;
-                    deletThis = true;
-                    gatherPercent = 0;
-                    _animator.SetBool("isGather", false);
+            //Picks up resource after 1 second of holding the key down (Key is public, it is et in Unity)
+            //Also sends a bool to onTriggerStay
+            if (keyPressed)
+            {
+                if (woodCollision == true)
+
+                {
+                    _animator.SetBool("isGather", true);
+                    gatherPercent = Time.time - timer;
+                    if (Time.time - timer >= pickupDuration)
+                    {
+                        Debug.Log("hi");
+
+                        WoodAmount += 3;
+                        resourceCollected += 1;
+                        woodCollision = false;
+                        timer = 0;
+                        deletThis = true;
+                        gatherPercent = 0;
+                        _animator.SetBool("isGather", false);
+                    }
+                }
+                else if (stoneCollision == true)
+                {
+                    _animator.SetBool("isGather", true);
+                    gatherPercent = Time.time - timer;
+                    if (Time.time - timer >= pickupDuration)
+                    {
+                        Debug.Log("hi");
+
+                        StoneAmount += 3;
+                        resourceCollected += 1;
+                        stoneCollision = false;
+                        timer = 0;
+                        deletThis = true;
+                        gatherPercent = 0;
+                        _animator.SetBool("isGather", false);
+                    }
+                }
+                else if (crystalCollision == true)
+                {
+                    _animator.SetBool("isGather", true);
+                    gatherPercent = Time.time - timer;
+                    if (Time.time - timer >= pickupDuration)
+                    {
+                        Debug.Log("hi");
+
+                        CrystalAmount += 3;
+                        resourceCollected += 1;
+                        crystalCollision = false;
+                        timer = 0;
+                        deletThis = true;
+                        gatherPercent = 0;
+                        _animator.SetBool("isGather", false);
+                    }
                 }
             }
-            else if (stoneCollision == true)
-            {
-                _animator.SetBool("isGather", true);
-                gatherPercent = Time.time - timer;
-                if (Time.time - timer >= pickupDuration)
-                {
-                    Debug.Log("hi");
-
-                    StoneAmount += 3;
-                    resourceCollected += 1;
-                    stoneCollision = false;
-                    timer = 0;
-                    deletThis = true;
-                    gatherPercent = 0;
-                    _animator.SetBool("isGather", false);
-                }
-            }
-            else if (crystalCollision == true)
-            {
-                _animator.SetBool("isGather", true);
-                gatherPercent = Time.time - timer;
-                if (Time.time - timer >= pickupDuration)
-                {
-                    Debug.Log("hi");
-
-                    CrystalAmount += 3;
-                    resourceCollected += 1;
-                    crystalCollision = false;
-                    timer = 0;
-                    deletThis = true;
-                    gatherPercent = 0;
-                    _animator.SetBool("isGather", false);
-                }
-            }
         }
-
     }
 
     void OnTriggerEnter(Collider other)
