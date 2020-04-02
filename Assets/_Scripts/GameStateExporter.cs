@@ -27,7 +27,7 @@ public class GameStateExporter : MonoBehaviour
     void Start()
     {
         path = Application.dataPath + "/gameState.json";
-        blinkScript = GameObject.Find("Player 2 (Runner)").GetComponent<Blink>();
+        blinkScript = GameObject.Find("Player").GetComponent<Blink>();
         rogueData.isBlinking = blinkScript.isBlinking;
 
         json = JsonUtility.ToJson(rogueData);
