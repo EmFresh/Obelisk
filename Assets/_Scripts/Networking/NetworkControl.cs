@@ -414,6 +414,13 @@ public class NetworkControl : MonoBehaviour
 
     private void Start()
     {
+           
+            movements[0] = new Movement();
+            movements[1] = new Movement();
+            movements[2] = new Movement();
+            movements[3] = new Movement();
+        
+
         if (users == null)
         {
             seat = new int[] { 0, 0, 0, 0 };
