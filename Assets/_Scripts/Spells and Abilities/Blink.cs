@@ -38,6 +38,7 @@ public class Blink : MonoBehaviour
     {
         playerIndex = GetComponent<PlayerMovement>().controllerIndex;
 
+        if(!GetComponent<PlayerMovement>().isNetworkedPlayer)
         if ((Input.GetKeyDown(blinkKey) || isButtonDown(playerIndex, (int)blinkJoy)) && Time.time > nextBlinkTime && !isBlinking)
         {
             ActivateBlink();
