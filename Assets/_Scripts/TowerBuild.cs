@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
+using UnityEngine.SceneManagement;
 
 public class TowerBuild : MonoBehaviour
 {
@@ -23,7 +24,11 @@ public class TowerBuild : MonoBehaviour
     private Transform theParent;
     private const int maxStages = 3;
 
+    public GameObject timer;
     public GameObject chest;
+    public string RedScene;
+    public string BlueScene;
+    public string TieScene;
     //public GameObject spellcaster;
     //public GameTimer tim;
     //private bool initBuild = true;
@@ -95,11 +100,17 @@ public class TowerBuild : MonoBehaviour
                                 GameEnd("Blue");
 
                             }
+                            
                             else
                             {
                                 GameEnd("Red");
                             }
                         }
+                        if (timer.GetComponent<GameTimer>().counter <= 0)
+                        {
+                            GameEnd("Tie");
+                        }
+                        
                     }
                 }
             }
@@ -109,11 +120,19 @@ public class TowerBuild : MonoBehaviour
     {
         if (team == "Red")
         {
+            SceneManager.LoadScene(RedScene, LoadSceneMode.Single);
             Debug.Log("Red Wins");
+            //Debug.Log(timer.GetComponent<GameTimer>().timeOut);
         }
         else if (team == "Blue")
         {
+            SceneManager.LoadScene(BlueScene, LoadSceneMode.Single);
             Debug.Log("Blue Wins");
+        }
+        else if(team == "Tie")
+        {
+            SceneManager.LoadScene(TieScene, LoadSceneMode.Single);
+            Debug.Log("Tie");
         }
         else Debug.Log("Error Ending Game");
     }

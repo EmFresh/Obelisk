@@ -10,7 +10,7 @@ public class GameTimer : MonoBehaviour
     public float counter = 300.0f;
     public Text countText;
 
-    bool timeOut = false;
+    public bool timeOut = false;
     void Start()
     {
         countText = gameObject.GetComponent<Text>();
@@ -32,6 +32,8 @@ public class GameTimer : MonoBehaviour
         if (counter <= 0)
         {
             timeOut = true;
+            countText.text = "Time Left: " + Mathf.Round(counter);
+            Debug.Log("TimeOut = True");
         }
     }
 
