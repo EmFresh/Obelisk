@@ -16,29 +16,26 @@ public class TestingStatic : MonoBehaviour
             inst = this;
             DontDestroyOnLoad(inst);
         }
+        singletonVarInit(object1,inst.object1);
+        singletonVarInit(object2,inst.object2);
 
-        if (!object1)
-            object1 = inst.object1;
-        if (!object2)
-            object2 = inst.object2;
+        
 
-        if (object1)
+    }
+
+    void singletonVarInit(Object ob,Object instOb)
+    {
+        if (!ob)
+            ob = instOb;
+              
+        if (ob)
         {
-            if (inst.object1 != object1)
-                Destroy(inst.object1);
-            DontDestroyOnLoad(object1);
+            if (instOb != ob)
+                Destroy(instOb);
+            DontDestroyOnLoad(ob);
         }
-
-        if (object2)
-        {
-            if (inst.object2 != object2)
-                Destroy(inst.object2);
-            DontDestroyOnLoad(object2);
-        }
-
-        inst.object1 = object1;
-        inst.object2 = object2;
-
+        
+        instOb = ob;
     }
     void Start()
     {

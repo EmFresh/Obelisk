@@ -10,22 +10,26 @@ using UnityEngine.UI;
 public class NetworkControl : MonoBehaviour
 {
     #region Variables
-
     public Text ipText;
     public Text nameText;
     public GameObject connectionerror;
 
-    public static List<user> users;
+    public static List<User> users = new List<User>();
+    List<User> _users;
     public static Movement[] movements = new Movement[4];
-    public static user thisUser;
+    Movement[] _movements;
+    public static User thisUser = new User();
+    User _thisUser;
     public static int[] seat;
     public static int[] start;
 
-    static bool goLobby = false;
-    static bool goGame = false;
+    static bool goLobby = false, inLobby = false;
+    static bool goGame = false, inGame = false;
 
     public static SocketData sock;
+    SocketData _sock;
     public static IPEndpointData ip;
+    IPEndpointData _ip;
     static NetworkLobyRecvJob jobLobbyRecv;
     static NetworkGameRecvJob jobGameRecv;
     static JobHandle hndLobby, hndGame;
@@ -56,7 +60,7 @@ public class NetworkControl : MonoBehaviour
     {
         public Unknown()
         {
-            type = MessageType.Movement; //int
+            type = MessageType.Unknown; //int
             size = Marshal.SizeOf<Unknown>(); //int
         }
         public long l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15;
@@ -78,9 +82,9 @@ public class NetworkControl : MonoBehaviour
     }
     #endregion
 
-    public struct user
+    public struct User
     {
-        public user(string n, int d)
+        public User(string n, int d)
         {
             this._name = n;
             this._id = d;
@@ -99,7 +103,7 @@ public class NetworkControl : MonoBehaviour
         {
             int size = 512, dump;
             string recv = "";
-            for (; ; )
+            while (inLobby)
             {
                 bool printable = true;
                 if (isNetworkInit)
@@ -130,7 +134,7 @@ public class NetworkControl : MonoBehaviour
                                 for (int i = 0; i < t; i++)
                                 {
                                     index++;
-                                    users.Add(new user(strings[index], int.Parse(strings[index + 1])));
+                                    users.Add(new User(strings[index], int.Parse(strings[index + 1])));
                                     index++;
                                 }
                             }
@@ -155,7 +159,7 @@ public class NetworkControl : MonoBehaviour
                         {
                             recv = recv.Substring(1);
                             string[] strings = recv.Split(':');
-                            users.Add(new user(strings[0], int.Parse(strings[1])));
+                            users.Add(new User(strings[0], int.Parse(strings[1])));
                             print(strings[0] + "join");
                         }
                         else if (recv[0] == '#')
@@ -185,6 +189,8 @@ public class NetworkControl : MonoBehaviour
                         else if (recv[0] == '$')
                         {
                             goGame = true;
+                            inGame = true;
+                            inLobby = false;
                         }
                         else
                             print(recv);
@@ -207,11 +213,12 @@ public class NetworkControl : MonoBehaviour
         {
             if (isNetworkInit)
             {
-                while (true)
+                while (inGame)
                 {
                     Unknown unknown;
                     unknown = new Unknown();
-                    if (recvFromPacket(sock, out unknown, 512, out ip) == PResult.P_Success)
+                    int dump;
+                    if (recvFromPacket(sock, out unknown, 512, out dump, out ip) == PResult.P_Success)
                         switch (unknown.type)
                         {
                             case MessageType.Movement:
@@ -246,33 +253,49 @@ public class NetworkControl : MonoBehaviour
 
     private void Awake()
     {
+        _users = users;
+        _movements = movements;
+        _thisUser = thisUser;
+        _sock = sock;
+        _ip = ip;
         if (inst == null)
         {
             inst = this;
             DontDestroyOnLoad(inst);
         }
-        if (!ipText)
-            ipText = inst.ipText;
+        singletonVarInit(ipText, inst.ipText);
+        singletonVarInit(nameText, inst.nameText);
+        singletonVarInit(_users, inst._users);
+        singletonVarInit(_thisUser, inst._thisUser);
+        singletonVarInit(_movements, inst._movements);
+        singletonVarInit(_sock, inst._sock);
+        singletonVarInit(_ip, inst._ip);
 
-        if (!nameText)
-            nameText = inst.nameText;
-
-        if (ipText)
-        {
-            if (inst.ipText != ipText)
-                Destroy(inst.ipText);
-            DontDestroyOnLoad(ipText);
-        }
-        if (nameText)
-        {
-            if (inst.nameText != nameText)
-                Destroy(inst.nameText);
-            DontDestroyOnLoad(nameText);
-        }
-
-        inst.ipText = ipText;
-        inst.nameText = nameText;
     }
+    void singletonVarInit(Object ob, Object instOb, Object stat = default(Object))
+    {
+        if (!ob)
+            ob = instOb;
+
+        if (ob)
+        {
+            if (instOb != ob)
+                Destroy(instOb);
+            DontDestroyOnLoad(ob);
+        }
+
+        instOb = ob;
+        stat = instOb;
+    }
+    void singletonVarInit<T>(T ob, T instOb, T stat = default(T))
+    {
+        if (ob == null)
+            ob = instOb;
+
+        instOb = ob;
+        stat = instOb;
+    }
+
     #endregion
 
     #region Loby
@@ -317,6 +340,8 @@ public class NetworkControl : MonoBehaviour
         {
             PrintError(getLastNetworkError());
         }
+        else
+            inLobby = true;
 
     }
 
@@ -414,18 +439,17 @@ public class NetworkControl : MonoBehaviour
 
     private void Start()
     {
-           
-            movements[0] = new Movement();
-            movements[1] = new Movement();
-            movements[2] = new Movement();
-            movements[3] = new Movement();
-        
 
-        if (users == null)
+        movements[0] = new Movement();
+        movements[1] = new Movement();
+        movements[2] = new Movement();
+        movements[3] = new Movement();
+
+        if (seat == null)
         {
             seat = new int[] { 0, 0, 0, 0 };
             start = new int[] { 0, 0, 0, 0 };
-            users = new List<user> { };
+            //users = new List<user> {};
         }
     }
 
@@ -439,19 +463,19 @@ public class NetworkControl : MonoBehaviour
         }
         if (goGame)
         {
-            shutdownNetwork();
-            closeSocket(sock);
-            close = true;
-            hndLobby.Complete(); //should be the same as thread::join c++
+            //shutdownNetwork();
+            //closeSocket(sock);
+            //close = true;
+            //hndLobby.Complete(); //should be the same as thread::join c++
+            //
+            //close = false;
+            //initNetwork();
+            //sock = initSocketData();
+            //if (createSocket(sock, SocketType.UDP) == P_GenericError)
+            //    PrintError(getLastNetworkError());
+            //if (connectEndpoint(ip, sock) == P_GenericError)
+            //    PrintError(getLastNetworkError());
 
-            close = false;
-            initNetwork();
-            sock = initSocketData();
-            if (createSocket(sock, SocketType.UDP) == P_GenericError)
-                PrintError(getLastNetworkError());
-            if (connectEndpoint(ip, sock) == P_GenericError)
-                   PrintError(getLastNetworkError());
-        
             jobGameRecv = new NetworkGameRecvJob()
             {
                 sock = sock
