@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 15;
 
     public float JumpHeight = 7;
-    public float minMovement = 1;
+    public float minMovement = 0.1f;
 
     [HideInInspector] public float speed = 0;
 
