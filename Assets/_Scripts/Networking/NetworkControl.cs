@@ -5,9 +5,9 @@ using Unity.Jobs;
 using UnityEngine;
 using static Networking;
 using static Networking.PResult;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class NetworkControl : MonoBehaviour
 {
@@ -229,8 +229,9 @@ public class NetworkControl : MonoBehaviour
                                 tmp = Marshal.AllocHGlobal(Marshal.SizeOf<Unknown>());
                                 Marshal.StructureToPtr(unknown, tmp, true);
                                 Movement move = Marshal.PtrToStructure<Movement>(tmp);
-                                if(move!=null)
-                                {   
+                                Marshal.FreeHGlobal(tmp);
+                                if (move != null)
+                                {
                                     move.isUpdated = true;
                                     movements[move.id] = move;
                                 }
