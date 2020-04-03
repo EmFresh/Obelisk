@@ -129,14 +129,16 @@ public class PlayerMovement : MonoBehaviour
 
     void CreateJumpParticles(Vector3 playerPos)
     {
-        jumpParticles.transform.position = playerPos;
+       
+        Instantiate(jumpParticles,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
         jumpParticles.Play();
     }
 
 
     void CreateLandParticles(Vector3 playerPos)
     {
-        landParticles.transform.position = playerPos;
+      
+        Instantiate(landParticles,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
         landParticles.Play();
     }
 

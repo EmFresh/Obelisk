@@ -57,7 +57,7 @@ public class Blink : MonoBehaviour
         // characterRenderer.enabled = !characterRenderer.enabled;
         Debug.Log("Blink Active");
         endBlinkTime = Time.time + blinkTime;
-        Invoke("StopBlink", blinkTime); //After blinkTime seconds, StopBlink()
+       // Invoke("StopBlink", blinkTime); //After blinkTime seconds, StopBlink()
        
     }
 
