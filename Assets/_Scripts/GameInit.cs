@@ -22,6 +22,7 @@ public class GameInit : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("entered int");
         spellcaster = Instantiate(spellcaster, transform);
         rogue = Instantiate(rogue, transform);
 
@@ -31,6 +32,8 @@ public class GameInit : MonoBehaviour
         GameObject[] players = { rogue, spellcaster };
         GameObject[] spawns = { spawnRogue, spawnSpellcaster };
 
+ print("entered finihed");
+        
         switch (tag.ToLower())
         {
             case "team 1":
@@ -46,14 +49,14 @@ public class GameInit : MonoBehaviour
                         players[a].transform.rotation = spawns[a].transform.rotation;
                         players[a].GetComponent<Respawn>().spawnpoint = spawns[a];
                         players[a].GetComponent<Respawn>().area = playArea;
-                   
+
                     }
                     else
                     {
                         players[a].GetComponent<PlayerMovement>().controllerIndex = 5; //un-useable
                         players[a].GetComponent<PlayerMovement>().enableKeyboard = false;
                         players[a].GetComponent<PlayerMovement>().isNetworkedPlayer = true;
-                        players[a].GetComponent<PlayerMovement>().networkID =  (ushort)NetworkControl.seat[a];
+                        players[a].GetComponent<PlayerMovement>().networkID = (ushort)NetworkControl.seat[a];
                     }
                 }
 
@@ -78,7 +81,7 @@ public class GameInit : MonoBehaviour
                         players[a].GetComponent<PlayerMovement>().controllerIndex = 5; //un-useable
                         players[a].GetComponent<PlayerMovement>().enableKeyboard = false;
                         players[a].GetComponent<PlayerMovement>().isNetworkedPlayer = true;
-                        players[a].GetComponent<PlayerMovement>().networkID = (ushort)NetworkControl.seat[a] ;
+                        players[a].GetComponent<PlayerMovement>().networkID = (ushort)NetworkControl.seat[a];
                     }
                 }
                 break;

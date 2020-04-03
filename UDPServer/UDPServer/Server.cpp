@@ -4,6 +4,7 @@ Server::Server()
 {
 	status = ServerStatus::Lobby;
 	ptr = NULL;
+	CreateServer();
 }
 
 Server::~Server()
@@ -45,7 +46,7 @@ void Server::CreateServer()
 	hints.ai_protocol = IPPROTO_UDP;
 	hints.ai_flags = AI_PASSIVE;
 
-	if(getaddrinfo(nullptr, PORT, &hints, &ptr) != 0)
+	if(getaddrinfo(NULL, PORT, &hints, &ptr) != 0)
 	{
 		printf("Getaddrinfo failed!! %d\n", WSAGetLastError());
 		WSACleanup();
@@ -85,6 +86,7 @@ void Server::UpdateRecv()
 			int fromlen;
 			fromlen = sizeof(fromAddr);
 			memset(recv_buf, 0, BUF_LEN);
+			
 			if(recvfrom(server_socket, recv_buf, sizeof(recv_buf), 0, (struct sockaddr*) & fromAddr, &fromlen) == SOCKET_ERROR)
 			{
 				printf("recvfrom() failed...%d\n", WSAGetLastError());
@@ -193,14 +195,14 @@ void Server::UpdateRecv()
 				continue;
 			}
 
-			if(fromlen > 8)
+			//if(fromlen > 8)//double chech that there is other data to read
 			{
 				MessageType msg =(MessageType)reclass(int, recv_buf);
 				switch(msg)
 				{
 					//TODO: create movement structure here
 				case MessageType::Movement:
-					if(fromlen >= reclass(int, recv_buf[4]))//check for the correct data size
+					//if(fromlen >= reclass(int, recv_buf[4]))//check for the correct data size
 					{
 						puts("recived Movement message from client");
 						//TODO: get player ID,Position,velocity,elapsed time and broadcast
@@ -243,7 +245,7 @@ void Server::UpdateSend()
 			{
 				status = ServerStatus::Game;
 				//TODO:
-				BroadcastMessageToAll("$");
+				BroadcastMessageToAll((char*)"$");
 			}
 		}
 		else if(status == ServerStatus::Game)
@@ -257,20 +259,20 @@ void Server::UpdateSend()
 	}
 }
 
-void Server::HandleSending(std::string _message, sockaddr_in _adress)
+void Server::HandleSending(void* _message, sockaddr_in _adress)
 {
 	int fromlen;
 	fromlen = sizeof(_adress);
-	char* tmp = (char*)_message.c_str();
-	if(sendto(server_socket, tmp, BUF_LEN, 0, (struct sockaddr*) & _adress, fromlen) == SOCKET_ERROR)
+	
+	if(sendto(server_socket,(char*)_message, BUF_LEN, 0, (struct sockaddr*) & _adress, fromlen) == SOCKET_ERROR)
 	{
 		printf("sendto() failed %d\n", WSAGetLastError());
 	}
 }
 
-void Server::BroadcastMessageToAll(std::string _message)
+void Server::BroadcastMessageToAll(void* _message)
 {
-	std::cout << "Send All: " << _message << std::endl;
+	std::cout << "Send All: "  << std::endl;
 	if(users.listUsers.size() != 0)
 	{
 		for(std::list <User> ::iterator it = users.listUsers.begin(); it != users.listUsers.end(); it++)
@@ -295,7 +297,7 @@ void Server::join(std::string _name, sockaddr_in _adress)
 
 	//// Notice all player in lobby
 	std::string newMassage = "!" + _name + ":" + std::to_string(userId);
-	BroadcastMessageToAll(newMassage);
+	BroadcastMessageToAll((char*)newMassage.data());
 
 	//// Sendback conformation, all other online player info, id, start info and seat info
 	std::string sendBack;
@@ -328,7 +330,7 @@ void Server::join(std::string _name, sockaddr_in _adress)
 		sendBack += std::to_string(startButtons[i]);
 	}
 	// send
-	HandleSending(sendBack, _adress);
+	HandleSending((char*)sendBack.c_str(), _adress);
 
 	//// Add to player list
 	users.addUser(_name, _adress, userId);
@@ -360,12 +362,12 @@ void Server::takeSeat(int _userId, int _seatId)
 			seatInfo += ":";
 			seatInfo += std::to_string(lobbySeat[i]);
 		}
-		BroadcastMessageToAll(seatInfo);
+		BroadcastMessageToAll((char*)seatInfo.c_str());
 	}
 	else
 	{
 		// Seat is occupied
-		HandleSending("Seat is Occupied, please choose another one.", users.getAdress(_userId));
+		HandleSending((char*)"Seat is Occupied, please choose another one.", users.getAdress(_userId));
 	}
 }
 
@@ -387,7 +389,7 @@ void Server::leftSeat(int _id)
 		seatInfo += ":";
 		seatInfo += std::to_string(lobbySeat[i]);
 	}
-	BroadcastMessageToAll(seatInfo);
+	BroadcastMessageToAll((char*)seatInfo.c_str());
 }
 
 void Server::leftLobby(int _id)
@@ -397,7 +399,7 @@ void Server::leftLobby(int _id)
 
 	// Let all user know
 	//TODO:
-	BroadcastMessageToAll("");
+	BroadcastMessageToAll((char*)"");
 }
 
 void Server::pressedStart(int _userId)
@@ -420,7 +422,7 @@ void Server::pressedStart(int _userId)
 		startInfo += ":";
 		startInfo += std::to_string(startButtons[i]);
 	}
-	BroadcastMessageToAll(startInfo);
+	BroadcastMessageToAll((char*)startInfo.c_str());
 }
 
 void Server::leftGame(int _id)
@@ -430,5 +432,5 @@ void Server::leftGame(int _id)
 
 	// Let all user know
 	//TODO:
-	BroadcastMessageToAll("");
+	BroadcastMessageToAll((char*)"");
 }

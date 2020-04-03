@@ -7,7 +7,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-#define PORT "8080"
+#define PORT "8888"
 //#define IP   "0.0.0.0"
 #define BUF_LEN 512
 #define reclass(a_class, a_val) (*(a_class*)&(a_val))
@@ -34,8 +34,8 @@ public:
 	void CreateServer();// Initialize the server
 	void UpdateRecv();// Handle the receiving loop
 	void UpdateSend();// Handle the sending loop
-	void HandleSending(std::string _message, struct sockaddr_in _adress);// Send a string to certain adress
-	void BroadcastMessageToAll(std::string _message);// Send a string to all users (Also print in command)
+	void HandleSending(void* _message, struct sockaddr_in _adress);// Send a string to certain adress
+	void BroadcastMessageToAll(void* _message);// Send a string to all users (Also print in command)
 	void CloseServer();// Shutdown server
 
 	void join(std::string _name, struct sockaddr_in _adress);// Process when a new player join server
