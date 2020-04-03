@@ -226,10 +226,14 @@ public class NetworkControl : MonoBehaviour
                             case MessageType.Movement:
                                 //TODO: recv the movement variable from other clients
 
+                                tmp = Marshal.AllocHGlobal(Marshal.SizeOf<Unknown>());
                                 Marshal.StructureToPtr(unknown, tmp, true);
                                 Movement move = Marshal.PtrToStructure<Movement>(tmp);
-                                move.isUpdated = true;
-                                movements[move.id] = move;
+                                if(move!=null)
+                                {   
+                                    move.isUpdated = true;
+                                    movements[move.id] = move;
+                                }
                                 break;
                             case MessageType.Fireball:
                                 //TODO: recv position, velocity/sec and start time
