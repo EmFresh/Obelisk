@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Runtime.InteropServices;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 using UnityEngine;
 using static Networking;
 using static Networking.PResult;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class NetworkControl : MonoBehaviour
 {
@@ -208,7 +210,7 @@ public class NetworkControl : MonoBehaviour
     {
         public SocketData sock;
         private IPEndpointData ip;
-
+        [NativeDisableUnsafePtrRestriction] private IntPtr tmp;
         public void Execute()
         {
             if (isNetworkInit)
@@ -223,8 +225,9 @@ public class NetworkControl : MonoBehaviour
                         {
                             case MessageType.Movement:
                                 //TODO: recv the movement variable from other clients
-                                Packet pac = unknown; //I cant believe this works
-                                Movement move = (Movement)pac;
+
+                                Marshal.StructureToPtr(unknown, tmp, true);
+                                Movement move = Marshal.PtrToStructure<Movement>(tmp);
                                 move.isUpdated = true;
                                 movements[move.id] = move;
                                 break;
@@ -273,7 +276,7 @@ public class NetworkControl : MonoBehaviour
         singletonVarInit(_ip, inst._ip);
 
     }
-    void singletonVarInit(Object ob, Object instOb, Object stat = default(Object))
+    void singletonVarInit(UnityEngine.Object ob, UnityEngine.Object instOb, UnityEngine.Object stat = default(UnityEngine.Object))
     {
         if (!ob)
             ob = instOb;
@@ -329,7 +332,7 @@ public class NetworkControl : MonoBehaviour
         }
         jobLobbyRecv = new NetworkLobyRecvJob()
         {
-            sock = NetworkControle.sock,
+            sock = sock,
             //ip = ip
         };
         close = false;
@@ -461,7 +464,7 @@ public class NetworkControl : MonoBehaviour
             goLobby = false;
             // Go to Lobby
             SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
-            SceneManager.
+            //SceneManager.
         }
         if (goGame)
         {
