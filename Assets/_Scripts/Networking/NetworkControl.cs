@@ -223,7 +223,8 @@ public class NetworkControl : MonoBehaviour
                         {
                             case MessageType.Movement:
                                 //TODO: recv the movement variable from other clients
-                                Movement move = (Movement)(Packet)unknown; //I cant believe this works
+                                Packet pac = unknown; //I cant believe this works
+                                Movement move = (Movement)pac;
                                 move.isUpdated = true;
                                 movements[move.id] = move;
                                 break;
