@@ -15,6 +15,8 @@ public class Respawn : MonoBehaviour
         {
             transform.position = spawnpoint.transform.position;
             transform.rotation = spawnpoint.transform.rotation;
+
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

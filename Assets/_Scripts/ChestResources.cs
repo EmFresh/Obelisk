@@ -24,11 +24,11 @@ public class ChestResources : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player 2"))
+        if(other.CompareTag(player.tag))
         {
-            woodStock = player.GetComponent<PlayerPickup>().WoodAmount;
-            stoneStock = player.GetComponent<PlayerPickup>().StoneAmount;
-            crystalStock = player.GetComponent<PlayerPickup>().CrystalAmount;
+            woodStock += player.GetComponent<PlayerPickup>().WoodAmount;
+            stoneStock += player.GetComponent<PlayerPickup>().StoneAmount;
+            crystalStock += player.GetComponent<PlayerPickup>().CrystalAmount;
 
             player.GetComponent<PlayerPickup>().WoodAmount = 0;
             player.GetComponent<PlayerPickup>().StoneAmount = 0;

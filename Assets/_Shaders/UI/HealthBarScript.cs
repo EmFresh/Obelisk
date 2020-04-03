@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour
 {
+
     [Range(0, 1)]
-    public float percentHealth = 1;
+    public float percentHealth = 1,
+        maxHealth = 1;
     private Material rend;
-   // Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
         rend = Instantiate(GetComponent<RawImage>().material);
@@ -19,6 +21,6 @@ public class HealthBarScript : MonoBehaviour
     void Update()
     {
         //percent -= 0.001f;
-        rend.SetFloat("health", percentHealth = Mathf.Clamp(percentHealth, 0, 1));
+        rend.SetFloat("health", Mathf.Clamp(percentHealth * maxHealth, 0, 1));
     }
 }

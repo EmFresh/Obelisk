@@ -11,7 +11,7 @@ public class TowerBuild : MonoBehaviour
     public KeyCode buildKey = KeyCode.Tab;
     public CONTROLLER_BUTTON buildJoy = Y;
     public float spacing = 3;
-    [HideInInspector] public int stage;
+    [HideInInspector] public int stage = 0;
 
     public int woodNeeded;
     public int stoneNeeded;
@@ -24,6 +24,7 @@ public class TowerBuild : MonoBehaviour
     private const int maxStages = 3;
 
     public GameObject chest;
+    //public GameObject spellcaster;
 
     //private bool initBuild = true;
     void OnTriggerStay(Collider obj)
@@ -33,7 +34,7 @@ public class TowerBuild : MonoBehaviour
 
         _animator.SetBool("isBuild", false);
 
-        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone 1")) || (obj.gameObject.CompareTag("Player 2") && this.gameObject.tag.Contains("Build Zone 2")))
+        if ((obj.gameObject.CompareTag("Player 1") && this.gameObject.tag.Contains("Build Zone 1")) || (obj.gameObject.CompareTag("Player 3") && this.gameObject.tag.Contains("Build Zone 2")))
             if (Input.GetKeyDown(buildKey) || isButtonDown(playerIndex, (int)buildJoy))
             {
                 if (stage < maxStages)
@@ -60,7 +61,6 @@ public class TowerBuild : MonoBehaviour
                         Bounds obj2 = towerPart.GetComponent<MeshRenderer>().bounds;
                         Vector3 size1 = obj1.max - obj2.min, size2 = obj2.max - obj2.min;
 
-
                         //place the new object on top of the old one
                         towerPart.transform.position += new Vector3(0, obj1.size.y * 1.5f, 0);
 
@@ -70,7 +70,6 @@ public class TowerBuild : MonoBehaviour
                             //place the new object on top of the old one
                             towerPart.transform.position += new Vector3(0, obj1.size.y + spacing, 0);
                         }
-
 
                         //Rob / Lilian's solution IDK
                         //towerParts2[stage % towerParts.Count].SetActive(true);
