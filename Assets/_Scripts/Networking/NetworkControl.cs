@@ -328,7 +328,7 @@ public class NetworkControl : MonoBehaviour
         }
         jobLobbyRecv = new NetworkLobyRecvJob()
         {
-            sock = sock,
+            sock = NetworkControle.sock,
             //ip = ip
         };
         close = false;
@@ -460,6 +460,7 @@ public class NetworkControl : MonoBehaviour
             goLobby = false;
             // Go to Lobby
             SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
+            SceneManager.
         }
         if (goGame)
         {

@@ -65,7 +65,7 @@ public class GameInit : MonoBehaviour
                 for (int a = 0; a < 2; ++a)
                 {
 
-                    if (NetworkControl.seat[a] == NetworkControl.thisUser._id)
+                    if (NetworkControl.seat[a+2] == NetworkControl.thisUser._id)
                     {
                         players[a].GetComponent<PlayerMovement>().controllerIndex = 0;
                         players[a].GetComponent<PlayerMovement>().enableKeyboard = true;
