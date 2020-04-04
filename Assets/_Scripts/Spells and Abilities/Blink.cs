@@ -8,6 +8,7 @@ using static ControllerInput.CONTROLLER_BUTTON;
 public class Blink : MonoBehaviour
 {
     public Animator _animator;
+    public Camera localRogueCamera;
     public float blinkTime; //Set here or in Inspector to modify the amount of time the player is in "Blink" mode
     public bool isBlinking;
     public KeyCode blinkKey;
@@ -30,6 +31,7 @@ public class Blink : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         shaderScript = GetComponentInChildren<BlinkEffect>();
+        
     }
 
 
@@ -40,6 +42,7 @@ public class Blink : MonoBehaviour
 
         if ((Input.GetKeyDown(blinkKey) || isButtonDown(playerIndex, (int)blinkJoy)) && Time.time > nextBlinkTime && !isBlinking)
         {
+            StartCoroutine(blinkShake(.2f, 1f));
             ActivateBlink();
         }
     }
@@ -54,7 +57,8 @@ public class Blink : MonoBehaviour
         // characterRenderer.enabled = !characterRenderer.enabled;
         Debug.Log("Blink Active");
         endBlinkTime = Time.time + blinkTime;
-        Invoke("StopBlink", blinkTime); //After blinkTime seconds, StopBlink()
+       // Invoke("StopBlink", blinkTime); //After blinkTime seconds, StopBlink()
+       
     }
 
     void StopBlink()
@@ -68,6 +72,27 @@ public class Blink : MonoBehaviour
         //characterRenderer.enabled = !characterRenderer.enabled;
         nextBlinkTime = Time.time + cooldownTime;
         isBlinking = false;
+    }
+
+
+    IEnumerator blinkShake(float duration, float magnitude)
+    //Adapted from Brakey's Camera Shake video
+    {
+        Vector3 camOriginalPosition = localRogueCamera.transform.localPosition;
+
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            localRogueCamera.transform.localPosition = new Vector3(x, y, camOriginalPosition.z);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        localRogueCamera.transform.localPosition = camOriginalPosition;
+
     }
 }
 
