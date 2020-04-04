@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         col_size = GetComponent<BoxCollider>();
         isGrounded = true;
         //print("The Error:"+getLastError());
+      
     }
 
     // Update is called once per frame
@@ -134,16 +135,20 @@ public class PlayerMovement : MonoBehaviour
     void CreateJumpParticles(Vector3 playerPos)
     {
        
-        Instantiate(jumpParticles,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
+        jumpParticles.transform.position = playerPos;
         jumpParticles.Play();
+      
+
+        
     }
 
 
     void CreateLandParticles(Vector3 playerPos)
     {
-      
-        Instantiate(landParticles,new Vector3(transform.position.x,transform.position.y,transform.position.z),Quaternion.identity);
+       
+        landParticles.transform.position = playerPos;
         landParticles.Play();
+        
     }
 
 }
