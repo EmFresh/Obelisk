@@ -42,7 +42,7 @@ public class Blink : MonoBehaviour
 
         if ((Input.GetKeyDown(blinkKey) || isButtonDown(playerIndex, (int)blinkJoy)) && Time.time > nextBlinkTime && !isBlinking)
         {
-            StartCoroutine(blinkShake(.2f, 1f));
+            //StartCoroutine(blinkShake(.2f, 1f));
             ActivateBlink();
         }
     }
@@ -51,13 +51,13 @@ public class Blink : MonoBehaviour
     {
         _animator.SetBool("isBlink", true);
         //playerMovement.MaxSpeed = 10;
-        GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().MaxSpeed*3;
+        GetComponent<PlayerMovement>().speed = GetComponent<PlayerMovement>().MaxSpeed*2;
         shaderScript.enabled = !shaderScript.enabled;
         isBlinking = true;
         // characterRenderer.enabled = !characterRenderer.enabled;
         Debug.Log("Blink Active");
         endBlinkTime = Time.time + blinkTime;
-       // Invoke("StopBlink", blinkTime); //After blinkTime seconds, StopBlink()
+        Invoke("StopBlink", blinkTime); //After blinkTime seconds, StopBlink()
        
     }
 
