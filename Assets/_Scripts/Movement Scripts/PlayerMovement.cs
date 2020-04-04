@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool enableKeyboard = false;
 
-    [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 5;
+ 
     public int healthAmount = 5;
     [HideInInspector] public float currentHealth = 0;
 
