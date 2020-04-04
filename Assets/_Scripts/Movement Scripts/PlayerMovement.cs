@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool enableKeyboard = false;
 
+    public int healthAmount = 5;
+    [HideInInspector] public float currentHealth = 0;
+
     [Tooltip("MUST be set before you run the editor")] public float MaxSpeed = 15;
 
     [HideInInspector] public float speed = 0;
@@ -35,11 +38,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         speed = MaxSpeed;
+        currentHealth = healthAmount;
         //Assign player's phisics body and collider
         rb = GetComponent<Rigidbody>();
         col_size = GetComponent<BoxCollider>();
         isGrounded = true;
-
         //print("The Error:"+getLastError());
     }
 

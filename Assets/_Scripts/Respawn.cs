@@ -6,10 +6,22 @@ public class Respawn : MonoBehaviour
 {
     public GameObject area;
     public GameObject spawnpoint;
+    [HideInInspector] public bool respawn;
 
+    void Update()
+    {
+        if (respawn)
+        {
+            respawn = false;
+            transform.position = spawnpoint.transform.position;
+            transform.rotation = spawnpoint.transform.rotation;
 
-   //trigger
-   private void OnTriggerExit(Collider other)
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+    }
+
+    //trigger
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == area)
         {
