@@ -28,7 +28,7 @@ public class TowerBuild : MonoBehaviour
     public GameObject chest;
     public string RedScene;
     public string BlueScene;
-    public string TieScene;
+    //public string TieScene;
     //public GameObject spellcaster;
     //public GameTimer tim;
     //private bool initBuild = true;
@@ -106,10 +106,6 @@ public class TowerBuild : MonoBehaviour
                                 GameEnd("Red");
                             }
                         }
-                        if (timer.GetComponent<GameTimer>().counter <= 0)
-                        {
-                            GameEnd("Tie");
-                        }
                         
                     }
                 }
@@ -128,11 +124,6 @@ public class TowerBuild : MonoBehaviour
         {
             SceneManager.LoadScene(BlueScene, LoadSceneMode.Single);
             Debug.Log("Blue Wins");
-        }
-        else if(team == "Tie")
-        {
-            SceneManager.LoadScene(TieScene, LoadSceneMode.Single);
-            Debug.Log("Tie");
         }
         else Debug.Log("Error Ending Game");
     }

@@ -666,7 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseOver: event:/SFX/Button Over
   mouseClick: event:/SFX/Button Press
-  targetScale: {x: 1, y: 1, z: 0}
+  targetScale: {x: 1.75, y: 1.88, z: 0}
   targetScaleAfter: 1.3
 --- !u!114 &1800103217
 MonoBehaviour:

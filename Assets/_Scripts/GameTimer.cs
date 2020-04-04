@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameTimer : MonoBehaviour
 
     public float counter = 300.0f;
     public Text countText;
+
+    public string TieScene;
 
     public bool timeOut = false;
     void Start()
@@ -31,7 +34,8 @@ public class GameTimer : MonoBehaviour
         }
         if (counter <= 0)
         {
-            timeOut = true;
+            //timeOut = true;
+            SceneManager.LoadScene(TieScene, LoadSceneMode.Single);
             countText.text = "Time Left: " + Mathf.Round(counter);
             Debug.Log("TimeOut = True");
         }
