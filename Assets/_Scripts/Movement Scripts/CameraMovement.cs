@@ -11,7 +11,7 @@ public class CameraMovement : MonoBehaviour
     public bool invertYJoy = false;
     public bool invertYKeyboard = true;
     [Range(0, 5.0f)]
-    private float RotateSpeed = 3;
+    private float RotateSpeed = 5;
 
     public float _cameraLROffset = 0.5f;
     public float _cameraUDOffset = 0.6f;

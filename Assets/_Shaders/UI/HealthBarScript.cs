@@ -20,6 +20,10 @@ public class HealthBarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var player = transform.parent.parent.parent.GetComponent<PlayerMovement>();
+        float percent = player.currentHealth / player.healthAmount;
+        percentHealth = percent;
+
         //percent -= 0.001f;
         rend.SetFloat("health", Mathf.Clamp(percentHealth * maxHealth, 0, 1));
     }

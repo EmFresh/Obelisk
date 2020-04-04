@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
+using UnityEngine.SceneManagement;
+using FMOD.Studio;
+using FMODUnity;
 
 public class TowerBuild : MonoBehaviour
 {
+
+    [FMODUnity.EventRef] public string Event;
+    EventInstance instance;
+    EventDescription eventDescription;
 
     public List<GameObject> towerParts = new List<GameObject>();
     public KeyCode buildKey = KeyCode.Tab;
@@ -23,10 +30,18 @@ public class TowerBuild : MonoBehaviour
     private Transform theParent;
     private const int maxStages = 3;
 
+    public GameObject timer;
     public GameObject chest;
+    public string RedScene;
+    public string BlueScene;
+    //public string TieScene;
     //public GameObject spellcaster;
-
+    //public GameTimer tim;
     //private bool initBuild = true;
+    void Start()
+    {
+        eventDescription = RuntimeManager.GetEventDescription(Event);
+    }
     void OnTriggerStay(Collider obj)
     {
         if (obj.gameObject.tag.ToLower().Contains("player"))
@@ -83,12 +98,45 @@ public class TowerBuild : MonoBehaviour
 
                         tmp.right = (stage % 2) != 0;
                         tmp.speed = stage * 5 + 10;
-
+                        eventDescription.createInstance(out instance);
+                        instance.start();
                         stage++;
+
+                        if (stage >= 3)
+                        {
+                            if (this.gameObject.tag == "Build Zone 1")
+                            {
+                                //tim.GetComponent<>()
+                                //TODO: Get time. Also if time runs out end the game from the timer.
+                                GameEnd("Blue");
+
+                            }
+
+                            else
+                            {
+                                GameEnd("Red");
+                            }
+                        }
+
                     }
                 }
             }
 
+    }
+    public void GameEnd(string team)
+    {
+        if (team == "Red")
+        {
+            SceneManager.LoadScene(RedScene, LoadSceneMode.Single);
+            Debug.Log("Red Wins");
+            //Debug.Log(timer.GetComponent<GameTimer>().timeOut);
+        }
+        else if (team == "Blue")
+        {
+            SceneManager.LoadScene(BlueScene, LoadSceneMode.Single);
+            Debug.Log("Blue Wins");
+        }
+        else Debug.Log("Error Ending Game");
     }
 
 }

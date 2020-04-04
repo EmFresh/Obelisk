@@ -18,6 +18,13 @@ public class ResourceSpawn : MonoBehaviour
 
     int spawnPointX;
     int spawnPointZ;
+
+    public float woodLargeSpawnTime = 6;
+    public float stoneLargeSpawnTime = 8;
+    public float crystalLargeSpawnTime = 10;
+    public float woodSmallSpawnTime = 3;
+    public float stoneSmallSpawnTime = 5;
+    public float crystalSmallSpawnTime = 8;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +44,7 @@ public class ResourceSpawn : MonoBehaviour
         speedBoostSpawnTimer += Time.deltaTime;
 
 
-        if(woodSpawnTimer > 6)
+        if(woodSpawnTimer > woodLargeSpawnTime)
         {
             spawnPointX = Random.Range(-46, -70);
             spawnPointZ = Random.Range(-9, 15);
@@ -46,7 +53,7 @@ public class ResourceSpawn : MonoBehaviour
             woodSpawnTimer = 0;
         }
 
-        if(stoneSpawnTimer > 8)
+        if(stoneSpawnTimer > stoneLargeSpawnTime)
         {
             spawnPointX = Random.Range(51, 73);
             spawnPointZ = Random.Range(-8, 11);
@@ -55,7 +62,7 @@ public class ResourceSpawn : MonoBehaviour
             stoneSpawnTimer = 0;
         }
 
-        if(crystalSpawnTimer > 10)
+        if(crystalSpawnTimer > crystalLargeSpawnTime)
         {
             spawnPointX = Random.Range(-9, 14);
             spawnPointZ = Random.Range(-9, 14);
@@ -63,7 +70,7 @@ public class ResourceSpawn : MonoBehaviour
            ////Debug.Log("Spawn Crystal");
             crystalSpawnTimer = 0;
         }
-         if(woodSmallSpawnTimer > 2)
+         if(woodSmallSpawnTimer > woodSmallSpawnTime)
         {
             spawnPointX = Random.Range(-46, -70);
             spawnPointZ = Random.Range(-9, 15);
@@ -71,7 +78,7 @@ public class ResourceSpawn : MonoBehaviour
             //Debug.Log("Spawn Small Wood");
             woodSmallSpawnTimer = 0;
         }
-         if(stoneSmallSpawnTimer > 3)
+         if(stoneSmallSpawnTimer > stoneSmallSpawnTime)
         {
             spawnPointX = Random.Range(51, 73);
             spawnPointZ = Random.Range(-8, 11);
@@ -79,21 +86,13 @@ public class ResourceSpawn : MonoBehaviour
             //Debug.Log("Spawn Small Stone");
             stoneSmallSpawnTimer = 0;
         }
-         if(crystalSmallSpawnTimer > 4)
+         if(crystalSmallSpawnTimer > crystalSmallSpawnTime)
         {
             spawnPointX = Random.Range(-9, 14);
             spawnPointZ = Random.Range(-9, 14);
             myPool.SpawnObject("Resource(CrystalSmall)", new Vector3(spawnPointX, 115, spawnPointZ), transform.rotation, true);
            ////Debug.Log("Spawn Small Crystal");
             crystalSmallSpawnTimer = 0;
-        }
-        if(speedBoostSpawnTimer > 10)
-        {
-            spawnPointX = Random.Range(-75, 75);
-            spawnPointZ = Random.Range(-50, 50);
-            myPool.SpawnObject("SpeedBuff", new Vector3(spawnPointX, 0.3f, spawnPointZ), transform.rotation, true);
-           ////Debug.Log("Spawn Speed");
-            speedBoostSpawnTimer = 0;
         }
     }
 }

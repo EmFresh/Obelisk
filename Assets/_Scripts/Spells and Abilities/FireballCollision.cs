@@ -17,13 +17,24 @@ public class FireballCollision : MonoBehaviour
             //Debug.Log(scarecrowsDown);
             ent.gameObject.SetActive(false);
         }
-       
 
-            //   explosion = (GameObject)Resources.Load("_Prefabs/fireballImpact");
-            //   explosion.transform.position = this.transform.position;
+        if (ent.tag.ToLower().Contains("player"))
+        {
+            var player = ent.GetComponent<PlayerMovement>();
+            player.currentHealth -= player.currentHealth > 0 ? 1 : 0;
 
-            Destroy(this.gameObject);
-            print("deleat this garbage");
-        
+            if ( player.currentHealth == 0)
+            {
+                ent.GetComponent<Respawn>().respawn = true;
+                player.currentHealth = ent.GetComponent<PlayerMovement>().healthAmount;
+            }
+        }
+
+        //   explosion = (GameObject)Resources.Load("_Prefabs/fireballImpact");
+        //   explosion.transform.position = this.transform.position;
+
+        Destroy(this.gameObject);
+        print("delete this garbage");
+
     }
 }
