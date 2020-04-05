@@ -420,14 +420,16 @@ void Server::pressedStart(int _userId)
 	}
 	startButtons[_id] = _userId;
 
-	// Update seat changing to all user
-	std::string startInfo = "%";
-	for(int i = 0; i < 4; i++)
-	{
-		startInfo += ":";
-		startInfo += std::to_string(startButtons[i]);
+	if (!checkAllStartPressed()) {
+		// Update seat changing to all user
+		std::string startInfo = "%";
+		for (int i = 0; i < 4; i++)
+		{
+			startInfo += ":";
+			startInfo += std::to_string(startButtons[i]);
+		}
+		BroadcastMessageToAll((char*)startInfo.c_str());
 	}
-	BroadcastMessageToAll((char*)startInfo.c_str());
 }
 
 void Server::leftGame(int _id)
