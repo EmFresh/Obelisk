@@ -30,6 +30,8 @@ public class NetworkControl : MonoBehaviour
     static bool goLobby = false, inLobby = false;
     static bool goGame = false, inGame = false;
 
+    public static string leaderboard = "";
+
     public static SocketData sock;
     SocketData _sock;
     public static IPEndpointData ip;
@@ -268,14 +270,19 @@ public uint id;
                                 tmp = Marshal.AllocHGlobal(Marshal.SizeOf<Unknown>());
                                 Marshal.StructureToPtr(unknown, tmp, true);
                                 string name = Marshal.PtrToStringAnsi(tmp);
-                                Marshal.FreeHGlobal(tmp);
 
-                                if (name != null)
-                                {
-                                    var data = name.Split(new char[]{ ' ' });
-                                    if (data[0].ToLower() == "endgame")Application.Quit();
+                                //Please use this "name" to print this string on the player'ui
+                                print(name);
+                                leaderboard = name;
 
-                                }
+                                //Marshal.FreeHGlobal(tmp);
+
+                                //if (name != null)
+                                //{
+                                //    var data = name.Split(new char[]{ ' ' });
+                                //    if (data[0].ToLower() == "endgame")Application.Quit();
+
+                                //}
 
                                 break;
                         }

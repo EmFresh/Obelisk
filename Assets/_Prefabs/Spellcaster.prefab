@@ -223,6 +223,7 @@ MonoBehaviour:
   lastPosition: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   dt: 0
+  scoreboard: {fileID: 4539762284804330688}
 --- !u!114 &3668339357406586725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +615,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellCaster UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1002321995902062392, guid: b74bd52792c06824e8a7506505523a26,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002321995902062392, guid: b74bd52792c06824e8a7506505523a26,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002321995902062395, guid: b74bd52792c06824e8a7506505523a26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002321995902062398, guid: b74bd52792c06824e8a7506505523a26,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002321995902062398, guid: b74bd52792c06824e8a7506505523a26,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 432.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1002321995902062398, guid: b74bd52792c06824e8a7506505523a26,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 217.75
+      objectReference: {fileID: 0}
     - target: {fileID: 1002321996072392563, guid: b74bd52792c06824e8a7506505523a26,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -632,3 +663,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3668339357413530616}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4539762284804330688 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1002321995902062392, guid: b74bd52792c06824e8a7506505523a26,
+    type: 3}
+  m_PrefabInstance: {fileID: 3668339357413530616}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

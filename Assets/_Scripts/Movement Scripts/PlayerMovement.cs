@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
 using static Networking;
@@ -36,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public float dt;
     static float startTime;
+
+    public Text scoreboard;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -97,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
                     animator.SetBool("isJump", true);
             }
 
+            scoreboard.text = NetworkControl.leaderboard;
         }
         else
         {

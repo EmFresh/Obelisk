@@ -23,6 +23,19 @@ enum class MessageType:int
 {
 	Unknown,
 	Movement,
+	HealthInfo,
+	Fireball,
+	ResourceSpawn,
+	ResourceCollected,
+	EndGame
+};
+
+struct EndGame
+{
+	MessageType type = MessageType::EndGame;
+	int size;
+	int id;
+	float timeInSec;
 };
 
 

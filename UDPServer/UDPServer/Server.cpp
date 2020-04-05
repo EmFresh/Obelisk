@@ -208,6 +208,11 @@ void Server::UpdateRecv()
 						//TODO: get player ID,Position,velocity,elapsed time and broadcast
 						BroadcastMessageToAll(recv_buf);//send it to everyone
 					}
+				case MessageType::EndGame:
+					{
+					EndGame end = reclass(EndGame, *(recv_buf));
+					BroadcastMessageToAll((char*)processTheHighScore(users.getName(end.id), end.timeInSec).data());
+					}
 
 					break;
 				default:
