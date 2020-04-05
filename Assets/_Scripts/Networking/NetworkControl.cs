@@ -95,6 +95,7 @@ public class NetworkControl : MonoBehaviour
             size = Marshal.SizeOf<EndGame>(); //int
         }
 
+public uint id;
         public float timeInSec;
 
     }

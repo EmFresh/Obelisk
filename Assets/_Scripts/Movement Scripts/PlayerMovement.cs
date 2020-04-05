@@ -134,10 +134,10 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 var timeInSec = Time.realtimeSinceStartup - startTime;
-                string end = "GameEnd ";
-                end += timeInSec.ToString() + " " ;
-                end += NetworkControl.thisUser._name;
-
+                EndGame end =new EndGame();
+                end.id = (ushort)NetworkControl.thisUser._id;
+                end.timeInSec = timeInSec;
+               
                 /// end = "EndGame 10.5 The Winner!!" 
                 sendToPacket(sock, end, ip);
              
