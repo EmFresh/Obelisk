@@ -5,6 +5,7 @@ using static ControllerInput;
 using static ControllerInput.CONTROLLER_BUTTON;
 using static Networking;
 using static NetworkControl;
+using System.Runtime.InteropServices;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,6 +35,15 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 lastPosition;
     [HideInInspector] public Vector3 direction;
     [HideInInspector] public float dt;
+    static float startTime;
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        startTime = Time.realtimeSinceStartup;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = transform.forward * y + transform.right * x;
             moveDirection = moveDirection.normalized;
 
-                lastPosition = transform.position;
+            lastPosition = transform.position;
             transform.position += moveDirection * speed * Time.deltaTime;
             direction = transform.position - lastPosition;
             dt = Time.deltaTime;
@@ -111,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isNetworkedPlayer)
         {
-             //TODO: send information tp server
+            //TODO: send information tp server
             Movement movement = new Movement();
             movement.pos = transform.position;
             movement.dir = direction;
@@ -120,6 +130,19 @@ public class PlayerMovement : MonoBehaviour
             movement.id = networkID;
             movement.isUpdated = false;
             sendToPacket(sock, movement, ip);
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                var timeInSec = Time.realtimeSinceStartup - startTime;
+                string end = "GameEnd ";
+                end += timeInSec.ToString() + " " ;
+                end += NetworkControl.thisUser._name;
+
+                /// end = "EndGame 10.5 The Winner!!" 
+                sendToPacket(sock, end, ip);
+             
+                
+            }
         }
     }
     Vector3 divideVec(float scale, Vector3 vec)
@@ -130,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         y = scale / vec.y;
         z = scale / vec.z;
 
-        return new Vector3(x , y , z );
+        return new Vector3(x, y, z);
     }
     // Check player on the ground or not (Unity build in function)
     private void OnCollisionEnter(Collision collision)

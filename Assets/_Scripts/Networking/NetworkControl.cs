@@ -18,6 +18,8 @@ public class NetworkControl : MonoBehaviour
 
     public static List<User> users = new List<User>();
     List<User> _users;
+
+    public static EndGame endGame = new EndGame();
     public static Movement[] movements = new Movement[4];
     Movement[] _movements;
     public static User thisUser = new User();
@@ -45,7 +47,8 @@ public class NetworkControl : MonoBehaviour
         HealthInfo,
         Fireball,
         ResourceSpawn,
-        ResourceCollected
+        ResourceCollected,
+        EndGame
     }
 
     #region classes
@@ -81,6 +84,19 @@ public class NetworkControl : MonoBehaviour
         public float dt;
         public Vector3 pos, dir;
         public Quaternion rot;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public class EndGame : Packet
+    {
+        public EndGame()
+        {
+            type = MessageType.EndGame; //int
+            size = Marshal.SizeOf<EndGame>(); //int
+        }
+
+        public float timeInSec;
+
     }
     #endregion
 
@@ -245,7 +261,21 @@ public class NetworkControl : MonoBehaviour
                             case MessageType.ResourceCollected:
                                 //TODO: recv resource type and what position in the array was deleted
                                 break;
+
                             default:
+
+                                tmp = Marshal.AllocHGlobal(Marshal.SizeOf<Unknown>());
+                                Marshal.StructureToPtr(unknown, tmp, true);
+                                string name = Marshal.PtrToStringAnsi(tmp);
+                                Marshal.FreeHGlobal(tmp);
+
+                                if (name != null)
+                                {
+                                    var data = name.Split(new char[]{ ' ' });
+                                    if (data[0].ToLower() == "endgame")Application.Quit();
+
+                                }
+
                                 break;
                         }
 
