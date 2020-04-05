@@ -8,7 +8,7 @@ using static ControllerInput.CONTROLLER_BUTTON;
 public class PlayerSpellShot : MonoBehaviour
 {
     public Vector3 directionOffset;
-    public GameObject projectial;
+    public GameObject projectile;
     public GameObject explosion;
     public KeyCode fireKey = KeyCode.F;
     public CONTROLLER_BUTTON fireJoy = B;
@@ -25,6 +25,18 @@ public class PlayerSpellShot : MonoBehaviour
     private IList<Vector3> direction = new List<Vector3>();
     private IList<Vector3> position = new List<Vector3>();
 
+    [HideInInspector]public bool stopRumble;
+    float rumbleDur = 0.2f;
+    float rumbleCount = 0;
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before
+    /// any of the Update methods is called the first time.
+    /// </summary>
+    void Start()
+    {
+        rumbleCount = rumbleDur;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -35,8 +47,12 @@ public class PlayerSpellShot : MonoBehaviour
         //creates a new gameObject every time a key is pressed
         if ((Input.GetKeyDown(fireKey) || isButtonDown(playerIndex, (int)fireJoy)) && shots[0])
         {
+            rumbleCount = 0;
+            stopRumble = true;
+            setVibrationR(playerIndex, 5);
+
             _animator.SetBool("isShoot", true);
-            projcopy.Add(Instantiate(projectial));
+            projcopy.Add(Instantiate(projectile));
             projcopy.Last().GetComponent<FireballCollision>().caster = gameObject;
             projCounter.Add(0);
 
@@ -63,6 +79,15 @@ public class PlayerSpellShot : MonoBehaviour
             //Projcopy[Projcopy.Count - 1].transform.parent = this.transform;
         }
 
+        //Rumble 
+        if (rumbleCount < rumbleDur)
+            rumbleCount += Time.deltaTime;
+        else if (stopRumble)
+        {
+            stopRumble = false;
+            resetVibration(playerIndex);
+        }
+        
         //checks if the player can make a shot
         if (!(shots[0] && shots[1] && shots[2]))
         {

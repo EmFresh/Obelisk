@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class FireballCollision : MonoBehaviour
 {
     [HideInInspector] public GameObject caster;
@@ -20,13 +21,19 @@ public class FireballCollision : MonoBehaviour
 
         if (ent.tag.ToLower().Contains("player"))
         {
-            var player = ent.GetComponent<PlayerMovement>();
-            player.currentHealth -= player.currentHealth > 0 ? 1 : 0;
+            var player = ent.GetComponent<Rigidbody>();
 
-            if ( player.currentHealth == 0)
+            player.AddExplosionForce(12, transform.position, 7);
+
+            var playerMovement = ent.GetComponent<PlayerMovement>();
+            ControllerInput.setVibration(playerMovement.playerIndex,1,1);
+            playerMovement.stopRumble = false;
+
+            playerMovement.currentHealth--;
+            if (playerMovement.currentHealth == 0)
             {
                 ent.GetComponent<Respawn>().respawn = true;
-                player.currentHealth = ent.GetComponent<PlayerMovement>().healthAmount;
+                playerMovement.currentHealth = ent.GetComponent<PlayerMovement>().healthAmount;
             }
         }
 

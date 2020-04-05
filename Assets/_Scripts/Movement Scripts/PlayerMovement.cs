@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool enableKeyboard = false;
 
- 
     public int healthAmount = 5;
     [HideInInspector] public float currentHealth = 0;
 
@@ -28,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 0;
 
-    [Tooltip("Value added to speed per update")] public float speedTime = 0.5f; 
+    [Tooltip("Value added to speed per update")] public float speedTime = 0.5f;
 
     public float JumpHeight = 7;
 
@@ -41,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 lastPosition;
     [HideInInspector] public Vector3 velocity;
     [HideInInspector] public float dt;
+    [HideInInspector] public bool stopRumble;
+
+    float rumbleDur = 0.5f, rumbleCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         col_size = GetComponent<BoxCollider>();
         isGrounded = true;
         //print("The Error:"+getLastError());
-      
+
     }
 
     // Update is called once per frame
@@ -71,6 +73,19 @@ public class PlayerMovement : MonoBehaviour
         velocity = transform.position - lastPosition;
         dt = Time.deltaTime;
 
+        if (rumbleCount < rumbleDur)
+        {
+            rumbleCount += Time.deltaTime;
+            var tmp = GetComponent<PlayerSpellShot>();
+            if (tmp != null)
+                tmp.stopRumble = false;
+
+        }
+        else if (stopRumble)
+        {
+            stopRumble = false;
+            resetVibration(playerIndex);
+        }
         // maxSpeed per character. Slower max speed for spellcaster, higher for Rogue
 
         //Rogue movement envelope is snappy and responsive.
@@ -87,10 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position += 1 * moveDirection * speed * Time.deltaTime;
 
-
         //Spellcaster isn't.
-
-
 
         //Set running animation base on input runnning direction
         if (_animator)
@@ -125,30 +137,25 @@ public class PlayerMovement : MonoBehaviour
             hasJumped = false;
         }
 
-
         //Set jump animation to false
         if (_animator)
             _animator.SetBool("isJump", false);
     }
 
-
     void CreateJumpParticles(Vector3 playerPos)
     {
-       
+
         jumpParticles.transform.position = playerPos;
         jumpParticles.Play();
-      
 
-        
     }
-
 
     void CreateLandParticles(Vector3 playerPos)
     {
-       
+
         landParticles.transform.position = playerPos;
         landParticles.Play();
-        
+
     }
 
 }
