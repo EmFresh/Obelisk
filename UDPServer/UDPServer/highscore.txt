@@ -1,5 +1,5 @@
-unknown 1000
-unknown 1000
-unknown 1000
-unknown 1000
-unknown 1000
+Lillian 12
+Emory 21
+Emory 25
+Unknown 10000
+Unknown 10000
