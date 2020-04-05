@@ -63,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = transform.forward * y + transform.right * x;
             moveDirection = moveDirection.normalized;
 
-            if ((lastPosition - transform.position).magnitude >= minMovement)
                 lastPosition = transform.position;
             transform.position += moveDirection * speed * Time.deltaTime;
             direction = transform.position - lastPosition;
@@ -112,12 +111,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isNetworkedPlayer)
         {
-            if ((lastPosition - transform.position).magnitude < minMovement)
-                return;
-            //TODO: send information tp server
+             //TODO: send information tp server
             Movement movement = new Movement();
             movement.pos = transform.position;
-            movement.dir = direction;
+            movement.dir = direction.normalized;
             movement.rot = transform.rotation;
             movement.dt = dt;
             movement.id = networkID;
@@ -133,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         y = scale / vec.y;
         z = scale / vec.z;
 
-        return new Vector3(x = float.IsInfinity(x) ? 0 : x, y = float.IsInfinity(y) ? 0 : y, z = float.IsInfinity(z) ? 0 : z);
+        return new Vector3(x = (float.IsInfinity(x) ? 0 : x), y = (float.IsInfinity(y) ? 0 : y), z = (float.IsInfinity(z) ? 0 : z));
     }
     // Check player on the ground or not (Unity build in function)
     private void OnCollisionEnter(Collision collision)
