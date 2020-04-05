@@ -434,3 +434,62 @@ void Server::leftGame(int _id)
 	//TODO:
 	BroadcastMessageToAll((char*)"");
 }
+
+std::string Server::processTheHighScore(std::string name, int score)
+{
+	// array for collect name and scores from txt file
+	std::string names[5] = { "", "","", "", "", };
+	int scores[5] = { 0,0,0,0,0 };
+
+	// read information through txt file
+	std::ifstream infile("highscore.txt");
+	int n = 0;
+	infile >> names[n];
+	while (infile)
+	{
+		infile >> scores[n];
+		n++;
+		infile >> names[n];
+	}
+	infile.close();
+
+	// check if give score can bit any in the text file or not and find out what order it will be
+	n = 10;
+	for (int i = 0; i < 5; i++) {
+		if (score < scores[i]) {
+			n = i;
+			break;
+		}
+	}
+
+	// write the new/old highdcore info into txt file and produce a string contain taht info
+	std::string highScore = "History High Scores\n";
+	if (n == 10) {
+		for (int i = 0; i < 5; i++) {
+			std::string tmp = std::to_string(i + 1) + ". Name: " + names[i] + "  Time Used: " + std::to_string(scores[i]) + "s\n";
+			highScore += tmp;
+		}
+	}
+	else {
+		std::ofstream outfile("highscore.txt");
+		int x = 0;
+		for (int i = 0; i < 5; i++) {
+			if (i == n) {
+				outfile << name << " " << score << "\n";
+
+				std::string tmp = std::to_string(i + 1) + ". Name: " + name + "  Time Used: " + std::to_string(score) + "\n";
+				highScore += tmp;
+			}
+			else
+			{
+				outfile << names[x] << " " << scores[x] << "\n";
+
+				std::string tmp = std::to_string(i + 1) + ". Name: " + names[x] + "  Time Used: " + std::to_string(scores[x]) + "\n";
+				highScore += tmp;
+				x++;
+			}
+		}
+		outfile.close();
+	}
+	return highScore;
+}

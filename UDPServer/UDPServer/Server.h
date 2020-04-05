@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #pragma comment(lib, "Ws2_32.lib")
 
@@ -45,6 +46,7 @@ public:
 	void leftLobby(int _id);// Process when user left the lobby
 	void pressedStart(int _userId);// Process when user press the start
 	void leftGame(int _id);// Process when user left during the gameplay
+	std::string processTheHighScore(std::string name, int score);// Produce highdcore string
 
 	bool isServerRunning=false;
 
