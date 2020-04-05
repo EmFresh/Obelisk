@@ -95,7 +95,10 @@ public class PlayerMovement : MonoBehaviour
 
             var move = NetworkControl.movements[networkID];
             if (move.isUpdated)
+            {
                 transform.position = move.pos;
+                move.isUpdated = false;
+            }
             else//this can
                 transform.position += divideVec(1, (move.dir * move.dt)) * Time.deltaTime;
         }
