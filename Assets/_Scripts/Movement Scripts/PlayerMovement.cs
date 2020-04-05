@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = move.pos;
                 move.isUpdated = false;
             }
-            else//this can
+            else //this can
                 transform.position += divideVec(1, (move.dir * move.dt)) * Time.deltaTime;
         }
     }
@@ -125,8 +125,16 @@ public class PlayerMovement : MonoBehaviour
             sendToPacket(sock, movement, ip);
         }
     }
-    Vector3 divideVec(float scale, Vector3 vec) => new Vector3(scale / vec.x, scale / vec.y, scale / vec.z);
+    Vector3 divideVec(float scale, Vector3 vec)
+    {
+        float x, y, z;
 
+        x = scale / vec.x;
+        y = scale / vec.y;
+        z = scale / vec.z;
+
+        return new Vector3(x = float.IsInfinity(x) ? 0 : x, y = float.IsInfinity(y) ? 0 : y, z = float.IsInfinity(z) ? 0 : z);
+    }
     // Check player on the ground or not (Unity build in function)
     private void OnCollisionEnter(Collision collision)
     {
