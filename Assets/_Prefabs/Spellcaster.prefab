@@ -215,9 +215,10 @@ MonoBehaviour:
   controllerIndex: 0
   jumpJoy: 4096
   enableKeyboard: 1
-  MaxSpeed: 12
-  speed: 0
+  MaxSpeed: 5
   JumpHeight: 10
+  minMovement: 0.1
+  speed: 0
   isGrounded: 1
   lastPosition: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}

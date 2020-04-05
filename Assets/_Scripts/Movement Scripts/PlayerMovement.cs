@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
              //TODO: send information tp server
             Movement movement = new Movement();
             movement.pos = transform.position;
-            movement.dir = direction.normalized;
+            movement.dir = direction;
             movement.rot = transform.rotation;
             movement.dt = dt;
             movement.id = networkID;
@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         y = scale / vec.y;
         z = scale / vec.z;
 
-        return new Vector3(x = (float.IsInfinity(x) ? 0 : x), y = (float.IsInfinity(y) ? 0 : y), z = (float.IsInfinity(z) ? 0 : z));
+        return new Vector3(x , y , z );
     }
     // Check player on the ground or not (Unity build in function)
     private void OnCollisionEnter(Collision collision)
